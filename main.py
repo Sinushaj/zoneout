@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D 
 
 from detection_stuff import process_video, interpolate_nones
-from test_line_from_point import point_from_camera_coordinates
+from line_from_point import point_from_camera_coordinates
 
 gopro_path = 'gopro_serve_clip.mp4'
 zve10_path = 'zve10_serve_clip.mp4'
