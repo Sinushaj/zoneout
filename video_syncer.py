@@ -3,7 +3,8 @@ import sys
 
 def main():
     #video1_path = 'C0600.MP4'
-    video1_path = 'test_output.mp4'
+    #video1_path = 'test_output.mp4'
+    video1_path = 'C:\\Users\\neoda\\OneDrive\\Desktop\\GH011611.MP4'
     video2_path = 'zve10_test_60fps.mp4'
     #video2_path = 'GH011611.MP4'
 
@@ -15,7 +16,7 @@ def main():
         return
 
     # Given frame rates
-    fps1 = 25.0
+    fps1 = 60.0
     fps2 = 60.0
 
     # Get total frame counts for boundary checks
@@ -110,5 +111,69 @@ def main():
     else:
         print("No pair selected.")
 
-if __name__ == "__main__":
-    main()
+
+
+
+# single video tester
+
+def navigate_video(file_path: str):
+    cap = cv2.VideoCapture(file_path)
+
+    if not cap.isOpened():
+        raise ValueError("Could not open video file.")
+
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+    current_frame = 0
+
+    print("Controls:")
+    print("  d / a  -> +1 / -1 frame")
+    print("  w / s  -> +1 / -1 second")
+    print("  e / q  -> +1 / -1 minute")
+    print("  x      -> quit and return current frame")
+
+    while True:
+        # Clamp frame index
+        current_frame = max(0, min(current_frame, total_frames - 1))
+
+        # Jump to frame
+        cap.set(cv2.CAP_PROP_POS_FRAMES, current_frame)
+        ret, frame = cap.read()
+
+        if not ret:
+            break
+
+        # Display overlay info
+        display_frame = frame.copy()
+        text = f"Frame: {current_frame} | Time: {current_frame / fps:.2f}s"
+        cv2.putText(display_frame, text, (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+
+        # Show frame in window
+        cv2.imshow("Video Navigator", display_frame)
+
+        key = cv2.waitKey(0) & 0xFF
+
+        if key == ord('j'):          # forward 1 frame
+            current_frame += 1
+        elif key == ord('f'):        # back 1 frame
+            current_frame -= 1
+        elif key == ord('k'):        # forward 1 second
+            current_frame += int(fps)
+        elif key == ord('d'):        # back 1 second
+            current_frame -= int(fps)
+        elif key == ord('l'):        # forward 1 minute
+            current_frame += int(fps * 60)
+        elif key == ord('s'):        # back 1 minute
+            current_frame -= int(fps * 60)
+        elif key == ord('q'):        # exit
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+    return current_frame
+
+# print(navigate_video('C:\\Users\\neoda\\OneDrive\\Desktop\\GH011611.MP4'))
+# print(navigate_video("C:\\Users\\neoda\\OneDrive\\Desktop\\baseline_test.mp4"))
