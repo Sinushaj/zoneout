@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 from ultralytics import YOLO
 from typing import List, Optional, Tuple
 
@@ -128,3 +129,24 @@ def interpolate_nones(points: List[Optional[Tuple[int, int]]]) -> List[Optional[
             i += 1
 
     return result
+
+
+
+
+
+
+def temporal_median_filter(points, window=6):
+    smoothed = points.copy()
+    
+    for i in range(len(points)):
+        neighbors = []
+        
+        for j in range(max(0, i - window//2), min(len(points), i + window//2 + 1)):
+            if points[j] is not None:
+                neighbors.append(points[j])
+        
+        if len(neighbors) >= 3:
+            median = np.median(np.array(neighbors), axis=0)
+            smoothed[i] = tuple(median)
+    
+    return smoothed
