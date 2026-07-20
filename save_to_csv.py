@@ -105,6 +105,34 @@ def get_screen_coordinates(video_file, n):
     return points
 
 
+import csv
+
+def extract_dict_from_csv(file_path):
+    with open(file_path, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        rows = list(reader)
+        
+        if len(rows) < 2:
+            raise ValueError("CSV must have at least two rows")
+        
+        keys = rows[0]
+        values = rows[1]
+        
+        return {key: value for key, value in zip(keys, values)}
+
+
+
+def write_to_csv(csv_path, side, base):
+    with open(csv_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        
+        # First row: headers
+        writer.writerow(["sideline", "baseline"])
+        
+        # Second row: values
+        writer.writerow([side, base])
+
+
 change_gopro = False
 change_zve10 = False
 
@@ -120,3 +148,4 @@ if change_zve10:
     write_tuples_to_csv(zve10_court_points, 'zve10_points.csv')
 
 # print(read_csv_to_tuples_np('gopro_points.csv'))
+

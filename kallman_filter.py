@@ -236,3 +236,28 @@ def clean_ball_trajectory(points, deviation_threshold=2.0, angle_threshold_deg=4
     # ---------- Convert back to list of tuples ----------
     result = [tuple(row) for row in cleaned]
     return result
+
+
+
+def moving_average(points):
+    new_points = [points[0]]
+    # ta snitt av 3 cons som är nära nog varandra
+    # Ersätt först none med närmaste värde
+    for i in range(len(points) - 3):
+        if points[i + 1] is None:
+            new_points.append(None)
+            continue
+        neighborhood = points[i:i+3]
+        # hantera vänsterkant
+        if neighborhood[0] is None:
+            neighborhood[0] = neighborhood[1]
+        if np.linalg.norm(neighborhood[0] - neighborhood[1]) > 1.5:
+            neighborhood[0] = neighborhood[1]
+        # hantera högerkant
+        if neighborhood[2] is None:
+            neighborhood[2] = neighborhood[1]
+        if np.linalg.norm(neighborhood[2] - neighborhood[1]) > 1:
+            neighborhood[2] = neighborhood[1]
+        new_points.append(np.mean(neighborhood, axis = 0))
+    new_points.append(points[-1])
+    return new_points

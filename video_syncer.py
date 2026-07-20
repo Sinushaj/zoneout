@@ -128,10 +128,10 @@ def navigate_video(file_path: str):
     current_frame = 0
 
     print("Controls:")
-    print("  d / a  -> +1 / -1 frame")
-    print("  w / s  -> +1 / -1 second")
-    print("  e / q  -> +1 / -1 minute")
-    print("  x      -> quit and return current frame")
+    print("  j / f  -> +1 / -1 frame")
+    print("  k / d  -> +1 / -1 second")
+    print("  l / s  -> +1 / -1 minute")
+    print("  q      -> quit and return current frame")
 
     while True:
         # Clamp frame index

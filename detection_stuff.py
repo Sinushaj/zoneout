@@ -93,6 +93,25 @@ def process_video(
 
 
 
+def remove_bad_points(points):
+    cleaned_points = points.copy()
+    max_frame_distance = 100 # kanske får justera detta beroende på hur snabbt bollen rör sig i videon
+    last_valid_point = None
+    last_valid_index = -1
+
+    for i, point in enumerate(points):
+        if point is not None:
+            if last_valid_point is not None:
+                distance = np.linalg.norm(np.array(point) - np.array(last_valid_point))
+                if distance > max_frame_distance * (i - last_valid_index):
+                    cleaned_points[i] = None
+                    continue
+            last_valid_point = point
+            last_valid_index = i
+    
+    return cleaned_points
+    
+
 
 def interpolate_nones(points: List[Optional[Tuple[int, int]]]) -> List[Optional[Tuple[int, int]]]:
     result = points[:]
@@ -111,7 +130,7 @@ def interpolate_nones(points: List[Optional[Tuple[int, int]]]) -> List[Optional[
             length = end - start
 
             # Check constraints: ≤10 and bounded by valid points
-            if length <= 10 and start > 0 and end < n:
+            if length <= 60 and start > 0 and end < n:
                 p0 = result[start - 1]
                 p1 = result[end]
 
@@ -134,7 +153,7 @@ def interpolate_nones(points: List[Optional[Tuple[int, int]]]) -> List[Optional[
 
 
 
-
+'''
 def temporal_median_filter(points, window=6):
     smoothed = points.copy()
     
@@ -150,3 +169,28 @@ def temporal_median_filter(points, window=6):
             smoothed[i] = tuple(median)
     
     return smoothed
+'''
+
+
+def moving_average(points):
+    new_points = [points[0]]
+    # ta snitt av 3 cons som är nära nog varandra
+    # Ersätt först none med närmaste värde
+    for i in range(len(points) - 3):
+        if points[i + 1] is None:
+            new_points.append(None)
+            continue
+        neighborhood = points[i:i+3]
+        # hantera vänsterkant
+        if neighborhood[0] is None:
+            neighborhood[0] = neighborhood[1]
+        if np.linalg.norm(neighborhood[0] - neighborhood[1]) > 1.5:
+            neighborhood[0] = neighborhood[1]
+        # hantera högerkant
+        if neighborhood[2] is None:
+            neighborhood[2] = neighborhood[1]
+        if np.linalg.norm(neighborhood[2] - neighborhood[1]) > 1:
+            neighborhood[2] = neighborhood[1]
+        new_points.append(np.mean(neighborhood, axis = 0))
+    new_points.append(points[-1])
+    return new_points

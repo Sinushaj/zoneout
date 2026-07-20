@@ -118,6 +118,8 @@ def point_from_camera_coordinates(gopro_coordinate, zve10_coordinate, plot_rays 
         (0,3, 0),
         (0,-9, 0),
         (0,9, 0),
+        (0,0,3.23), #temp test med antenner
+        (9,0,3.23), #temp test med antenner
     ]
     gopro_cameramatrix = np.array([
         [960.0,   0.0, 960.0],
