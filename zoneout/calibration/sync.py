@@ -1,23 +1,20 @@
+"""Interactive video navigation and two-camera synchronization.
+
+`navigate_video` is what `update_parameters.py` uses to record the first
+reception's frame number in each camera. `sync_two_videos` is a standalone
+helper for working out the frame mapping between two cameras by eye.
+"""
+
 import cv2
-import sys
 
-def main():
-    #video1_path = 'C0600.MP4'
-    #video1_path = 'test_output.mp4'
-    video1_path = 'C:\\Users\\neoda\\OneDrive\\Desktop\\GH011611.MP4'
-    video2_path = 'zve10_test_60fps.mp4'
-    #video2_path = 'GH011611.MP4'
 
+def sync_two_videos(video1_path, video2_path, fps1=60.0, fps2=60.0):
     cap1 = cv2.VideoCapture(video1_path)
     cap2 = cv2.VideoCapture(video2_path)
 
     if not cap1.isOpened() or not cap2.isOpened():
         print("Error: Could not open one of the video files.")
         return
-
-    # Given frame rates
-    fps1 = 60.0
-    fps2 = 60.0
 
     # Get total frame counts for boundary checks
     total_frames1 = int(cap1.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -174,6 +171,3 @@ def navigate_video(file_path: str):
     cv2.destroyAllWindows()
 
     return current_frame
-
-# print(navigate_video('C:\\Users\\neoda\\OneDrive\\Desktop\\GH011611.MP4'))
-# print(navigate_video("C:\\Users\\neoda\\OneDrive\\Desktop\\baseline_test.mp4"))

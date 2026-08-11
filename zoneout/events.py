@@ -1,16 +1,13 @@
-import numpy as np
-import matplotlib.pyplot as plt
+"""Locating the serve and reception within a reconstructed 3D trajectory.
 
-def moving_average(points, window_size=5):
-    points = np.array(points)
-    smoothed = []
-    
-    for i in range(len(points)):
-        start = max(0, i - window_size // 2)
-        end = min(len(points), i + window_size // 2 + 1)
-        smoothed.append(points[start:end].mean(axis=0))
-    
-    return np.array(smoothed)
+The trajectory is split where y changes sign (the ball crossing the net); the
+serve is the pre-split point nearest the baseline, and the reception is the
+first sharp change of direction after it.
+"""
+
+import numpy as np
+
+from .trajectory import moving_average
 
 
 def angle_between(v1, v2):
@@ -28,20 +25,18 @@ def find_serve_and_receive(points):
     for i in range(1, len(points)):
         if points[i-1][1] * points[i][1] < 0:
             split_idx = i
-            print('split_idx =', split_idx)
             break
     
     if split_idx is None:
-        raise ValueError("No y sign change found.")
+        # raise ValueError("No y sign change found.")
+        split_idx = -1  # fallback to last index if no sign change found
     
     first_half = points[:split_idx]
     second_half = points[split_idx:]
     
     # --- 2. Serve location (closest to |y| = 9) ---
     serve_idx = np.argmin(np.abs(np.abs(first_half[:, 1]) - 9))
-    print('serve idx =', serve_idx)
     serve_point = first_half[serve_idx]
-    print('serve_point =', serve_point)
     
     # --- 3. Smooth second half ---
     smoothed = moving_average(second_half, window_size=5)
@@ -62,10 +57,8 @@ def find_serve_and_receive(points):
         
         if angle > threshold:
             receive_point = second_half[i]
-            print('receive idx =', i)
-            print('receive point =', receive_point)
-            plt.plot(range(len(angles_temp_check)), angles_temp_check)
-            plt.show()
+            #plt.plot(range(len(angles_temp_check)), angles_temp_check)
+            # plt.show()
             break
     
     # fallback if nothing detected

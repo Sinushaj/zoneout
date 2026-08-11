@@ -1,5 +1,30 @@
+"""3D reconstruction: two camera views of the ball -> one 3D world point.
+
+Each camera's 2D pixel detection is turned into a world-space ray via solvePnP
+(using that camera's intrinsics plus the clicked court reference points), and
+the two rays are intersected by least squares.
+"""
+
 import numpy as np
 import cv2
+
+from .config import read_csv_to_tuples_np
+from .court import CALIBRATION_POINTS
+
+
+# Camera intrinsics, per camera.
+GOPRO_CAMERA_MATRIX = np.array([
+    [960.0,   0.0, 960.0],
+    [  0.0, 960.0, 540.0],
+    [  0.0,   0.0,   1.0]
+])
+
+ZVE10_CAMERA_MATRIX = np.array([
+    [2371,    0, 960],
+    [   0, 2008, 540],
+    [   0,    0,   1]
+], dtype=float)
+
 
 def screen_point_to_world_ray(image_points, world_points, K, query_pixel):
     """
@@ -91,3 +116,23 @@ def intersect_rays(rays):
     point = np.linalg.solve(A, b)
 
     return point
+
+
+
+def point_from_camera_coordinates(gopro_coordinate, zve10_coordinate):
+    """Triangulate one 3D world point from a pixel in each camera."""
+    court_points = CALIBRATION_POINTS
+
+    gopro_court_points = read_csv_to_tuples_np('gopro_points.csv')
+    gopro_origin, gopro_ray = screen_point_to_world_ray(gopro_court_points, court_points, GOPRO_CAMERA_MATRIX, gopro_coordinate)
+
+    zve10_court_points = read_csv_to_tuples_np('zve10_points.csv')
+    zve10_origin, zve10_ray = screen_point_to_world_ray(zve10_court_points, court_points, ZVE10_CAMERA_MATRIX, zve10_coordinate)
+
+    ray_list = [
+        (gopro_origin, gopro_ray),
+        (zve10_origin, zve10_ray),
+    ]
+
+    intersection_estimate = intersect_rays(ray_list)
+    return intersection_estimate

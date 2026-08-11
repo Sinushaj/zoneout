@@ -1,3 +1,9 @@
+"""Reading from and writing back to DataVolley .dvw scout files.
+
+Reading uses pydatavolley; writing is done by rewriting the relevant serve/
+reception lines in place, since pydatavolley is read-only.
+"""
+
 import numpy as np
 import pandas as pd
 from datavolley.read_dv import DataVolley
@@ -60,7 +66,7 @@ def add_serve_direction(dvw_file, time, start_point, end_point):
     end_index = coords_to_dvindex(end_point)
 
     # Open datavolley file
-    with open(dvw_file, 'r') as f:
+    with open(dvw_file, 'r', encoding="cp1252") as f:
         lines = f.readlines()
     
     for i, line in enumerate(lines):
@@ -78,7 +84,7 @@ def add_serve_direction(dvw_file, time, start_point, end_point):
         if line_data[0][3] == 'R':
             break
     
-    with open(dvw_file, 'w') as f:
+    with open(dvw_file, 'w', encoding="cp1252") as f: 
         f.writelines(lines)
 
 # add_serve_direction("C:/Data Project/Data Volley 4/Seasons/Elit H 25-26/Scout/&svk-ork_test.dvw", 253, [8.9,8.9,0], [0,-6.5,0])

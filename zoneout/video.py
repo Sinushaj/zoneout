@@ -1,7 +1,12 @@
+"""Extracting short clips from the full match videos.
+
+Detection only ever needs a few seconds around each reception, so the pipeline
+cuts a chunk out of the (very large) source video rather than decoding all of
+it.
+"""
+
 import os
 import cv2
-
-# create new video from given time in another (so that we can do image recognition on smaller chunks)
 
 
 def create_video_chunk(file_path: str, save_name: str, n: int):
@@ -54,10 +59,3 @@ def create_video_chunk(file_path: str, save_name: str, n: int):
     out.release()
 
     return output_path
-
-
-
-sideline_videopath = 'C:\\Users\\neoda\\OneDrive\\Desktop\\GH011611.MP4'
-# baseline_videopath = ''
-
-# create_video_chunk(sideline_videopath, 'my_video.mp4', 29094)
