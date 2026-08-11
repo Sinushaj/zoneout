@@ -10,7 +10,7 @@ import os
 from .config import extract_dict_from_csv
 from .detection import process_video
 from .events import find_serve_and_receive
-from .figures import save_trajectory_figure
+from .figures import save_trajectory_figure, save_trajectory_html
 from .reconstruction import point_from_camera_coordinates
 from .scout import get_reception_start_frame, add_serve_direction
 from .trajectory import interpolate_nones, remove_bad_points, smooth_trajectory
@@ -89,4 +89,14 @@ def get_data_from_reception(dvw_filepath, reception_number, sideline_filepath, b
         real_coords,
         serve_point=raw_start,
         receive_point=raw_end,
+        title=f"Reception {reception_number}",
+    )
+
+    # Interactive version: open in a browser and drag to rotate.
+    save_trajectory_html(
+        f"reception_data/reception{reception_number}/raw_trajectory.html",
+        real_coords,
+        serve_point=raw_start,
+        receive_point=raw_end,
+        title=f"Reception {reception_number}",
     )

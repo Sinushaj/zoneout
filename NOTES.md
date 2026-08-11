@@ -39,10 +39,17 @@ Cost of CPU inference: roughly **65 s per reception** (2 × ~300 frames).
   "OBS!!! Kanske måste vrida runt punkter först då serve alltid börjar på mindre sidan" — "may need to rotate
   points first since serve always starts on the smaller side"). Worth checking the written `.dvw` coordinates
   against DataVolley's own display for a few known receptions before trusting this broadly.
-- **Reception points can land off the court.** Reception 18 reconstructs to `x ≈ 11.1` (the court is only 0–9
-  wide) at `z ≈ 2.9`. The serve point for the same rally looks sane, so this is likely the direction-change
-  detection in `events.find_serve_and_receive` firing on the wrong frame, or triangulation drift late in the
-  trajectory. Worth eyeballing a batch of `raw_trajectory.png` plots before trusting the write-back.
+- **Reception 18 reconstructs badly, and the new interactive plot makes it obvious.** The reception lands at
+  `x ≈ 11.1` (the court is only 0–9 wide), the serve point sits mid-court rather than behind the baseline,
+  and the path jumps between several implausible segments rather than tracing one arc. The old scatter-only
+  plot hid this; joining the points with a line exposed it. Open
+  `reception_data/reception18/raw_trajectory.html` and rotate it — this is the first thing to investigate.
+- **Output is very sensitive to the sync frame.** Changing the sideline start frame in
+  `first_reception_frames.csv` from 36655 to 36654 — a single frame — moved the computed serve point by over
+  2 m (`y −7.96` → `y −5.68`). One frame of ball travel is only ~0.3 m, so something is amplifying it:
+  either OpenCV's seek landing on a different keyframe in the 33 GB source video, or
+  `events.find_serve_and_receive` picking a different frame entirely. Worth understanding before trusting
+  any batch, since it means results are not reproducible across small calibration tweaks.
 - **The antenna calibration points were experimental.** `court.CALIBRATION_POINTS` currently has 8 entries,
   the last two being the antenna tops at z = 3.23. Confirm whether that is the intended permanent set or
   should revert to the original 6 ground points. Changing it means re-clicking both calibration CSVs.
@@ -53,10 +60,22 @@ Cost of CPU inference: roughly **65 s per reception** (2 × ~300 frames).
   is real pipeline output so it's a judgment call whether it belongs in git (it contains per-reception
   videos, which are large).
 
+## Figure outputs (Aug 2026)
+
+Each reception now gets two figures, both with an orange court, white lines, small points joined by a line,
+and labelled serve/reception markers:
+
+- `raw_trajectory.png` — ~200 KB, for flicking through quickly.
+- `raw_trajectory.html` — ~4.9 MB, self-contained interactive page. Open it in a browser: drag to rotate,
+  scroll to zoom, hover a point for its frame number and coordinates. Works offline (the plotly javascript
+  is embedded), which is why the files are large — they're gitignored and regenerated.
+
+This added `plotly` to `.venv`.
+
 ## Ideas for next steps
 
 - Decide how the serve/reception write-back accuracy will be validated (compare against manual scouting, or
-  visually against the saved `raw_trajectory.png` plots).
+  visually against the saved trajectory figures).
 - If interpolation/smoothing quality is a problem, the deleted `clean_ball_trajectory` (parabola-fit segment
   cleaner) and `ransac_ball_trajectory` are recoverable from git history — see "Dead code cleanup" below.
 

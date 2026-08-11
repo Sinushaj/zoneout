@@ -15,7 +15,7 @@ Some comments in the code are written in Swedish.
 - Python 3.12, dependencies installed into `.venv` via plain `venv`+`pip` (no lockfile — if the env is lost,
   reinstall by inspecting what's listed below). Activate with `source .venv/bin/activate`.
 - Key dependencies: `ultralytics` (YOLO), `torch`/`torchvision`, `opencv-python`, `numpy`, `pandas`,
-  `pydatavolley` (imported as `datavolley`), `matplotlib`.
+  `pydatavolley` (imported as `datavolley`), `matplotlib`, `plotly` (interactive figures).
 - `gala_model.pt` is a custom-trained YOLO model checked into the repo for volleyball-ball detection.
 - **Inference must stay on CPU.** See "GPU is unusable" in `NOTES.md` — `torch.cuda.is_available()` returns
   True but the installed CUDA build has no kernels for this machine's GPU, so letting ultralytics auto-select
@@ -83,8 +83,9 @@ Per-reception processing (`zoneout.pipeline.get_data_from_reception`) chains tog
    numeric court-index format (`coords_to_dvindex`) and rewrites the matching `S`/`R` skill lines in the
    `.dvw` in place, matched by `video_time`. Handles court-side rotation (coordinates flipped 180° when the
    action isn't already on the serving side).
-8. **Figures** (`figures.save_trajectory_figure`): a 3D plot of the trajectory with the serve/reception points
-   highlighted, saved to `reception_data/receptionN/raw_trajectory.png`.
+8. **Figures** (`figures/`): a 3D plot of the trajectory with the serve/reception points highlighted, written
+   twice per reception into `reception_data/receptionN/` — `raw_trajectory.png` for flicking through, and
+   `raw_trajectory.html`, an interactive page you open in a browser and rotate/zoom/hover.
 
 ### Coordinate system and court geometry
 
@@ -106,14 +107,32 @@ be called `moving_average` in different modules — which made importing the wro
 
 ### `figures/` package
 
-`court.py` renders the wireframe (geometry comes from `zoneout.court`); `trajectory.py` provides
-`plot_trajectory(...)` returning a Figure and `save_trajectory_figure(path, ...)` writing a PNG. Both accept
-point lists containing `None` and skip them. Put new figure types here rather than inlining plotting back
-into the pipeline.
+- `style.py` — the palette. Read its docstring before changing any color: the three data colors were checked
+  with the dataviz palette validator against the orange court, and the obvious choice of a **red** reception
+  marker was rejected because red-on-orange measured ΔE 14.2 for normal vision, below the floor of 15.
+- `court.py` — `draw_court(ax)` for matplotlib, `court_traces()` for plotly. Geometry comes from
+  `zoneout.court`.
+- `trajectory.py` — `save_trajectory_figure(path, ...)` writes the PNG, `save_trajectory_html(path, ...)`
+  writes the interactive page. `plot_trajectory(...)` / `plot_trajectory_plotly(...)` return the figure
+  objects if you want to tweak before saving. All accept point lists containing `None` and skip those frames.
 
-These build on `matplotlib.figure.Figure` directly rather than `pyplot`. pyplot keeps every figure in a
-global registry, so in a batch run figures accumulate in memory unless explicitly closed; going through
-`Figure` sidesteps that and needs no GUI backend. Keep it that way — don't reintroduce `plt.figure()` here.
+Put new figure types here rather than inlining plotting back into the pipeline.
+
+Three things not to undo:
+
+- The matplotlib figures set **`ax.computed_zorder = False`** and draw with explicit zorder. Matplotlib's 3D
+  renderer otherwise depth-sorts whole artists, which paints the court floor over the trajectory above it.
+- The matplotlib court is **opaque** while the plotly court is translucent. Matplotlib composites a
+  translucent plane over geometry it thinks is behind it, which tinted the blue path purple; plotly renders
+  the same scene correctly.
+- The serve/reception markers keep their **text labels and outline rings**. The validator raised a contrast
+  warning for the serve green against the court, and a visible label is the required relief — identity must
+  never rest on hue alone.
+
+The matplotlib figures build on `matplotlib.figure.Figure` directly rather than `pyplot`. pyplot keeps every
+figure in a global registry, so in a batch run figures accumulate in memory unless explicitly closed; going
+through `Figure` sidesteps that and needs no GUI backend. Keep it that way — don't reintroduce
+`plt.figure()` here.
 
 ### Test data
 
