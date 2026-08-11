@@ -1,0 +1,19 @@
+# Virtual environment (~5 GB, rebuildable with venv + pip)
+.venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Short clips cut out of the match videos on every run by
+# zoneout.video.create_video_chunk - overwritten each reception, never input.
+temporary_videos/
+
+# Pipeline output.
+#
+# The annotated detection videos are ~40 MB per reception (921 MB so far) and
+# are fully regenerable by re-running the pipeline, so they stay out of git.
+# The trajectory plots are ~350 KB each and are the artifact worth reviewing
+# when checking whether a reception was reconstructed correctly, so they are
+# deliberately NOT ignored.
+reception_data/**/*.mp4
