@@ -18,8 +18,10 @@ ANTENNA_HEIGHT = 3.23
 #
 # ORDER IS SIGNIFICANT: it must match the order the corresponding pixels were
 # clicked into gopro_points.csv / zve10_points.csv by
-# calibration.points.get_screen_coordinates. Changing this list means
-# re-clicking both calibration files.
+# calibration.points.pick_court_points, which asks for them one at a time in
+# this order and marks each on a court diagram. Changing this list means
+# re-clicking both calibration files; the picker also names and draws each
+# point from its coordinates alone, so nothing else needs editing to match.
 CALIBRATION_POINTS = [
     (0, -3, 0),
     (9, -3, 0),
@@ -30,6 +32,17 @@ CALIBRATION_POINTS = [
     (0, 0, ANTENNA_HEIGHT),
     (9, 0, ANTENNA_HEIGHT),
 ]
+
+# Generous bounds on where the ball can plausibly be during a serve and its
+# reception, used by the reconstruction to reject triangulations that land
+# somewhere physically impossible. Deliberately loose: a serve is struck from
+# several meters behind the baseline and a ball can be played well outside the
+# sidelines, so these are a sanity check, not a court boundary. The lower z
+# bound dips below the floor to tolerate calibration error on a ball at ground
+# level.
+BALL_VOLUME_X = (-4.0, COURT_WIDTH + 4.0)
+BALL_VOLUME_Y = (-HALF_LENGTH - 4.0, HALF_LENGTH + 4.0)
+BALL_VOLUME_Z = (-0.5, 12.0)
 
 # Court outline in the z = 0 plane, as a closed loop.
 OUTLINE_X = [0, 9, 9, 0, 0]

@@ -20,3 +20,12 @@ temporary_videos/
 # deliberately NOT ignored.
 reception_data/**/*.mp4
 reception_data/**/*.html
+
+# Output of detection_test.py, the standalone detection sandbox: the trimmed
+# input clip and the annotated copy, both regenerable by re-running it.
+detection_test_output/
+
+# Attack pipeline output, same reasoning as reception_data: the annotated
+# detection videos are large and regenerable by re-running.
+attack_data/**/*.mp4
+attack_data/**/*.html

@@ -1,7 +1,7 @@
 """Interactive video navigation and two-camera synchronization.
 
-`navigate_video` is what `update_parameters.py` uses to record the first
-reception's frame number in each camera. `sync_two_videos` is a standalone
+`navigate_video` is what `update_parameters.py` uses to record the frame each
+camera shows the synced action at. `sync_two_videos` is a standalone
 helper for working out the frame mapping between two cameras by eye.
 """
 
@@ -113,7 +113,14 @@ def sync_two_videos(video1_path, video2_path, fps1=60.0, fps2=60.0):
 
 # single video tester
 
-def navigate_video(file_path: str):
+def navigate_video(file_path: str, start_frame: int = 0):
+    """Scrub a video by hand and return the frame stopped on.
+
+    `start_frame` is only where the scrubbing starts, never an answer: on a
+    full-match recording the action being synced can be an hour in, and stepping
+    there a minute at a time is not a reasonable thing to ask of anyone.
+    `update_parameters.py` seeds it from the previous anchor when there is one.
+    """
     cap = cv2.VideoCapture(file_path)
 
     if not cap.isOpened():
@@ -122,7 +129,7 @@ def navigate_video(file_path: str):
     fps = cap.get(cv2.CAP_PROP_FPS)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-    current_frame = 0
+    current_frame = start_frame
 
     print("Controls:")
     print("  j / f  -> +1 / -1 frame")
