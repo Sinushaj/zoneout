@@ -16,7 +16,9 @@ Some comments in the code are written in Swedish.
   reinstall by inspecting what's listed below). Activate with `source .venv/bin/activate`.
 - Key dependencies: `ultralytics` (YOLO), `torch`/`torchvision`, `opencv-python`, `numpy`, `pandas`,
   `pydatavolley` (imported as `datavolley`), `matplotlib`, `plotly` (interactive figures).
-- `gala_model.pt` is a custom-trained YOLO model checked into the repo for volleyball-ball detection.
+- `ball_n1280_v2.pt` is the default ball detector (YOLOv8n at imgsz 1280, trained in `~/Desktop/ball_detector`,
+  run `n1280_v2`). `gala_model.pt`, the previous default, stays in the repo for comparison. The detection
+  thresholds below were measured on `gala_model.pt` and have not been re-measured on the new model.
 - **Inference must stay on CPU.** See "GPU is unusable" in `NOTES.md` — `torch.cuda.is_available()` returns
   True but the installed CUDA build has no kernels for this machine's GPU, so letting ultralytics auto-select
   the device fails deep inside the forward pass with a misleading error.
@@ -41,11 +43,18 @@ zoneout/
     trajectory.py       cleaning and smoothing, in 2D pixel space and in 3D
     ballistic.py        optional: segmented free-flight fitting, cleaning + gap filling
     events.py           locating the serve and reception in a trajectory
+    serve_dataset.py    the serve dataset, datasets/serves.csv
+    reception_dataset.py  the serve-and-reception dataset, datasets/receptions.csv
     pipeline.py         per-reception orchestration
     attacks.py          per-attack orchestration (in progress)
+    dv_grid.py          the DataVolley coordinate grid: metres <-> index and zone
+    dvw_edit.py         the safe .dvw writer: coordinates, and inserted lines
+    set_codes.py        which set line goes in front of an attack, and what it says
     figures/            plotting
     calibration/        interactive tools that produce the CSV config files
                         points.py: the court-point picker window; court_diagram.py: its plan view
+                        sync.py: the window that finds the anchor frame in one camera
+                        frames.py: decoding one frame at a time, shared by both windows
 ```
 
 `ATTACK_PLAN.md` is the design plan for the attack work — what was measured about the `.dvw` format, the
@@ -58,10 +67,20 @@ ultralytics import that the calibration tools have no use for. Import the submod
 
 Both entry points take no CLI arguments — edit the constants at the top of the file first.
 
-1. `python update_parameters.py` — one-time/per-match interactive calibration. It reads the scout file too
-   (`DVW_FILEPATH` at the top, the same file `run_pipeline.py` will process), to look up the video_time of
-   the action being synced on.
+1. `python update_parameters.py` — one-time/per-match interactive calibration.
    - Prompts to pick the sideline & baseline video files (Tk file dialog) → `video_filepaths.csv`.
+   - Prompts to pick the `.dvw` scout file (Tk file dialog) → `scout_filepath.csv`, which **every entry
+     point reads**; none of them has a scout path of its own. It is a separate file because
+     `video_filepaths.csv` is rewritten whole when the videos are re-picked. The sync step below looks up
+     its action's video_time in this file, so the scout file and the anchor belong together.
+
+     **An anchor taken against a different scout file fails nothing — it cuts every clip from the wrong
+     minute.** The first reception looks right (it is the anchor, found by eye) and every later one is off
+     by the difference between the two files' rally spacing. This happened: a Södermalm match was synced and
+     run against the Örkelljunga scout file, whose first reception is at video_time 221 against Södermalm's
+     101. `timing.anchor_mismatch` guards it by asking the scout file for the anchor's action (set + skill)
+     again and comparing video_times; both pipelines refuse to start on a mismatch, and choosing a new scout
+     file prints the same message. The team names are printed alongside the path for the same reason.
    - Prompts for **which camera films each side**, and the focal length for a body with an interchangeable
      lens → `camera_models.csv`. See "Camera intrinsics" below.
    - Prompts to click the court reference points in each camera's first frame → `gopro_points.csv` /
@@ -102,6 +121,12 @@ Both entry points take no CLI arguments — edit the constants at the top of the
      is not hypothetical: set 1 of the test match opens with a service error (serve at video_time 197, first
      reception at 221).
 
+     **"First" means the first one with a `video_time`** (`scout.get_sync_action`). A scout can start the
+     video clock a rally late: the Randaberg file's whole first rally has no `video_time`, its second serve
+     is at 0. The anchor is then the second serve, and the prompt and the sync window both say so ("the 2nd
+     serve (`a11SM-`)") — otherwise the rally found in the video would not be the one the time belongs to.
+     `anchor_mismatch` and the start-frame suggestion go through the same function, so all three agree.
+
      Stop on the frame the serve is struck, **or up to a second before it**. Each clip is cut *forward* 5 s
      from the point the anchor maps to, and the scout file's `video_time` is only accurate to the second and
      sits anywhere up to ~1.5 s from the serve depending on when the scout entered the code, so a little
@@ -111,8 +136,25 @@ Both entry points take no CLI arguments — edit the constants at the top of the
      filmed as one video per set. An anchor taken in any one set still serves a whole match filmed
      continuously: the frame lookup works in *signed* elapsed video_time, so it places rallies before the
      anchor as happily as after.
-2. `python run_pipeline.py` — batch-processes receptions using the CSVs from step 1. Edit `DVW_FILEPATH` and
-   the selection at the top: `SET_NUMBER` picks one set (`None` = the whole match), and
+
+     Each camera is scrubbed in a window (`calibration.sync.navigate_video`) built like the point picker:
+     the picture fills it, a fixed panel beside it says which action is being looked for and what the keys
+     do, and a scrubber under it covers the whole recording in one drag. **The keys this project has always
+     used still work** — `j`/`f` a frame, `k`/`d` a second, `l`/`s` a minute, `q` to accept — with the
+     arrow keys, the mouse wheel (shift for a second) and the scrubber as additions on top of them. The
+     window opens where the previous anchor's arithmetic lands, which is near the rally when that sync was
+     in this recording; the panel shows how far you have moved from it.
+
+     The scrubber decodes only once the drag **settles** (`SCRUB_SETTLE_MS`, 120 ms), because a seek into a
+     33 GB recording costs ~0.3 s and seeking per pixel of travel makes the scrubber fight back. A key
+     pressed while a scrub is still pending cancels it rather than being overwritten by it a moment later.
+
+     **Closing or cancelling either window writes nothing.** The two frames only mean anything as a pair, and
+     an anchor is the one number in a run that nothing downstream can check — a wrong one fails nothing, it
+     cuts every clip from the wrong minute. Accepting a frame is therefore deliberate (`q`, enter, or the
+     button) and everything else leaves `first_reception_frames.csv` as it was.
+2. `python run_pipeline.py` — batch-processes receptions using the CSVs from step 1. Edit the selection at the top
+   (the scout file comes from `scout_filepath.csv`): `SET_NUMBER` picks one set (`None` = the whole match), and
    `FIRST_RECEPTION`/`LAST_RECEPTION` optionally narrow whatever that selected to a range. The selection is
    built by `scout.reception_numbers` from the scout file itself, so it is not tied to any particular match.
 
@@ -134,14 +176,16 @@ Both entry points take no CLI arguments — edit the constants at the top of the
    exactly one path per camera), leaves the scout file describing rallies the video does not have.
    `video.create_video_chunk` raises a clear error naming the video's length in that case, instead of
    silently writing an empty clip that fails later as an unopenable video.
-3. `python run_attack_pipeline.py` — the attack pipeline, **so far its first four steps**: which attacks
-   the run covers and where in each video each of them is, the clip each one needs cut out of both match
-   videos, the ball detector run over both clips, and the two cameras' candidates paired and triangulated
-   into 3D points. Selected the same way as receptions (`SET_NUMBER` plus an optional
-   `FIRST_ATTACK`/`LAST_ATTACK` range on top of it), with `DETECT` and `ANNOTATE` to stop after the clips
-   or skip the debug videos. The selection step reads the scout file and the two config CSVs and no video
-   frames, so it takes about a second for a whole match — worth eyeballing before any of it is handed to
-   the rest.
+3. `python run_attack_pipeline.py` — the attack pipeline, end to end: which attacks the run covers and
+   where in each video each of them is, the clip each one needs cut out of both match videos, the ball
+   detector run over both clips, the two cameras' candidates paired and triangulated into 3D points, the
+   ballistic fit, the three coordinates read off the fitted flights, and the write-back to the `.dvw` —
+   which also adds a set line in front of every attack the scout left without one.
+   Selected the same way as receptions (`SET_NUMBER` plus an optional `FIRST_ATTACK`/`LAST_ATTACK` range
+   on top of it), with `DETECT` and `ANNOTATE` to stop after the clips or skip the debug videos, and
+   `WRITE_TO_SCOUT_FILE` to measure everything without touching the scout file. The selection step reads
+   the scout file and the two config CSVs and no video frames, so it takes about a second for a whole
+   match — worth eyeballing before any of it is handed to the rest.
 
    Measured at ~50 s per attack end to end (~15 s of it clip cutting, where seeking into a 33 GB source
    dominates), so a set is about an hour and a match around four hours.
@@ -196,6 +240,102 @@ Both entry points take no CLI arguments — edit the constants at the top of the
    receptions carry on unchanged. What the two share is the machinery underneath — `scout`, `timing`, and
    later the reconstruction, which is the same problem for both.
 
+## The serve dataset
+
+`datasets/` holds datasets built while the pipelines run. The first is **`datasets/serves.csv`**, one row
+per serve, written by the reception pipeline (`pipeline.WRITE_SERVE_DATASET`, needs the ballistic fit)
+through `zoneout/serve_dataset.py`. It is one flat file on purpose: a player's serves are a
+`groupby(['team', 'player_number'])` away, and nothing has to be flattened before analysis.
+
+Columns: `match` (scout file name), `set_number`, `reception_number`, `video_time`, `team`,
+`player_number`, `player_name` from the scout file's serve line; `contact_observed`; `start_*` and `end_*` in metres;
+`duration_s`; `average_speed` (path length over duration); `v0_*` (m/s) and `a_*` (m/s²). The last three
+groups are the whole parabola, `p(t) = start + v0·t + ½·a·t²` for `0 ≤ t ≤ duration_s`, with
+`p(duration_s) = end` exactly.
+
+- **Every row has the server at the `y < 0` end**, the ball travelling toward `+y` — the `.dvw`'s own
+  action-relative convention (`dv_grid.orient_for_action`), so serves from both ends compare directly.
+- **The flight is `events.find_serve_flight`**: the last flight starting more than `NET_ENTRY_MARGIN`
+  back on the serving side before the reception (which steps over a separately fitted toss). It starts at
+  its contact frame and ends at the reception's, evaluated on the *serve's* model so start, end and
+  parameters are one parabola. It is refused, and the reason printed, when there is no reception, when
+  more than one flight lies between serve and reception (a net-cord touch or a split serve), or when the
+  gap before the reception could not be bridged.
+- **`start_*` is the server's contact, and it is usually extrapolated.** The ball is rarely tracked
+  near the server: replayed over the 113 cached receptions, 100 give a row and only 20 have a fitted toss
+  whose model hands over to the serve's (`events._hands_over`) — the only case where the contact is
+  observed. In the other 80 the serve was first seen 5-15 frames into its flight (in 14 the clip started
+  after the contact), and `serve_dataset` runs the serve's parabola back to `SERVE_CONTACT_DEPTH`, the
+  baseline (`contact_observed = False`). The observed contacts sit 8.2-9.8 m from the net, median 9.0.
+  Checked by dropping the first 5-15 frames of each observed serve, refitting and extrapolating back:
+  the extrapolation itself is good to ~0.05 m across and in height, and the error, median 0.28 m and
+  at most 1.0 m, is almost all depth — the fixed baseline against where that server actually stood. The
+  unobserved contacts come out 2.6-3.7 m up, the same heights as the observed ones, which the depth
+  assumption could not have forced.
+- An observed contact nearer than `events.MIN_SERVE_CONTACT_DEPTH` (7 m) to the net is refused: that is
+  the serve split in two by the fit (reception 103, 1.1 m), not the server's hand.
+- `python datasets/serve_figures.py` picks a dataset (file dialog) and a team (numbered prompt) and writes
+  every serving player's figure (`figures.save_player_serves_html`) to `serve_figures/<team>/` beside the
+  dataset, sharing one `plotly.min.js` there instead of embedding it in each page — so the folder moves as
+  a whole. Gitignored; it is regenerable.
+- Only received serves are in it, since the pipeline runs over receptions — no service errors.
+- The serve is the last serve line above the reception in the scout file, checked to be in the same set
+  and by the other team. Rows merge by `(match, reception_number)`, so a re-run replaces its row.
+- Times use `ballistic.FPS` (60), so durations and speeds carry the same ~0.1 % as the fit itself.
+
+## The serve-and-reception dataset
+
+**`datasets/receptions.csv`**, one row per reception, written by the reception pipeline
+(`pipeline.WRITE_RECEPTION_DATASET`, needs the ballistic fit) through `zoneout/reception_dataset.py`. Where
+`serves.csv` keeps each serve's whole parabola, this one is the rally from the server's hand to the end of
+the pass, reduced to what a serve/reception analysis asks for. Same orientation (server at `y < 0`), same merge key.
+
+Columns: `match`, `reception_number` (the merge key); from the scout file `serving_team`,
+`receiving_team`, `serving_player`, `receiving_player` (names), `serve_type` (`Q` → `spin`, `M` → `float`,
+any other letter as it stands), `reception_grade`, `receiving_team_won` (`point_won_by` is the receiving
+team), `receiving_rotation` (the receiving setter's position, 1-6); from the fit, in metres,
+`serve_start_*`, `reception_*`, `serve_landing_x/y`, `serve_hit_net`, `serve_average_speed` (m/s),
+`reception_end_*`, `reception_apex_z`. **These columns are the ones Neo specified — do not add others to this file**
+(an earlier version carried observed/extrapolated flags and a net clearance, and they were removed).
+
+- **A row is written for every reception that gets this far, with blanks for what could not be measured**,
+  and each blank is explained in the run output. The scout-file half is always there.
+- **The serve is `events.find_serve_path`**: `find_serve_flight`'s serve, but flights between it and the
+  reception are *followed* when each hands over to the next, instead of refusing the serve. That is what
+  makes `serve_hit_net` answerable: a net-cord touch is a contact, so it is a hand-over within
+  `NET_ENTRY_MARGIN` of the net. A touch that barely deflects the ball needs no second parabola and cannot
+  be seen that way. No serve in the Uppsala match changed flight at the net; the lowest the ball's centre
+  crossed the tape was 0.05 m (reception 94, a jump serve), within reconstruction error of a graze.
+  `serve_start_*` and `serve_average_speed` match `serves.csv` exactly on every reception both have a
+  row for — `serve_start_*` is extrapolated back to the baseline the same way when the contact was not seen.
+- **The landing** is the serve's last flight carried on past the reception until the ball's centre is
+  `BALL_RADIUS` off the floor — where it would have come down unplayed.
+- **The reception end and the pass height are `events.find_pass`.** `reception_end_*` is the **end of the
+  reception trajectory**: the pass's own model at the contact that played it next (the seam with the
+  following flight) — not the start of the next flight, which is what an earlier version called the set.
+  The two agree to within the seam tolerance (median 0.14 m, max 0.65 m on the cached receptions); what
+  the choice settles is that the point belongs to the pass. Normally that is the setter's hands, but it is
+  written whatever came next and on either side of the net — **overpasses included**, and with no
+  scout-file gate (an earlier version only located it when the scout file recorded a set). It is refused
+  when the pass → next-flight gap cannot be bridged (reception 54: 108 frames, so where the pass ended is
+  unknown), and when the pass is still *rising* where the next flight starts — the ball is played on its
+  way down, so that is the fit splitting the pass (reception 17).
+- **A high pass leaves the top of the picture**, is fitted as two flights with its apex missing, and the
+  second one is the pass coming down, not the next touch. `_set_cut_off_above` — the attack pipeline's test
+  for high sets — pairs the halves; the pass then ends on the falling half, and the height comes from one
+  parabola in `z` fitted through both halves (3 of the Uppsala receptions, at 5.5-5.8 m; reception 89
+  gave 5.47 m this way from its cached run and 5.49 m observed directly when re-detected). A single-flight
+  pass takes the top of its own parabola (`Pass.apex_source` says which case, for debugging). A pass still
+  rising at the last frame it is known at, or one that re-enters from above with no rising half to pair it
+  with, has no height and no end.
+- **The clip is 7 s instead of 5 when this is on** (`pipeline.RECEPTION_DATASET_CLIP_DURATION`), because
+  the pass ends 1.4-2.0 s after the reception and the reception lands 1.7-4.7 s into a clip: a 5 s clip
+  ended before the pass did on 45 of the 108 cached receptions. It costs ~40% more detection per reception.
+
+Replayed over the 108 reproducible cached Uppsala receptions (with their 5 s clips, so pass ends are
+under-counted — 50 clips end before the pass does): 109 serve paths, 84 pass heights (median 4.9 m), 54
+reception ends.
+
 ## The three coordinates an attack is measured as
 
 `events.find_attack_points` reads them off the first three fitted flights, which is what an attack clip
@@ -208,7 +348,7 @@ starting flight *k-1* and the end is where flight *k* finished.
 | point | what it is | where it comes from |
 |---|---|---|
 | **set** | the setter's touch | the contact starting the flight before the attack, on that flight's model |
-| **attack** | where the attacker struck it | the contact starting the attack flight, on the attack's model |
+| **attack** | where the attacker struck it | where the set flight ended, on the set's model (the seam with the attack flight, or the set's last observed frame); the attack flight's own start only when there is no set flight |
 | **end** | where the attack finished | the seam with the flight after it, on the attack's model |
 
 The side of the net is read at each flight's **contact frame, not its first observed frame**, and that
@@ -233,6 +373,38 @@ same rule the reception uses: a contact is described by the flight that *leaves*
 that says where the ball went. The end point is the exception, being the end of the attack's own flight
 rather than the start of anything, so it is the attack's model that is evaluated.
 
+**The attack point is the end of the set, not the start of the crossing flight**, because the crossing flight
+does not always begin at the attacker's hand — a block touch is a contact too. On attack 59 the spike is
+struck 2.1 m off the net and travels at ~18 m/s for five frames, too few to fit as a flight, before the block
+deflects it at the net; the flight that crosses starts there, at `y = -0.24`. The set's descent is long, well
+observed, and ends at the attacker's hand whatever follows. Over 42 cached attacks this moves the point a median
+of 0.22 m (90th percentile 0.71 m), and attack 59 by 1.97 m. One case it cannot fix: if the spike itself were
+ever fitted as a short flight that does not cross, *it* would be the flight before the crossing one, and its
+end is the block touch again.
+
+**A high set that goes above the top of a camera's picture is located where it started rising.** Such a set
+is fitted as two flights with the apex missing between them, and the set's contact was being read where the
+ball came back into view — attack 59's at 4.8 m. `events._set_cut_off_above` recognises it when all three of
+these hold for the flight before the set flight (the rising half) and the set flight (the falling half):
+the rising half is still going up at its last frame and the falling half already coming down at its first;
+both of those positions project within `TOP_EDGE_MARGIN` (100 px) of the top of the *same* camera's picture
+(44 and 48 px on attack 59's baseline camera); and the rising half's model carried across the gap lands within
+`CUT_OFF_SET_MAX_DISTANCE` (1.0 m) horizontally of where the falling half is first seen (0.55 m), horizontal
+only because two short halves disagree by 1.7 m in height after a second of extrapolation. The set is then
+located at the contact that started the rising half, and `AttackPoints.set_index` says which flight that was
+so the figure draws both halves. The first condition is what discriminates: of 30 cached attacks with a flight
+before the set, 59 is the only one where that flight rises at its end.
+
+**When the set comes back into view falling and there is no rising half, there is no set location**
+(`_set_entered_from_above`): the set flight starts falling, within the top-edge margin of a camera, with
+unobserved frames before it. Its contact would otherwise be written 4.75-6.04 m in the air. Attacks 10, 21, 31,
+38/39 (one rally clipped twice) and 44 of the Örkelljunga match, and 60 of Södermalm (a `PR`, never set anyway).
+`set_point` is None, a warning says why, and the set line is still added — just without a coordinate.
+
+Both checks project through the calibration (`reconstruction.cameras_near_top_edge`); the attack and end points
+do not. With each match's own calibration, enabling them changes exactly those eight attacks and leaves every
+set, attack and end point of the other 36 identical.
+
 **The end point does not use `_contact_frame`, and that difference is not cosmetic.** `_contact_frame` falls
 back to the *next* segment's first observed frame when the two cannot be bridged, which is right when asking
 where that flight began and a disaster when evaluating the attack's parabola there. On attack 1 the attack
@@ -249,8 +421,9 @@ different failure from a measurement with caveats, and it is reported as one rat
 them rests on less than the others. The conditions: the attack being the first flight in the clip (so its
 contact is where observation began, not a seam), nothing fitted before the set (so the set location is the
 setting flight's first observed frame — `set_point` is None entirely when the attack is flight 0), an
-unbridged end, an end at or before its own contact, more than one crossing flight, and any point landing
-outside `court.BALL_VOLUME_*`.
+unbridged end, an end at or before its own contact, more than one crossing flight, any point landing
+outside `court.BALL_VOLUME_*`, a set located on its rising half after going above a picture, and a set with
+no location because it came back into view already falling.
 
 Measured over the 67 cached attacks that survive the grade filter: **35 are measured and 31 have no
 net-crossing flight at all**. Of the 35, **18 are completely clean**; 14 warn that the set is the setting
@@ -266,8 +439,118 @@ Rows go to **`attack_data/attack_points.csv`**, one per attack, carrying the att
 `video_time`, `scout_line`, code, team, player), the scout's own `start_zone`/`end_zone`/`end_subzone`, the
 three points with their frames, `crossed_net`, and the warnings. The scouted zones ride alongside the
 measurements on purpose: they are the human reading of the same event, so the file is checkable without
-going back to the `.dvw`, and **settling the coordinate orientation against them is the step that has to
-happen before any of this is written back** (see `ATTACK_PLAN.md` §5).
+going back to the `.dvw`.
+
+## Writing attacks back to the `.dvw`
+
+`attacks.write_to_scout_file` patches the attacker's contact in as the start coordinate and where the
+attack finished as the end, on the attack's own line, with the mid left as `-1-1`. **The scouted `code` is
+never rewritten** — the zone and cone letters in it are the human's reading of the rally, and the computed
+zones stay in the CSV for checking rather than being written over a scout's own work. The same save adds
+the missing sets — see "Adding sets in front of attacks" below.
+
+### Which end of the court a coordinate is written from — settled, by measurement
+
+This was the open question that gated the whole step (`ATTACK_PLAN.md` §5), and it could not be answered
+from either processed match: openvolley warns that coordinates "might not appear in the dvw file in any
+particular orientation", and **every coordinate in both files was written by this pipeline**, so checking
+against them would only have been the code agreeing with itself.
+
+`&32135954_Hom15 Örkelljunga vs Sollentuna .dvw` answered it. It is an Elitserien file scouted by hand,
+untouched by this pipeline, carrying 201 lines with coordinates. **All 201 start in the bottom half of the
+grid and end in the top, for both teams alike** — 104 attacks, 31 serves, 27 receptions, 39 digs, without
+one exception. So the convention is strictly action-relative: whoever is acting is drawn at the bottom and
+the ball always travels up the picture. That is what `add_serve_direction` has always done for serves on a
+guess `NOTES.md` recorded as unverified; it was right, and `dv_grid.orient_for_action` now holds it in one
+documented place for both writers instead of as inline sign flips in each.
+
+The same file settles the zone layout. Converting the scout's *own* clicked index back to a zone and
+comparing it against the zone they typed on the same line agrees 81% on start zones and 93% on end zones —
+a human against themselves, so never 100%. What matters is the shape: the confusion matrix is diagonal and
+13 of the 15 end-zone misses are one step along *depth* in the same direction (typed as a back-row zone,
+clicked just in front of the 6 m line). **A mirrored layout would show as 1↔5 or 4↔2 confusions and there
+are none.** `tools/check_orientation.py` is that whole comparison, re-runnable on any scout file, and it
+refuses to draw conclusions from a file whose only coordinates are on serves and receptions.
+
+Replayed over the 35 cached attacks, the written start zone agrees with the scout 74% of the time — in line
+with the 81% a human scores against their own clicks. The misses repeat the *same* pattern: 8→3 and 9→2 are
+back-row attacks, where the scout types the zone the attacker took off from while the pipeline measures the
+contact at the net. That agreement of failure modes is the strongest evidence the convention is right.
+
+**The side is decided by whichever of the two points is further from the net**, not by the contact. An
+attack is struck at the net, so the contact sits routinely within a quarter of a metre of `y = 0` — three of
+the 35 do, the closest at 0.10 m — and at that range an error smaller than the pipeline's own tolerance
+flips the sign. A flipped sign does not give a slightly wrong coordinate, it writes the whole attack in from
+the opposite end of the court. The two points always disagree in sign (that is *why* `find_attack_points`
+chose that flight), so taking the more distant one costs nothing and removes the only input the answer was
+sensitive to.
+
+### `dv_grid.py` — the grid, in one place
+
+Pure arithmetic, no I/O. Both writers go through it, so they cannot drift apart on the format.
+`index_to_xy` round-trips **exactly** against `datavolley.helpers.dv_index2xy`, pydatavolley's own inverse
+of the same grid (max difference 1.8e-15 m in x, 1.1e-05 m in y, the latter purely pydatavolley's rounded
+constants).
+
+That round trip caught a real bug. **`scout.coords_to_dvindex` was up to one cell out**: it laid 80 rows
+over the 18 m length where openvolley's grid has 81, and truncated toward zero instead of binning to the
+cell edges. Measured over 40 000 points spread across the court, the old and corrected indices differ
+*everywhere* — the corrected one sits a uniform **+0.1125 m further along x** and **0 to +0.222 m further
+along y**, the y error growing toward the far baseline. `coords_to_dvindex` is now a thin wrapper over
+`dv_grid`, so the serve/reception write-back is corrected too. Small, but an attack's end coordinate is
+usually near a line and in-or-out is exactly the question a 0.22 m bias sits on.
+
+### `dvw_edit.py` — the safe writer
+
+A scout file is the only thing in this project that is not reproducible: videos can be re-cut and
+trajectories re-fitted, but a `.dvw` is hours of a human's work and the pipeline edits it in place. What the
+writer enforces, each rule earning its place:
+
+- **Address by line number, verify by code.** `scout.get_plays` supplies `scout_line` and checks it against
+  the section's own line count; `set_coordinates` and `insert_before` then re-read the `code` at that line
+  and **raise** unless it is the one expected. A stale index is impossible to write through.
+- **Line numbers mean the file as opened.** Every edit and insertion in a run is addressed against the file
+  as read and all are applied together in `save`, since each insertion shifts every line below it.
+- **Touch fields 4, 5 and 6, or insert whole lines — nothing else**, rejoining every other byte verbatim.
+  No existing code is ever rewritten. An inserted line takes the line ending of the line below it.
+- **Preserve encoding and line endings** — `cp1252`, opened with `newline=''` so a CRLF file stays CRLF.
+  Text-mode round-tripping would silently rewrite every line and show up as a total diff.
+- **One save per run.** Edits accumulate in memory; a crash mid-run leaves the file exactly as it was.
+  That is the opposite trade from `attack_points.csv`, which merges per attack precisely so a long run is
+  never all-or-nothing — the difference is that the CSV is this pipeline's output and the `.dvw` is not.
+- **Back up before the first write, never overwrite the backup**, and **replace atomically** (temp file,
+  fsync, `os.replace`).
+- **Do not clobber a human's coordinates.** The backup is what makes this exact rather than a guess: it is
+  the pristine file even on the tenth run, so a previous run's own output is distinguishable from a scout's
+  clicks. Without it the choice would be between refusing to re-run an attack after a fix and quietly wiping
+  a scout's work; neither is acceptable. `attacks.OVERWRITE_SCOUTED_COORDINATES` overrides. This is not
+  hypothetical — the Elitserien file above carries 104 hand-clicked attack positions.
+
+  **Lines are matched to the backup by content with the coordinates blanked, not by line number** — once a
+  run has inserted sets, every line below each one has moved. `DvwFile._compare_with_backup` aligns the two
+  with `difflib`: a matched line carries the backup's coordinate status, a line with no counterpart at all
+  is one this pipeline inserted (`added_by_pipeline`), and a line standing where a *different* line stood —
+  which only a human editing the file produces — is treated as the human's. Checked on the Elitserien file
+  with its sets stripped and re-added: all 104 hand-clicked attacks had moved, and every one was still
+  protected.
+- **Verify after saving** by re-parsing with pydatavolley and asserting every original row is unchanged
+  outside the coordinate columns, and every inserted row reads back as the code inserted. This caught
+  something on its first run: `match_id` is a fresh `uuid4` pydatavolley mints per call, not read from the
+  file at all, so it is in `UNSTABLE_COLUMNS` rather than the check being loosened. `scout_line` is there
+  too, since an insertion moves it by design. One column is exempt on the row directly below an insertion
+  and nowhere else: pydatavolley derives `attack_phase` from the rows *above* an attack, and only gives an
+  attack one when a set precedes it — adding the set is exactly what changes it.
+
+Verified on a copy of the real match: 35 attacks written, **exactly 35 lines differ, all of skill `Attack`,
+all in fields 4/5/6 only**, file length unchanged, and re-parsing clean. Also checked: a stale line number
+raises, a re-run replaces its own earlier output, and a human-scouted line is skipped and reported.
+
+An attack whose contact or end falls outside `court.BALL_VOLUME_*` is **not written** and is reported
+instead. That gate is needed because `dv_grid.xy_to_index` *clamps* an off-grid point rather than refusing
+it, so a reconstruction that put the ball thirty metres away would otherwise be written as a confident
+coordinate on the edge of the court. A `warnings` entry on `AttackPoints` is deliberately **not** a reason
+to skip: it means one coordinate rests on less evidence than the others, which the scout file has no way to
+say, but it is still the best measurement of that attack — and 17 of the 35 carry one.
 
 **Attacks graded `/` (blocked) or `!` (recycled) are skipped** — `attacks.SKIP_EVALUATIONS`. Neither
 completes the attack it was scouted as: a blocked ball is stopped at the net and a recycled one comes back
@@ -277,6 +560,79 @@ and each costs ~50 s of detection — 48 of this match's 292 attacks carry one o
 numbering is untouched**: it comes from `scout.action_numbers` over every attack in the file, so a filtered
 run is a subset of the same sequence, not a renumbering, and `attack_data/attack12/` keeps meaning the same
 rally.
+
+### Adding sets in front of attacks
+
+A set is its own line, directly above the attack it fed — `*13ET+K1F;;;;;;;16.05.22;1;6;2;1;1078;;…` — and
+Neo's files often leave it out: the Södermalm match has 8 sets for 154 attacks. `write_to_scout_file` adds
+one in front of every attack in the run's selection where `set_codes.decide` says one belongs. The rules,
+all in `set_codes.py` with what each was checked against:
+
+- **Already there** means the line directly above is a set **by the same team**. Then nothing is added.
+- **`PR`, `PP` and `P2` are never set** (attack on an overpass, setter tip, second-hand attack).
+- **The setter is the player in the setter's zone**, read off the attack's own line: field 9 / 10 is the
+  home / visiting setter's zone and fields 14-19 / 20-25 the players in zones 1-6. When that player *is*
+  the attacker no set is added and the run reports it — someone else set the ball and the line cannot say
+  who.
+- **The tempo is the attack's** (`AT` → `ET`) and **the grade is always `+`**.
+- **A setter call is only ever added on a sideout attack** — the receiving team's first swing of the rally.
+  `set_codes.sideout_reception` walks back from the attack to the rally's serve and says so: the rally has
+  a reception, it is by the attacking team, and no attack by either team came between. That is the scouts'
+  own practice rather than a rule of thumb — over the 18 hand-scouted Elitserien files, 689 of the 712
+  quick calls (97%) and **all 71 shifted calls** sit on an attack this test calls a sideout. Measured
+  against those files, gating on it removes 99 of the 192 calls the pipeline would otherwise have put on a
+  set the scout left uncalled, and costs 6 of the 283 it put on a set the scout did call.
+- **`X1`/`X2`/`X7` then get the setter call `K1`/`K2`/`K7`** — only if the file's `[3SETTERCALL]` table
+  defines it.
+- **A set made within 2 m of a sideline gets the shifted call instead**, `KM` out by zone 2 or `KP` out by
+  zone 4 (`attacks.SHIFTED_SET_MARGIN`, `set_codes.SHIFTED_SETTER_CALLS`), whatever the attack combination
+  is — a shifted setter is a fact about where the setter stood, not about who they set to. It needs a
+  measured set location, a sideout, and a reception graded `#`, `+` or `!`; all three are what the
+  hand-scouted files show, where every one of the 71 shifted calls is on a sideout and 70 of them follow a
+  pass graded that well. The distance is read off the set point turned into the setting team's own frame
+  (`_oriented_set_point`), so `x` runs from their zone 4 sideline at 0 to their zone 2 sideline at 9 and
+  nothing here needs to know about teams or ends. 2 m is comfortably outside a setter's station: the three
+  hand-scouted sets on this disk that carry a coordinate sit at `x` = 5.46, 6.36 and 6.47, while attack 1
+  of the quarter final measures 7.40 and was genuinely pulled wide. **The shifted call wins over a quick
+  one** when both apply, because `X1` in the attack code already says "front quick" and nothing else on the
+  line records that the setter was out at the pin.
+
+  This is the one rule that needs the reconstruction, so an unmeasured attack can still get a quick call
+  but never a shifted one. Note also that a set *this pipeline added on an earlier run* counts as already
+  there, and only its location is refreshed — its code, call and all, is never rewritten, so a file already
+  written under the old rules keeps the calls it was given unless it is restored from `.dvw.bak` first.
+- **The target attack** (`F`/`C`/`B`/`P`/`S`) is the attack combination's own, from the ninth field of the
+  file's `[3ATTACKCOMBINATION]` table — `X5` → `F`, `X1` → `C`, `XP` → `P`. With no call, `~~` holds the
+  call's place (`*13ET+~~F`). An attack with no combination code, or a table entry of `-`, gets no letter.
+  Across the hand-scouted files, 2,145 of the 2,153 sets carrying a target agree with the table.
+- **Everything after the code is copied from the attack's line**, so **the set's clock time and `video_time`
+  are always the attack's own**, as are the set, setter zones, video file and rotation. The attack's `video_time` marks the setter's touch in these files, and
+  `&svk-ork_test.dvw` agrees — 232 of its 235 sets share their attack's `video_time` and 212 its clock time.
+  Fields 1-3 stay empty, as on every scouted set.
+- **The set location**, when `find_attack_points` found one, is written as `start;-1-1;-1-1` — how the three
+  hand-scouted sets with coordinates carry it — with the setting team at the bottom. The half is the
+  attack's (`_attacking_half`), not read off the set point, because a setter stands at the net where the sign
+  of `y` is unreliable. No location when the attack itself is not written, or the set point is outside
+  `court.BALL_VOLUME_*`.
+
+**Blocked and recycled attacks get their set too.** They are skipped for measuring because the flight after
+the contact is a rebound, but the set happened all the same, so `scouted_attacks` is the selection without
+the grade filter. The scout file is only written with `DETECT` on; a detection-off run is a check of the
+selection and should not edit it.
+
+**Re-running never adds a second set** — the one added last time is directly above the attack, so it counts
+as already there. A set *this pipeline* added (`added_by_pipeline`) does get its location refreshed from the
+new measurement; a scout's own set is never relocated. A run with no measurement leaves an earlier location
+alone.
+
+Checked three ways. Stripping every same-team set in front of an attack out of the hand-scouted Örkelljunga
+file and letting the pipeline put them back: all 192 compared came back with the scout's tempo and every
+copied field identical except clock time and `video_time` (that scout timed sets a second or so before
+the attack; this pipeline deliberately does not); the player matched 171 times (89%), the misses
+being rallies where someone other than the rotation's setter set the ball — which the rule cannot know.
+On a copy of `&svk-ork_q5.dvw` with the 35 cached measurements: 170 sets added (16 located), and the diff is
+exactly those 170 inserted set lines plus 35 attack lines with changed coordinates. A second run leaves the
+file byte-identical, and a run with moved set points changes exactly the 16 located set lines.
 
 `save_attack_points` **merges by attack number** rather than overwriting: a run covering attacks 1-10 and a
 later one covering 11-20 leave twenty rows, and re-running an attack after a fix replaces its row instead of
@@ -375,7 +731,7 @@ Per-reception processing (`zoneout.pipeline.get_data_from_reception`) chains tog
    proportionally more detection time per reception.
 2. **Video chunking** (`video.create_video_chunk`): extracts a 5-second clip around that frame from each full
    match video into `temporary_videos/`, so detection only runs on a small window rather than the whole match.
-3. **Ball detection** (`detection.process_video`): runs `gala_model.pt` frame-by-frame on each clip, keeping
+3. **Ball detection** (`detection.process_video`): runs `DEFAULT_MODEL` (`ball_n1280_v2.pt`) frame-by-frame on each clip, keeping
    the top *k* boxes per frame above a confidence floor (k = 3, floor = 0.40; not just the most confident
    box — see below). Run independently per camera.
 
@@ -507,14 +863,28 @@ Per-reception processing (`zoneout.pipeline.get_data_from_reception`) chains tog
      answer is visibly implausible (`x = 10.14`, 4.24 m up), so a plausibility gate on the contact point is
      the obvious next thing if those start mattering.
 
-     **Tuning is per-caller, via `ballistic.FitOptions`, not per-module.** `correct_trajectory(points)`
-     with no options is exactly the behaviour the reception pipeline has always had; the attack pipeline
-     passes `attacks.ATTACK_FIT`. A serve and a spike are not the same fitting problem — one is slow, long
-     and seen in a hundred frames, the other is fast, short and seen in fifteen — and there is no reason a
-     single set of settings should suit both. Anything tuned for attacks therefore cannot reach receptions,
-     which is checked by replaying cached reception trajectories (the figures embed their raw points, so
-     old runs can be re-fitted without re-running detection) and asserting the segments and reception
-     heights are identical.
+     **Tuning is per-caller, via `ballistic.FitOptions`, not per-module.** The reception pipeline passes
+     `pipeline.RECEPTION_FIT`, the attack pipeline `attacks.ATTACK_FIT`. A serve and a spike are not the
+     same fitting problem — one is slow, long and seen in a hundred frames, the other is fast, short and
+     seen in fifteen — and there is no reason a single set of settings should suit both. Anything tuned
+     for one therefore cannot reach the other. A change to either is checked by replaying cached
+     trajectories (the figures embed their raw points, so old runs can be re-fitted without re-running
+     detection) and comparing segments and contact points before and after.
+
+     **Receptions now split by `'changepoint'` too, with `merge` and the `(-25, -4)` vertical gate.**
+     The settings they used before are kept, written out in full, as `pipeline.LEGACY_RECEPTION_FIT`, and
+     are still exactly what `correct_trajectory(points)` does with no options; pointing `RECEPTION_FIT`
+     at them restores the old behaviour. The reason is the same peeling failure described below for
+     attacks, and it hit whole clean flights on receptions: reception 28 lost its entire serve
+     (frames 30-89), and reception 36 the pass out of the dig, after which the rest fitted as one arc
+     bending *upward* at +3.2 m/s², which the old `(-30, 5)` gate let through. Replayed over the 42
+     reproducible cached receptions (1-41, 121): the reception point moves ~0.1 m at the median;
+     13, 15, 28, 36 and 39 are fixed outright (four of them had read the set or a rolling ball as the
+     dig); 7 and 21 move 1.05 and 0.49 m toward the low point of the dig. **One regression, reception
+     23**: a near-stationary object at the net in frames 39-50, before the serve, which the old split
+     happened to drop and `'changepoint'` isolates as a flight — both the serve and the reception
+     readings then go wrong. (Receptions 44 and 120 were cached by an older pipeline version and do not
+     reproduce, so they were left out.)
 
      Three things `ATTACK_FIT` changes, each measured on the ten attacks in `attack_data/`:
 
@@ -627,7 +997,14 @@ Per-reception processing (`zoneout.pipeline.get_data_from_reception`) chains tog
    parabolas can be judged against the measurements they were fitted to; clicking a legend entry hides either
    series. That overlay is the fastest way to tell a bad fit from bad input — if the ochre points scatter, the
    problem is upstream in detection or matching, and if they sit tight while the blue path wanders, it is the
-   ballistic step. The PNG stays a single path deliberately: two overlaid trajectories in a fixed 3D projection
+   ballistic step. With the serve-and-reception dataset on, the HTML page's **Serve** marker is the
+   dataset's `serve_start_*` (the ballistic contact, extrapolated to the baseline when unseen) instead of
+   the geometric reading written to the `.dvw`, and it also marks the **Reception end** and the **Pass apex** — the
+   point `reception_apex_z` was read at, drawn in neutral ink as a cross with a dashed drop line and its
+   height in the label. All three are exactly as they went into `datasets/receptions.csv`
+   (`reception_dataset.DrawnPoints`): a blank in the row is an absent marker here. The PNG, and the HTML
+   with the dataset off, still mark the geometric serve. The PNG stays a single path deliberately: two
+   overlaid trajectories in a fixed 3D projection
    are hard to separate without being able to rotate them.
 
 ### Camera intrinsics
@@ -694,12 +1071,23 @@ be called `moving_average` in different modules — which made importing the wro
   blue fitted path, which is under the floor, so a warm one was the only room left.
 - `court.py` — `draw_court(ax)` for matplotlib, `court_traces()` for plotly. Geometry comes from
   `zoneout.court`.
+- `serves.py` — `save_player_serves_html(path, dataset, player_number, team=None)`: one player's serves from
+  the serve dataset, each drawn as its stored parabola with a cone for direction, over the court and the
+  net (`court.net_traces`), with small unlabelled contact/reception dots and the player's mean speed in
+  the title. Paths are colored by average speed on `style.SPEED_SCALE`, a cyan-to-violet
+  ramp, over the **fixed** `serves.SPEED_RANGE` of 10-28 m/s (a really slow float to a really hard spin
+  serve; measured floats average 12-17, topspin jump serves 19.5-26.4), so a color means the same speed
+  in every figure from any dataset. The ramp's light end is limited by staying dE ≥ 15 from both the court
+  and the scene panels — see `style.py`. `team` is needed only when two teams share
+  the number, and it raises rather than merge them.
 - `trajectory.py` — `save_trajectory_figure(path, ...)` writes the PNG, `save_trajectory_html(path, ...)`
   writes the interactive page. `plot_trajectory(...)` / `plot_trajectory_plotly(...)` return the figure
   objects if you want to tweak before saving. All accept point lists containing `None` and skip those frames.
   The plotly ones additionally take `raw_points=`, drawn as **markers with no connecting line** — the raw
   series has gaps wherever no pairing survived, and joining across one would draw a straight segment the
-  reconstruction never claimed. The plotly ones also accept `points=None`, which draws no ball-path trace
+  reconstruction never claimed. The plotly ones also take `heights=[(label, point)]` for a point whose
+  height is the measurement (the top of a pass): a cross in `style.APEX` ink with a dashed drop line to
+  the floor, labelled with the height. They also accept `points=None`, which draws no ball-path trace
   at all: that is for a pipeline stage that has triangulated points but has not fitted a trajectory through
   them yet, and it is how the attack pipeline draws its raw points today.
 

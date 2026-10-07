@@ -12,8 +12,8 @@ go stale faster.
   in `gopro_points.csv` / `zve10_points.csv` (currently 8 points each, including two "antenna" points — see
   open questions below).
 - The code was reorganized into the `zoneout` package in Aug 2026 — see "Restructure" below.
-- Match-specific constants now live at the top of `run_pipeline.py` (`DVW_FILEPATH`, `FIRST_RECEPTION`,
-  `LAST_RECEPTION`) rather than buried in the module body. Still hand-edited per match; a config file or CLI
+- Match-specific constants now live at the top of `run_pipeline.py` (`FIRST_RECEPTION`,
+  `LAST_RECEPTION`; the scout file path has since moved to `scout_filepath.csv`, chosen in `update_parameters.py`) rather than buried in the module body. Still hand-edited per match; a config file or CLI
   args would be the next step if this needs to run across many matches.
 
 ## Gotcha: GPU is unusable, inference must stay on CPU

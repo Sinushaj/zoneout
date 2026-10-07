@@ -1,6 +1,7 @@
 """Entry point: the attack pipeline, for one match.
 
-Edit the constants below for the match being processed, then run:
+Choose the scout file and sync the videos with `update_parameters.py`, pick
+the attacks with the constants below, then run:
 
     python run_attack_pipeline.py
 
@@ -8,13 +9,20 @@ Separate from `run_pipeline.py` on purpose. The two pipelines share the scout
 reading, the sync anchor and (later) the reconstruction, but nothing else: this
 file can be left unrun, or deleted, and receptions carry on exactly as before.
 
-So far this does five steps: work out which attacks the run covers and where in
-each video each of them is, cut the clip each one needs out of both match videos
-into `temporary_videos/`, run the ball detector over both clips, pair the two
-cameras' candidates into 3D points, and fit free-flight physics to them. The
-first step reads the scout file and the two calibration CSVs and nothing else,
-so it takes about a second for a whole match and is worth eyeballing before any
-of it is handed to the rest.
+The steps: work out which attacks the run covers and where in each video each of
+them is, cut the clip each one needs out of both match videos into
+`temporary_videos/`, run the ball detector over both clips, pair the two
+cameras' candidates into 3D points, fit free-flight physics to them, read the
+set, the attack and its end off the fitted flights, and write the attacker's
+contact and where the attack finished back into the `.dvw`, adding a set in front
+of every attack that has none. The first step reads
+the scout file and the two calibration CSVs and nothing else, so it takes about
+a second for a whole match and is worth eyeballing before any of it is handed to
+the rest.
+
+The scout file is written **once**, after every attack has been processed, and
+the original is copied to `<name>.dvw.bak` first. Set `WRITE_TO_SCOUT_FILE` to
+False to measure everything and leave the file alone.
 
 Detection is the expensive part — budget roughly a minute per attack on CPU, so
 a set is an hour and a half and a match is most of a day. Set `DETECT = False`
@@ -38,13 +46,18 @@ from zoneout.attacks import (ATTACK_CLIP_DURATION, ATTACK_CLIP_LEAD,
                              detect_attack_ball, fit_attack_trajectory,
                              attack_points_row, extract_attack_clips,
                              match_attack_detections, matched_points,
-                             save_attack_figure, save_attack_points)
-from zoneout.config import extract_dict_from_csv, read_sync_anchor
+                             save_attack_figure, save_attack_points,
+                             scouted_attacks, write_to_scout_file)
+from zoneout.config import (extract_dict_from_csv, read_scout_filepath,
+                            read_sync_anchor)
 from zoneout.events import find_attack_points
 from zoneout.reconstruction import match_summary
+from zoneout.scout import describe_scout_file
+from zoneout.timing import anchor_mismatch
 
 # --- Edit these for the match being processed ------------------------------
-DVW_FILEPATH = "/home/neo/Desktop/&svk-ork_q5.dvw"
+# The scout file is not set here: it is chosen in update_parameters.py and read
+# from scout_filepath.csv, the same one run_pipeline.py uses.
 
 # Which attacks to process. Attacks are numbered from 1 across the whole match,
 # in the order they were played, and that numbering is per skill: attack 7 and
@@ -58,7 +71,7 @@ DVW_FILEPATH = "/home/neo/Desktop/&svk-ork_q5.dvw"
 # The range is applied on top of the set, and the numbers stay match-wide when a
 # set is selected: set 3 might be attacks 147-210, not 1-64.
 SET_NUMBER = 1         # e.g. 2 for a single set; None for every set
-FIRST_ATTACK = None          # match-wide number, inclusive; None for no lower bound
+FIRST_ATTACK = 22          # match-wide number, inclusive; None for no lower bound
 LAST_ATTACK = None          # match-wide number, inclusive; None for no upper bound
 
 # Run the ball detector over the clips. This is the expensive step — roughly a
@@ -70,7 +83,51 @@ DETECT = True
 # `attack_data/attackN/`. Off, detection still runs and is still reported; this
 # only controls whether there is something to watch afterwards.
 ANNOTATE = True
+
+# Patch the measured coordinates into the `.dvw` scout file: the attacker's
+# contact as the start and where the attack finished as the end, on the attack's
+# own line. Off, the run still measures everything and still writes
+# `attack_data/attack_points.csv`, so the results can be read and checked
+# without the scout file being touched at all.
+#
+# The same step adds a set line in front of every attack in the selection that
+# has none directly above it - blocked and recycled attacks included, since
+# their set happened all the same - with the setter on court as the player, the
+# attack's tempo, a + grade, K1/K2/K7 on X1/X2/X7, the attack combination's
+# target letter, the attack's own clock time and video_time, and the measured
+# set location where there is one. PR, PP and P2 are never set. `zoneout/set_codes.py` has
+# the rules and what they were checked against.
+#
+# Only with DETECT on: a run with detection off is a check of the selection and
+# the clips, and should not edit the scout file.
+#
+# The file is written **once**, at the end of the run. A run that dies half way
+# leaves it exactly as it was rather than partly patched, and the original is
+# copied to `<name>.dvw.bak` before the first write.
+WRITE_TO_SCOUT_FILE = True
 # ---------------------------------------------------------------------------
+
+
+def scout_file_or_stop():
+    """The scout file on record, or None after saying why the run cannot start.
+
+    Checked before the first clip is cut rather than left to fail per action:
+    a scout file that does not match the sync anchor fails nothing at all, it
+    just puts every clip in the wrong place, and a run that takes hours should
+    not find that out one action at a time.
+    """
+    try:
+        dvw_filepath = read_scout_filepath()
+        mismatch = anchor_mismatch(dvw_filepath)
+    except (OSError, KeyError, ValueError) as error:
+        print(error)
+        return None
+
+    print(f'Scout file: {describe_scout_file(dvw_filepath)}')
+    if mismatch:
+        print(mismatch)
+        return None
+    return dvw_filepath
 
 
 def warn_if_sync_is_from_another_set():
@@ -99,10 +156,14 @@ def warn_if_sync_is_from_another_set():
 
 
 def main():
+    dvw_filepath = scout_file_or_stop()
+    if dvw_filepath is None:
+        return
+
     paths = extract_dict_from_csv('video_filepaths.csv')
 
     timeline = attack_timeline(
-        DVW_FILEPATH,
+        dvw_filepath,
         sideline_filepath=paths['sideline'],
         baseline_filepath=paths['baseline'],
         set_number=SET_NUMBER,
@@ -185,7 +246,7 @@ def main():
                     print(f'    {found}')
                     for warning in found.warnings:
                         print(f'    WARNING: {warning}')
-                    measured.append(attack_points_row(attack, found))
+                    measured.append((attack, found))
 
             output_dir = attack_output_dir(attack.number)
             print(f'    wrote {save_attack_figure(attack, raw, output_dir, fitted, segments, found)}')
@@ -197,10 +258,23 @@ def main():
             print(f'    failed after detection: {type(error).__name__}: {error}')
 
     if measured:
-        path = save_attack_points(measured)
-        flagged = sum(1 for row in measured if row['warnings'])
-        print(f'\nWrote {len(measured)} attack(s) to {path}'
+        rows = [attack_points_row(attack, points) for attack, points in measured]
+        path = save_attack_points(rows)
+        flagged = sum(1 for row in rows if row['warnings'])
+        print(f'\nWrote {len(rows)} attack(s) to {path}'
               + (f' — {flagged} carry a warning' if flagged else ''))
+
+    # The scout file last, and in one save. Everything above is this pipeline's
+    # own output and can be regenerated; the `.dvw` is hours of a human's work,
+    # so it is touched once, at the end, with a backup. Not inside `if measured`:
+    # an attack that could not be measured still gets its set added.
+    if DETECT and WRITE_TO_SCOUT_FILE:
+        attacks = scouted_attacks(dvw_filepath, SET_NUMBER, FIRST_ATTACK,
+                                  LAST_ATTACK)
+        report = write_to_scout_file(dvw_filepath, measured, attacks)
+        print(f'\nScout file:\n  {report.summary()}')
+    elif DETECT:
+        print('\nThe scout file was not touched (WRITE_TO_SCOUT_FILE is off)')
 
     elapsed = (time.time() - started) / 60
     done = len(timeline) - len(failures)

@@ -1,10 +1,11 @@
 """Entry point: batch-process receptions for one match.
 
-Edit the constants below for the match being processed, then run:
+Choose the scout file and sync the videos with `update_parameters.py`, pick
+the receptions with the constants below, then run:
 
     python run_pipeline.py
 
-Note this rewrites DVW_FILEPATH in place, and takes roughly a minute per
+Note this rewrites the scout file (`scout_filepath.csv`) in place, and takes roughly a minute per
 reception on CPU — so a whole set is the better part of an hour and a whole
 match is a few hours. The run keeps going when a reception fails and lists the
 failures at the end, since one bad reception in a hundred should not cost the
@@ -13,14 +14,17 @@ other ninety-nine.
 
 import time
 
-from zoneout.config import extract_dict_from_csv, read_sync_anchor
+from zoneout.config import (extract_dict_from_csv, read_scout_filepath,
+                            read_sync_anchor)
 from zoneout.pipeline import get_data_from_reception
-from zoneout.scout import reception_numbers
+from zoneout.scout import describe_scout_file, reception_numbers
+from zoneout.timing import anchor_mismatch
 
 # --- Edit these for the match being processed ------------------------------
-DVW_FILEPATH = "/home/neo/Desktop/&svk-ork_q5.dvw"
-# DVW_FILEPATH = "C:/Data Project/Data Volley 4/Seasons/Elit H 25-26/Scout/&svk-ork_test.dvw"
-
+# The scout file is not set here: it is chosen in update_parameters.py and read
+# from scout_filepath.csv, so that it cannot differ from the one the sync was
+# taken against without this script noticing.
+#
 # Which receptions to process. Receptions are numbered from 1 across the whole
 # match, in the order they were played, and that number is what names the
 # output in `reception_data/receptionN/` — so it means the same thing however a
@@ -33,20 +37,42 @@ DVW_FILEPATH = "/home/neo/Desktop/&svk-ork_q5.dvw"
 # The range is applied on top of the set, so leaving it at None is what makes
 # "all of set 2" mean all of it. The numbers stay match-wide when a set is
 # selected: set 3 might be receptions 85-121, not 1-37.
-SET_NUMBER = None         # e.g. 2 for a single set; None for every set
-FIRST_RECEPTION = 1    # match-wide number, inclusive; None for no lower bound
-LAST_RECEPTION = 5     # match-wide number, inclusive; None for no upper bound
+SET_NUMBER = 2         # e.g. 2 for a single set; None for every set
+FIRST_RECEPTION = None     # match-wide number, inclusive; None for no lower bound
+LAST_RECEPTION = None     # match-wide number, inclusive; None for no upper bound
 # ---------------------------------------------------------------------------
 
 
-def selected_receptions():
+def selected_receptions(dvw_filepath):
     """The reception numbers this run should process, in order."""
-    numbers = reception_numbers(DVW_FILEPATH, SET_NUMBER)
+    numbers = reception_numbers(dvw_filepath, SET_NUMBER)
     if FIRST_RECEPTION is not None:
         numbers = [n for n in numbers if n >= FIRST_RECEPTION]
     if LAST_RECEPTION is not None:
         numbers = [n for n in numbers if n <= LAST_RECEPTION]
     return numbers
+
+
+def scout_file_or_stop():
+    """The scout file on record, or None after saying why the run cannot start.
+
+    Checked before the first clip is cut rather than left to fail per action:
+    a scout file that does not match the sync anchor fails nothing at all, it
+    just puts every clip in the wrong place, and a run that takes hours should
+    not find that out one action at a time.
+    """
+    try:
+        dvw_filepath = read_scout_filepath()
+        mismatch = anchor_mismatch(dvw_filepath)
+    except (OSError, KeyError, ValueError) as error:
+        print(error)
+        return None
+
+    print(f'Scout file: {describe_scout_file(dvw_filepath)}')
+    if mismatch:
+        print(mismatch)
+        return None
+    return dvw_filepath
 
 
 def warn_if_sync_is_from_another_set():
@@ -76,10 +102,14 @@ def warn_if_sync_is_from_another_set():
 
 
 def main():
+    dvw_filepath = scout_file_or_stop()
+    if dvw_filepath is None:
+        return
+
     sideline_filepath = extract_dict_from_csv('video_filepaths.csv')['sideline']
     baseline_filepath = extract_dict_from_csv('video_filepaths.csv')['baseline']
 
-    numbers = selected_receptions()
+    numbers = selected_receptions(dvw_filepath)
     if not numbers:
         print('Nothing to process: no receptions matched the selection.')
         return
@@ -95,7 +125,7 @@ def main():
         print(f'\n[{position}/{len(numbers)}] reception {i}')
         try:
             get_data_from_reception(
-                dvw_filepath=DVW_FILEPATH,
+                dvw_filepath=dvw_filepath,
                 reception_number=i,
                 sideline_filepath=sideline_filepath,
                 baseline_filepath=baseline_filepath,

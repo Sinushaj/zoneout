@@ -41,6 +41,24 @@ def _scout_line_count(dvw_filepath):
     return len([line for line in lines[start + 1:] if line.strip()])
 
 
+def describe_scout_file(dvw_filepath):
+    """The path with the two team names after it, for printing.
+
+    A scout file's name does not reliably say which match it is, and processing
+    one match's videos against another match's scout file does not fail - it
+    cuts every clip from the wrong minute. Seeing the teams is the cheap check.
+    """
+    try:
+        with open(dvw_filepath, 'r', encoding='cp1252') as scout_file:
+            lines = scout_file.read().split('\n')
+        start = lines.index('[3TEAMS]')
+        teams = [lines[start + i].split(';')[1] for i in (1, 2)]
+    except (OSError, ValueError, IndexError):
+        return dvw_filepath
+
+    return f'{dvw_filepath} ({teams[0]} vs {teams[1]})'
+
+
 def get_plays(dvw_filepath):
     """Every scouted line of the match, in file order, with its line number.
 
@@ -182,12 +200,21 @@ def video_time_frame_rates(sideline_fps, baseline_fps, clock_fps=DVW_CLOCK_FPS):
     return clock_fps, clock_fps * baseline_fps / sideline_fps
 
 
-def get_sync_video_time(dvw_filepath, set_number=None, skill='Serve'):
-    """The `video_time` of the first serve (or reception) of a set.
+def get_sync_action(dvw_filepath, set_number=None, skill='Serve'):
+    """The action a sync anchor is pinned to: `(video_time, ordinal, code)`.
 
-    This is what a sync anchor is pinned to: the person calibrating finds that
-    action in each camera and records the frame, and every reception afterwards
-    is computed from the two.
+    It is the first serve (or reception) of the set - or of the match, for
+    `set_number=None` - **that has a `video_time`**. `ordinal` is its position
+    among that skill's actions there, 1 for the first, and `code` its scout
+    code, so the person syncing can be told exactly which rally to find.
+
+    The first one usually has a time, but not always: a scout can start the
+    video clock a rally late. The Randaberg file's first rally carries no
+    `video_time` on any of its lines, its second serve is at 0 and its third at
+    24, so "the first serve of set 1" has no time to anchor on and the anchor
+    has to be the second - and the person syncing has to be told to look for the
+    second one, or the anchor lands a rally away from the time it is recorded
+    at.
 
     Prefer the **serve**. A rally's serve and its reception carry the same
     `video_time` in the scout file, so for a normal rally the two choices are
@@ -196,20 +223,36 @@ def get_sync_video_time(dvw_filepath, set_number=None, skill='Serve'):
     later, which is a needlessly awkward thing to go looking for in the video.
     The first serve of a set is always the start of play. Reception stays
     available for when the first serve is not on camera.
-
-    Passing `set_number=None` looks across the whole match, which is what an
-    anchor at the match's first action means.
     """
     plays = DataVolley(dvw_filepath).get_plays()
     rows = plays[plays['skill'] == skill]
     if set_number is not None:
         rows = rows[rows['set_number'].astype(str) == str(set_number)]
 
+    where = 'the match' if set_number is None else f'set {set_number}'
     if rows.empty:
-        where = 'the match' if set_number is None else f'set {set_number}'
         raise ValueError(f"{dvw_filepath} has no {skill} in {where}.")
 
-    return int(rows['video_time'].iloc[0])
+    for ordinal, (video_time, code) in enumerate(
+            zip(rows['video_time'], rows['code']), start=1):
+        video_time = str(video_time).strip()
+        if video_time and video_time.lower() not in ('nan', 'none', '<na>'):
+            return int(video_time), ordinal, code
+
+    raise ValueError(f"No {skill.lower()} in {where} of {dvw_filepath} has a"
+                     f" video_time, so there is nothing to sync against.")
+
+
+def get_sync_video_time(dvw_filepath, set_number=None, skill='Serve'):
+    """The `video_time` of the sync action, `get_sync_action`'s first value.
+
+    This is what a sync anchor is pinned to: the person calibrating finds that
+    action in each camera and records the frame, and every reception afterwards
+    is computed from the two. The sync step, the check that an anchor belongs
+    to the scout file (`timing.anchor_mismatch`) and the start-frame suggestion
+    all come through here, so they cannot disagree about which action it is.
+    """
+    return get_sync_action(dvw_filepath, set_number, skill)[0]
 
 
 def frame_for_video_time(anchor_frame, anchor_video_time, video_time,
@@ -275,33 +318,25 @@ def get_reception_start_frame(dvw_filepath, anchor_frame, anchor_video_time,
 
 
 def coords_to_dvindex(point):
-    px = point[0]
-    py = point[1]
+    """A world point as the index a scout line's coordinate field holds.
 
-    py += 9
-    py *= 80 / 18
-    py += 10
-    py = int(py)
+    A thin wrapper over `dv_grid`, which owns the grid arithmetic for every
+    writer, so the serve/reception write-back here and the attack write-back in
+    `attacks` cannot end up using two different grids.
 
-    px *= 80 / 9
-    px += 10
-    px = int(px)
-
-    # gör om till index
-    index = str(px + 100 * py)
-    if len(index) < 4:
-        index = '0000'[:4-len(index)] + index
-    return index
-
-
-# TESTER:
-# y = -9 motsvarar 1000 = 100 * 10
-# y = 9 motsvarar 9000 = 100 * 90
-# x = 0 motsvarar 10
-# x = 9 motsvarar 89 / 90?
-
-
-
+    **This is a corrected version and it does not agree with the one it
+    replaced.** The old arithmetic laid 80 rows over the 18 m length where
+    openvolley's grid has 81, and truncated toward zero instead of binning to
+    the cell edges. Measured over 40 000 points spread across the court, the two
+    disagree on the index *everywhere* - the corrected one sits a uniform
+    +0.1125 m further along x, and 0 to +0.222 m further along y, the y error
+    growing toward the far baseline. `dv_grid.index_to_xy` now round-trips
+    exactly against `datavolley.helpers.dv_index2xy`, pydatavolley's own inverse
+    of the same grid, so the correction is checked against the format's
+    definition rather than argued for.
+    """
+    from .dv_grid import format_index, xy_to_index
+    return format_index(xy_to_index(point[0], point[1]))
 
 
 def add_serve_direction(dvw_file, time, start_point, end_point):

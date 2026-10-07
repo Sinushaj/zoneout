@@ -1,6 +1,9 @@
 """Reading and writing the small CSV files that configure a run.
 
 - `video_filepaths.csv`        - sideline / baseline source video paths
+- `scout_filepath.csv`         - the `.dvw` scout file the match is processed
+  against. Its own file rather than a column of `video_filepaths.csv`, because
+  that one is rewritten whole whenever the videos are re-picked.
 - `first_reception_frames.csv` - the manual sync anchor: one clicked frame per
   camera, and the `video_time` those frames show. The name is historical: the
   anchor used to be fixed at the match's first reception, and can now be any
@@ -18,6 +21,7 @@ pull in GUI code.
 """
 
 import csv
+import os
 
 import numpy as np
 
@@ -95,6 +99,40 @@ def write_dict_to_csv(csv_path, values):
 
         # Second row: values
         writer.writerow(list(values.values()))
+
+
+SCOUT_FILEPATH_CSV = 'scout_filepath.csv'
+
+
+def read_scout_filepath(csv_path=SCOUT_FILEPATH_CSV):
+    """The `.dvw` scout file on record, chosen in `update_parameters.py`.
+
+    Raises with a message saying what to do when there is none, or when the file
+    it names is not there - a match kept on an external drive that is not
+    mounted is the likely case, and it is better said up front than as a
+    pydatavolley error from inside the first reception.
+    """
+    try:
+        values = extract_dict_from_csv(csv_path)
+    except FileNotFoundError:
+        raise FileNotFoundError(
+            f'No scout file on record ({csv_path} does not exist). Run'
+            ' update_parameters.py and choose one.') from None
+
+    path = (values.get('dvw') or '').strip()
+    if not path:
+        raise ValueError(f'{csv_path} names no scout file. Run'
+                         ' update_parameters.py and choose one.')
+    if not os.path.isfile(path):
+        raise FileNotFoundError(
+            f'The scout file on record does not exist: {path}. Is the drive it'
+            ' is on mounted? Otherwise choose it again in update_parameters.py.')
+
+    return path
+
+
+def write_scout_filepath(path, csv_path=SCOUT_FILEPATH_CSV):
+    write_dict_to_csv(csv_path, {'dvw': path})
 
 
 def read_sync_anchor(csv_path='first_reception_frames.csv'):

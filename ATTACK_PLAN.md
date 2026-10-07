@@ -375,8 +375,15 @@ What the side is *used for* is §5.
 
 ## 5. Orientation, and validating the write-back
 
-This is the part to settle before any attack is written to a real file, and it is also the overdue answer to
-the `NOTES.md` question about `add_serve_direction`'s rotation.
+**SETTLED — see "Writing attacks back to the `.dvw`" in `CLAUDE.md` for the answer and the measurements.**
+In short: the convention is action-relative, the acting team is always drawn at the bottom of the grid, and
+it was settled not against this pipeline's own output but against
+`&32135954_Hom15 Örkelljunga vs Sollentuna .dvw`, a hand-scouted Elitserien file with 201 coordinate lines,
+where all 201 start in the bottom half and end in the top, for both teams. `dv_grid.orient_for_action` holds
+the conclusion and `tools/check_orientation.py` is the harness. The third check below — opening a patched
+file in DataVolley itself — has **not** been done and is the remaining one.
+
+The reasoning that led there, kept because it is what the harness tests:
 
 The problem: the pipeline knows where the ball was in world coordinates; DataVolley wants a grid index; and
 per §1.4 there is no in-file convention saying which world half maps to which grid half. Currently
@@ -416,14 +423,19 @@ file parsing cleanly still do not prove the numbers land where DataVolley draws 
 Each phase is independently useful, and independently revertable. Nothing writes attacks to a real file
 until phase E passes.
 
-**A — `dv_grid.py`.** The grid conversion, with a round-trip test against `datavolley.helpers.dv_index2xy`
-and the §1.3 correction. `coords_to_dvindex` becomes a wrapper. Measure the index shift against the
-receptions already written and report it. *No pipeline behaviour change beyond the corrected index.*
+**A — `dv_grid.py`. DONE.** The grid conversion, round-trip-tested against `datavolley.helpers.dv_index2xy`
+(exact), with the §1.3 correction; `coords_to_dvindex` is now a wrapper over it, so the serve/reception
+write-back is corrected too. The shift is measured and recorded in `CLAUDE.md`.
 
-**B — `dvw_edit.py`.** The safe writer, with `add_serve_direction` reimplemented on top of it. Verify by
-patching a copy of `&svk-ork_test.dvw` — the fixture kept for exactly this — with the old and new writers
-and diffing the results byte for byte. Receptions gain the backup, the atomicity and the verification with
-no change in what they write.
+**B — `dvw_edit.py`. DONE for the attack path.** The safe writer, verified on a copy of the real match and
+on the `&svk-ork_test.dvw` fixture: only the targeted lines change, only in fields 4/5/6, and a stale line
+number, a human-scouted line and a re-run all behave as specified.
+
+*Not done:* `add_serve_direction` is **not** reimplemented on top of it. It still matches lines by
+`video_time` (which is sound for serve/reception, where a rally has one of each) and still rewrites the
+whole file per reception with no backup and no atomic replace. It shares `dv_grid` now, so the two writers
+cannot disagree about the grid, but receptions do not yet get the backup, the one-save-per-run or the
+post-save verification. That is the obvious next piece and it is a contained one.
 
 **C — split `pipeline.py` into the package.** Pure refactor. Verify the way the last restructure was
 verified: a golden end-to-end run of receptions 4–6 producing identical 3D coordinates, identical figures
@@ -435,10 +447,10 @@ the write-back **disabled**, and read the results off the interactive figures �
 is what tells a bad fit from bad input, and an attack is a harder detection problem than a serve (fast, and
 the contact is behind the block).
 
-*Done so far, in `zoneout/attacks.py` and `run_attack_pipeline.py`:* selection and timing, the clip window,
-detection, matching and triangulation, the ballistic fit, and `events.find_attack_points` — the set, the
-attack and where the attack finished, collected into `attack_data/attack_points.csv`. Still to do here: the
-write-back, which phase E gates.
+*Done, in `zoneout/attacks.py` and `run_attack_pipeline.py`:* selection and timing, the clip window,
+detection, matching and triangulation, the ballistic fit, `events.find_attack_points` — the set, the attack
+and where the attack finished, collected into `attack_data/attack_points.csv` — and the write-back
+(`write_to_scout_file`, behind `WRITE_TO_SCOUT_FILE`), which also adds the sets the scout left out.
 
 *One thing this phase turned up that the plan did not anticipate.* A spike is short — a fifth of a second,
 and under ten surviving points after occlusion — and `ballistic` discarded anything below
@@ -448,8 +460,14 @@ six, and over a tenth of a second the curvature was never observable anyway. See
 `CLAUDE.md` for the measurements, including `_drop_continuations`, which is what stops a cheap short fit
 from cutting a fake contact out of a long flight's leftovers.
 
-**E — validation, then enable.** The §5 harness over a full match. Fix what it finds. Only then does
-`PROCESS_ATTACKS` default on, and only then does the attack path write.
+**E — validation, then enable. DONE, with one check outstanding.** The §5 harness exists as
+`tools/check_orientation.py` and settled the convention; the structural check (re-parse and assert only the
+coordinate columns moved) runs automatically inside every `dvw_edit` save. `WRITE_TO_SCOUT_FILE` defaults
+on.
+
+The **third check is still outstanding**: open one patched match in DataVolley itself and look at a handful
+of attacks whose direction is unmistakable. Statistics agreeing with the scout's zones and the file parsing
+cleanly still do not prove the numbers land where DataVolley draws them.
 
 ---
 

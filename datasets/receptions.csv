@@ -1,0 +1,779 @@
+match,reception_number,serving_team,receiving_team,serving_player,receiving_player,serve_type,serve_start_x,serve_start_y,serve_start_z,reception_x,reception_y,reception_z,serve_landing_x,serve_landing_y,serve_hit_net,serve_average_speed,reception_end_x,reception_end_y,reception_end_z,reception_apex_z,reception_grade,receiving_team_won,receiving_rotation
+&svk-hästhagen,1,Hästhagen,Sollentuna VK,Markus Charlton,Kai Wendler,float,7.1508,-9.1446,2.8531,7.0821,5.1298,1.712,7.0118,7.5837,False,14.12,5.9115,3.0923,-0.0194,6.484,=,False,2
+&svk-hästhagen,2,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.6294,-8.8166,2.9873,5.1711,6.293,1.42,4.8047,8.4974,False,13.619,4.2376,1.5818,2.1044,3.638,+,True,2
+&svk-hästhagen,3,Sollentuna VK,Hästhagen,Johan Nilsson,Neo Broady,float,7.5491,-8.1973,2.8296,5.2306,5.2805,1.3329,5.0023,6.9346,False,13.372,3.444,5.3762,1.5908,5.519,-,False,1
+&svk-hästhagen,4,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.9633,-9.078,2.7224,8.1453,5.4009,1.0058,8.0366,6.9105,False,14.95,-0.2038,1.82,2.0672,4.505,/,True,1
+&svk-hästhagen,5,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kai Wendler,float,7.7692,-8.7359,2.8229,6.5603,5.1265,2.4,6.0962,8.7826,False,14.788,6.4663,3.3011,0.0305,6.518,=,False,1
+&svk-hästhagen,6,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kestutis Blyza,float,7.943,-9.7812,2.7524,6.4655,6.572,1.4679,6.3917,9.3805,False,14.972,6.2047,1.2537,2.5802,5.639,+,False,1
+&svk-hästhagen,7,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kestutis Blyza,float,7.7902,-8.9648,2.9179,6.756,6.8159,1.3356,6.6758,9.1833,False,16.711,,,,,=,False,1
+&svk-hästhagen,8,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kestutis Blyza,float,8.1138,-9.4572,2.8435,6.2718,6.4522,1.1416,5.9364,8.5001,False,16.739,-1.8604,4.516,2.2629,5.093,/,True,1
+&svk-hästhagen,9,Sollentuna VK,Hästhagen,Kai Wendler,Neo Broady,float,3.0773,-9.0295,2.643,7.1515,5.6755,1.6599,7.9742,8.1274,False,13.923,3.3761,3.6306,2.674,5.639,!,False,6
+&svk-hästhagen,10,Hästhagen,Sollentuna VK,Hannes Engström,Lucas Nordström,float,3.1465,-9.3579,2.8327,5.4197,6.0722,1.5454,6.5006,8.9335,False,16.066,,,,5.123,=,False,6
+&svk-hästhagen,11,Sollentuna VK,Hästhagen,Diego Zagai Roel,Markus Charlton,float,1.8278,-9.2896,2.7358,3.646,5.5675,1.4023,3.8866,7.3174,False,13.531,2.9555,2.0528,2.3735,4.992,+,False,5
+&svk-hästhagen,12,Sollentuna VK,Hästhagen,Diego Zagai Roel,Kalle Blomstedt,float,1.6262,-8.3883,2.7603,5.9722,5.2733,1.9918,7.5666,8.377,False,14.371,5.0591,1.3075,2.346,4.607,+,False,5
+&svk-hästhagen,13,Sollentuna VK,Hästhagen,Diego Zagai Roel,Neo Broady,float,1.729,-9.2464,2.6906,6.1794,5.6365,1.5144,6.9704,7.7266,False,15.326,6.9038,0.8672,1.8499,4.027,/,False,5
+&svk-hästhagen,14,Sollentuna VK,Hästhagen,Diego Zagai Roel,Neo Broady,float,1.784,-8.9721,2.67,6.8853,6.5515,1.5689,7.8004,9.4336,False,15.708,4.8412,2.0505,2.1274,4.066,+,True,5
+&svk-hästhagen,15,Hästhagen,Sollentuna VK,Alexander Beckman,Kestutis Blyza,spin,6.8515,-9.3497,3.0045,6.8394,5.7992,0.4512,6.8613,6.2851,False,19.462,2.512,2.8996,2.5311,5.551,!,False,5
+&svk-hästhagen,16,Hästhagen,Sollentuna VK,Alexander Beckman,Kestutis Blyza,spin,6.8511,-9.3322,2.9101,7.2932,6.0747,1.2483,7.3261,8.0267,False,21.928,2.534,-2.2931,1.8746,5.981,/,True,5
+&svk-hästhagen,17,Sollentuna VK,Hästhagen,Peter Blomgren,Anton Wessberg,float,8.4315,-9.1299,2.8574,2.8964,4.5293,0.6045,2.6324,5.3,False,13.44,4.6857,-0.4537,2.916,4.257,/,False,4
+&svk-hästhagen,18,Sollentuna VK,Hästhagen,Peter Blomgren,Neo Broady,float,8.1435,-9.0752,2.9155,7.1719,5.1924,0.8954,7.1026,6.8674,False,14.018,5.2119,1.3355,2.5575,6.165,#,True,4
+&svk-hästhagen,19,Hästhagen,Sollentuna VK,Neo Broady,Kestutis Blyza,float,7.7322,-9.2611,2.8249,6.897,4.5367,0.2861,6.6781,4.655,False,12.686,5.6136,0.1423,2.8734,4.227,-,False,4
+&svk-hästhagen,20,Hästhagen,Sollentuna VK,Neo Broady,Kai Wendler,float,8.029,-9.7274,2.9993,5.0373,5.7821,1.6238,4.3101,8.8599,False,17.565,2.5324,8.4436,1.7914,6.111,-,False,4
+&svk-hästhagen,21,Hästhagen,Sollentuna VK,Neo Broady,Kai Wendler,float,7.8956,-9.4638,3.0867,6.3851,5.954,1.5274,6.1567,8.7575,False,15.367,0.8303,5.1124,0.7299,3.905,/,False,4
+&svk-hästhagen,22,Hästhagen,Sollentuna VK,Neo Broady,Simon Meyer,float,7.7057,-9.4621,2.8286,6.2745,2.4047,1.095,6.1879,3.5206,False,10.179,2.979,1.1042,2.4629,4.005,#,True,4
+&svk-hästhagen,23,Hästhagen,Sollentuna VK,Holger Mjönes,Lucas Nordström,float,0.7404,-9.0368,2.9527,4.6867,5.2792,0.7053,4.9048,5.7866,False,12.629,3.8727,0.5045,2.4562,4.159,#,False,3
+&svk-hästhagen,24,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,7.0344,-8.169,2.6484,5.2686,5.5135,1.4175,5.1843,7.5697,False,13.062,4.2589,2.1668,2.6339,6.518,+,False,2
+&svk-hästhagen,25,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,6.9494,-8.3419,2.8024,5.7754,5.507,0.8715,5.5865,6.8503,False,12.475,3.9687,1.9866,2.4259,5.546,+,False,2
+&svk-hästhagen,26,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,6.6837,-8.2494,2.9137,6.4033,4.8077,0.4361,6.2964,5.4444,False,12.207,5.1885,2.8548,2.5063,5.144,!,False,2
+&svk-hästhagen,27,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,7.0305,-9.0476,2.5751,5.3416,5.5536,1.6095,5.1679,7.4576,True,12.439,1.5857,0.671,2.4215,5.69,+,False,2
+&svk-hästhagen,28,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,6.9997,-7.9316,2.8468,5.1822,5.3572,0.8333,4.7695,6.6577,False,14.015,5.2595,3.2783,2.5288,4.899,!,False,2
+&svk-hästhagen,29,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,7.0875,-8.1774,2.8176,5.1191,5.5843,1.2299,4.845,7.7229,False,15.298,1.4971,1.7484,2.1848,5.927,!,False,2
+&svk-hästhagen,30,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,7.2193,-8.242,2.7781,5.6386,6.4456,1.7318,5.3894,9.9347,False,15.534,3.3371,-0.1302,2.7965,4.518,/,False,2
+&svk-hästhagen,31,Sollentuna VK,Hästhagen,Simon Meyer,Anton Wessberg,float,7.1656,-9.0424,2.7532,4.2751,5.228,1.4232,4.0128,7.3384,False,13.899,3.4153,3.2342,2.2138,4.585,!,True,2
+&svk-hästhagen,32,Hästhagen,Sollentuna VK,Markus Charlton,Lucas Nordström,float,5.9512,-9.6026,2.9201,3.3058,4.4813,0.5573,3.0754,5.2397,False,14.091,-2.2868,-0.1474,1.8183,4.51,=,False,2
+&svk-hästhagen,33,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.4753,-9.0175,2.8799,4.2514,5.4703,1.7083,3.7916,7.6294,False,14.073,1.9112,2.6327,1.7377,3.744,-,True,2
+&svk-hästhagen,34,Sollentuna VK,Hästhagen,Johan Nilsson,Neo Broady,float,7.9209,-8.8572,2.8031,6.7142,5.7692,1.0757,6.6255,7.2862,False,15.88,5.9154,0.3142,3.0591,6.572,-,False,1
+&svk-hästhagen,35,Sollentuna VK,Hästhagen,Johan Nilsson,Anton Wessberg,float,7.8066,-8.8381,2.7967,6.5647,5.5617,0.8421,6.4924,6.6568,False,15.48,3.0645,-0.9774,2.2198,4.536,/,False,1
+&svk-hästhagen,36,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.6813,-9.5293,2.7849,7.017,5.8002,1.6174,6.629,8.5097,False,15.211,4.6912,2.5022,2.4793,6.694,+,False,1
+&svk-hästhagen,37,Sollentuna VK,Hästhagen,Johan Nilsson,Anton Wessberg,float,7.6653,-8.6446,2.7741,2.2398,5.6999,1.9996,0.8875,8.5872,False,13.89,4.3934,3.2134,2.1056,6.13,!,True,1
+&svk-hästhagen,38,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kai Wendler,float,7.7556,-9.7417,2.7948,7.8404,5.3193,2.0592,7.3734,10.0824,False,16.712,1.4459,3.0234,2.0689,6.718,-,True,1
+&svk-hästhagen,39,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,3.0305,-8.9875,2.9094,4.7752,5.344,1.1014,4.9743,7.0753,False,14.632,2.1939,5.275,1.8073,4.874,+,True,2
+&svk-hästhagen,40,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.3575,-8.5596,2.9998,5.0658,2.8633,1.1196,4.8929,4.1071,False,12.477,4.7608,3.7834,1.0351,1.192,+,True,1
+&svk-hästhagen,41,Sollentuna VK,Hästhagen,Kai Wendler,Neo Broady,float,2.9018,-8.8287,2.9832,4.4958,5.369,0.7606,4.6472,6.2869,False,15.558,8.7138,3.5099,1.9025,5.599,-,False,1
+&svk-hästhagen,42,Sollentuna VK,Hästhagen,Kai Wendler,Neo Broady,float,3.0305,-8.9875,2.9094,4.7752,5.344,1.1014,4.9743,7.0753,False,14.632,2.1939,5.275,1.8073,4.874,-,True,1
+&svk-hästhagen,43,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kai Wendler,float,7.5575,-8.421,2.8215,1.608,5.3392,1.4196,0.8314,7.3082,False,14.9,1.7342,0.755,2.5134,6.388,+,False,6
+&svk-hästhagen,44,Hästhagen,Sollentuna VK,Kalle Blomstedt,Lucas Nordström,float,7.5698,-9.4036,2.726,4.1712,5.7874,0.5528,3.9551,6.8973,False,16.046,1.6901,0.4512,3.4155,4.763,/,False,6
+&svk-hästhagen,45,Hästhagen,Sollentuna VK,Kalle Blomstedt,Lucas Nordström,float,7.3189,-8.452,2.9392,3.0616,5.8257,1.4372,2.0763,8.5463,False,17.528,4.5144,1.073,2.6787,4.916,#,True,6
+&svk-hästhagen,46,Sollentuna VK,Hästhagen,Diego Zagai Roel,Neo Broady,float,1.3916,-9.0093,2.8646,8.277,5.4406,1.8369,9.2809,6.9665,False,12.292,5.569,6.7663,1.5631,6.559,-,True,6
+&svk-hästhagen,47,Hästhagen,Sollentuna VK,Hannes Engström,Kai Wendler,float,3.1402,-8.6941,2.9629,4.8364,5.3722,1.5169,4.9982,6.9932,False,12.625,3.5759,2.5327,2.3564,6.178,!,True,5
+&svk-hästhagen,48,Sollentuna VK,Hästhagen,Peter Blomgren,Kalle Blomstedt,float,8.3622,-9.4134,3.0563,5.5861,5.7641,1.5345,4.9467,7.9889,False,14.896,-0.247,4.0658,1.7446,6.225,-,False,5
+&svk-hästhagen,49,Sollentuna VK,Hästhagen,Peter Blomgren,Neo Broady,float,7.919,-9.7579,2.8963,6.9047,5.5324,1.5025,6.7491,7.643,False,14.487,0.8338,2.5494,2.1852,5.318,-,False,5
+&svk-hästhagen,50,Sollentuna VK,Hästhagen,Peter Blomgren,Kalle Blomstedt,float,8.5601,-9.4673,2.8431,3.5092,5.4425,1.4043,2.6565,7.6673,False,15.546,4.2072,1.0869,2.6103,4.988,#,False,5
+&svk-hästhagen,51,Sollentuna VK,Hästhagen,Kestutis Blyza,Neo Broady,float,7.284,-9.3212,2.5401,7.238,5.8868,1.7358,7.1852,8.7858,False,14.846,2.2201,1.1372,2.3575,4.385,+,False,4
+&svk-hästhagen,52,Sollentuna VK,Hästhagen,Kestutis Blyza,Neo Broady,float,7.0813,-8.0479,2.6964,7.3476,5.5978,1.3817,7.2758,7.5211,False,14.338,1.6339,4.9835,1.354,4.625,-,False,4
+&svk-hästhagen,53,Sollentuna VK,Hästhagen,Kestutis Blyza,Neo Broady,float,6.8101,-8.406,2.7373,7.1784,6.056,1.4971,7.0275,9.2559,False,15.578,1.5285,6.3443,1.5235,4.813,-,False,4
+&svk-hästhagen,54,Sollentuna VK,Hästhagen,Kestutis Blyza,Neo Broady,float,6.9183,-8.485,2.6224,7.4278,6.0716,0.9777,7.3727,7.5184,False,14.673,,,,5.192,-,False,4
+&svk-hästhagen,55,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,6.1643,-8.4868,2.8362,3.1228,5.5997,1.398,3.0917,7.8939,False,14.053,,,,5.715,=,False,3
+&svk-hästhagen,56,Sollentuna VK,Hästhagen,Simon Meyer,Elliot Bolin,float,6.1083,-8.2169,3.0712,1.6656,4.8298,0.9162,0.928,6.394,False,14.422,2.8054,0.4787,2.7418,5.977,#,True,3
+&svk-hästhagen,57,Hästhagen,Sollentuna VK,Holger Mjönes,Lucas Nordström,float,1.2416,-8.9023,2.8085,3.2406,5.4674,1.3505,3.7919,7.472,False,14.257,5.077,0.9549,2.5538,5.064,#,False,2
+&svk-hästhagen,58,Hästhagen,Sollentuna VK,Holger Mjönes,Kestutis Blyza,float,1.1741,-8.7313,2.724,4.9614,5.3874,0.7528,5.8305,6.638,False,14.64,2.6956,2.2589,2.6459,4.445,+,False,2
+&svk-hästhagen,59,Hästhagen,Sollentuna VK,Holger Mjönes,Lucas Nordström,float,1.2825,-8.7271,2.8519,1.8228,6.0788,1.4734,1.7768,8.3609,False,14.328,3.2569,0.8071,2.5627,4.482,#,True,2
+&svk-hästhagen,60,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.7483,-9.8042,2.7764,7.1598,4.6114,0.5756,7.269,5.2681,False,14.588,3.8495,2.4139,2.3148,3.985,!,False,2
+&svk-hästhagen,61,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.6879,-9.6478,2.7964,7.0651,5.2594,1.9704,6.6461,8.7346,False,15.434,6.3598,0.3748,1.7732,4.146,-,True,2
+&svk-hästhagen,62,Hästhagen,Sollentuna VK,Markus Charlton,Lucas Nordström,float,6.4717,-9.052,2.8144,2.5952,4.9591,0.9084,2.2798,6.0899,False,12.786,2.2444,1.4624,2.4034,4.76,+,True,1
+&svk-hästhagen,63,Sollentuna VK,Hästhagen,Kai Wendler,Kalle Blomstedt,float,3.2269,-8.9431,3.1377,6.3326,5.394,1.047,6.7483,7.8034,False,17.041,4.2062,4.0585,2.2327,6.242,-,False,1
+&svk-hästhagen,64,Sollentuna VK,Hästhagen,Kai Wendler,Kalle Blomstedt,float,3.2181,-8.8227,2.9792,6.6951,5.3837,1.8747,7.5783,9.039,False,16.77,4.1423,2.2509,2.8095,5.374,+,True,1
+&svk-hästhagen,65,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kai Wendler,float,7.6621,-8.9536,2.9063,1.5596,5.0638,0.7683,1.1428,6.2813,False,16.095,8.6586,4.7026,2.0283,5.94,-,True,6
+&svk-hästhagen,66,Sollentuna VK,Hästhagen,Diego Zagai Roel,Anton Wessberg,float,1.6907,-8.6978,3.0134,4.9774,4.9257,0.7503,5.1286,5.5223,False,11.755,,,,4.659,-,False,6
+&svk-hästhagen,67,Sollentuna VK,Hästhagen,Diego Zagai Roel,Neo Broady,float,1.8761,-8.6633,2.9222,6.7595,4.7389,0.8485,7.0988,5.3794,False,12.912,6.5119,-0.4211,2.9427,5.752,/,False,6
+&svk-hästhagen,68,Sollentuna VK,Hästhagen,Diego Zagai Roel,Neo Broady,float,2.1244,-9.099,2.9139,7.6691,4.3307,1.3529,8.4295,6.0882,False,13.906,5.3348,2.6609,2.3168,5.59,+,False,6
+&svk-hästhagen,69,Sollentuna VK,Hästhagen,Diego Zagai Roel,Neo Broady,float,1.1852,-9.1396,2.778,6.3911,4.3584,1.0071,6.7675,5.3889,False,12.928,3.8178,1.5616,2.467,4.82,#,True,6
+&svk-hästhagen,70,Hästhagen,Sollentuna VK,Hannes Engström,Kai Wendler,float,,,,3.6715,8.9827,5.7706,,,,,2.6188,9.3034,2.1962,5.771,=,False,5
+&svk-hästhagen,71,Hästhagen,Sollentuna VK,Hannes Engström,Kai Wendler,float,3.4297,-9.0147,2.8766,4.7714,5.9753,1.2893,5.0252,7.5136,False,13.017,0.1475,1.6774,2.0237,5.692,-,True,5
+&svk-hästhagen,72,Sollentuna VK,Hästhagen,Peter Blomgren,Neo Broady,float,8.1726,-9.4485,2.8847,8.3572,6.4805,1.5008,8.3444,8.9507,False,15.876,8.0686,5.063,2.0763,6.809,-,False,5
+&svk-hästhagen,73,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.4133,-8.8707,3.0209,6.397,5.2319,1.0388,6.2879,6.6489,False,13.502,4.2544,0.7565,2.5315,5.432,#,True,2
+&svk-hästhagen,74,Sollentuna VK,Hästhagen,Johan Nilsson,Neo Broady,float,7.4941,-8.7409,2.8719,5.093,5.6914,1.2512,4.7715,7.3103,False,14.214,,,,5.657,!,True,1
+&svk-hästhagen,75,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kestutis Blyza,float,8.2016,-9.38,2.9323,5.5453,5.9908,1.275,5.0028,8.244,False,17.12,1.6051,1.5442,2.6017,5.774,+,True,1
+&svk-hästhagen,76,Sollentuna VK,Hästhagen,Axel Wendt,Neo Broady,float,6.966,-8.7168,2.6932,8.6748,5.2332,1.5157,9.0793,7.6558,False,13.838,5.4343,3.6319,2.1387,5.386,-,True,6
+&svk-hästhagen,77,Hästhagen,Sollentuna VK,Hannes Engström,Kestutis Blyza,float,3.3866,-9.7772,2.8529,7.4686,4.3377,1.1938,7.9063,5.5365,False,13.06,6.0202,4.4523,1.9293,3.508,-,True,6
+&svk-hästhagen,78,Sollentuna VK,Hästhagen,Diego Zagai Roel,Kalle Blomstedt,float,1.7663,-8.4946,2.8026,5.4328,5.5704,1.2306,6.0021,7.5784,False,14.128,4.6017,1.5479,2.7131,5.708,#,True,5
+&svk-hästhagen,79,Hästhagen,Sollentuna VK,Alexander Beckman,Axel Wendt,spin,6.8877,-9.8879,3.1793,5.4754,6.5059,0.7672,5.3894,7.3767,False,19.054,,,,,+,False,5
+&svk-hästhagen,80,Hästhagen,Sollentuna VK,Alexander Beckman,Lucas Nordström,spin,6.7661,-9.4208,3.0484,3.7153,5.8005,0.9009,3.3427,6.9388,False,21.63,5.3282,0.8605,2.3591,5.319,#,True,5
+&svk-hästhagen,81,Sollentuna VK,Hästhagen,Peter Blomgren,Kalle Blomstedt,float,8.2013,-8.7947,2.8522,4.5774,5.6163,1.6402,4.0108,8.3202,False,15.146,,,,5.448,+,True,4
+&svk-hästhagen,82,Hästhagen,Sollentuna VK,Neo Broady,Kestutis Blyza,float,8.0748,-9.6858,2.9755,7.2617,5.3505,0.7347,7.0924,6.5323,False,14.836,-0.0793,5.3802,1.4802,3.286,-,True,4
+&svk-hästhagen,83,Sollentuna VK,Hästhagen,Kestutis Blyza,Neo Broady,float,7.1547,-8.3486,2.5646,1.9079,5.0672,1.3935,0.9813,7.1591,False,13.686,4.6471,1.0173,2.4035,5.755,#,False,3
+&svk-hästhagen,84,Sollentuna VK,Hästhagen,Kestutis Blyza,Neo Broady,float,7.5089,-8.5103,2.6222,2.6272,5.9157,1.3738,1.7922,8.1532,False,15.059,2.4874,3.1525,2.33,6.42,!,False,3
+&svk-hästhagen,85,Sollentuna VK,Hästhagen,Kestutis Blyza,Kalle Blomstedt,float,6.3119,-8.2777,2.6373,3.4324,5.4788,0.6565,3.2651,6.5625,False,15.516,9.099,2.3597,1.3871,4.693,/,False,3
+&svk-hästhagen,86,Hästhagen,Sollentuna VK,Holger Mjönes,Lucas Nordström,float,0.9036,-8.8815,2.9472,3.6597,5.9688,1.0817,4.2252,7.2896,False,13.56,2.6698,1.2338,2.6355,4.923,#,True,3
+&svk-hästhagen,87,Sollentuna VK,Hästhagen,Simon Meyer,Neo Broady,float,6.9439,-8.5167,2.8553,5.6529,5.3568,1.2935,5.5942,6.8716,False,13.964,8.4773,3.7491,1.0443,5.49,/,True,2
+&svk-hästhagen,88,Hästhagen,Sollentuna VK,Markus Charlton,Lucas Nordström,float,5.6107,-9.055,3.2842,3.5334,5.0757,1.0031,3.2856,6.133,False,12.928,3.6046,2.2444,2.5132,4.399,!,False,2
+&svk-hästhagen,89,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.952,-8.8296,2.9655,5.0993,5.5587,0.8572,4.9815,6.6807,False,13.415,5.643,0.1939,2.7996,5.236,!,False,2
+&svk-hästhagen,90,Hästhagen,Sollentuna VK,Markus Charlton,Lucas Nordström,float,6.1389,-8.4069,3.1162,3.9821,5.9141,0.8818,3.7894,6.7896,False,13.518,2.9029,-0.0008,2.7643,4.377,!,False,2
+&svk-hästhagen,91,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.8851,-8.7723,3.0582,4.7794,5.0483,0.7072,4.6931,5.9426,False,14.273,2.0437,1.8846,2.6702,5.18,+,False,2
+&svk-hästhagen,92,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.5431,-8.8044,3.0314,5.4089,5.1829,0.8234,5.4101,6.228,False,13.873,2.6858,2.7447,2.7262,5.111,!,True,2
+&svk-hästhagen,93,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.7968,-8.5599,2.7244,7.0485,5.7284,2.1955,6.7389,9.1231,False,14.713,3.1554,1.7649,2.7716,5.918,+,False,1
+&svk-hästhagen,94,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.5297,-9.1901,2.7731,7.1646,6.0849,2.275,7.3599,9.2737,False,14.739,4.9485,1.1304,2.2911,5.724,#,False,1
+&svk-hästhagen,95,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.8786,-8.7067,2.7724,7.3491,5.4878,1.0031,7.3523,7.0891,False,15.827,8.1937,1.0146,2.0757,5.805,-,False,1
+&svk-hästhagen,96,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.8865,-8.5763,2.9121,6.7026,5.5098,1.1251,6.5234,7.102,False,14.062,3.2598,2.2159,2.3513,5.641,+,True,1
+&svk-hästhagen,97,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kestutis Blyza,float,8.4093,-9.2766,2.8667,4.6547,5.5609,0.7458,4.4845,6.5245,False,16.595,2.686,4.0858,1.9087,4.594,-,False,1
+&svk-hästhagen,98,Sollentuna VK,Hästhagen,Axel Wendt,Anton Wessberg,float,7.0133,-8.214,2.7702,6.5224,6.1499,1.1136,6.2951,7.1593,False,15.413,,,,2.387,=,False,6
+&svk-hästhagen,99,Sollentuna VK,Hästhagen,Diego Zagai Roel,Kalle Blomstedt,float,2.229,-8.4695,2.8199,4.7655,5.4463,1.2018,5.4377,7.6509,False,17.579,5.305,2.0907,2.5718,5.475,+,False,5
+&svk-hästhagen,100,Hästhagen,Sollentuna VK,Alexander Beckman,Lucas Nordström,spin,6.8747,-9.7734,2.9206,2.1588,5.4518,0.6245,1.884,6.3084,False,21.189,5.0338,1.067,2.278,3.988,+,True,5
+&svk-hästhagen,101,Sollentuna VK,Hästhagen,Peter Blomgren,Kalle Blomstedt,float,7.9395,-8.4619,3.0221,6.4264,5.0587,1.0761,6.3013,6.3337,False,13.742,6.3618,1.5974,2.0856,4.67,!,False,4
+&svk-hästhagen,102,Sollentuna VK,Hästhagen,Peter Blomgren,Neo Broady,float,8.1808,-8.6821,2.9627,7.7618,6.1338,1.1439,7.7251,7.5612,False,15.232,,,,4.144,!,True,4
+&svk-hästhagen,103,Hästhagen,Sollentuna VK,Neo Broady,Simon Meyer,float,8.0685,-9.6239,2.729,6.2212,3.3946,2.1979,5.7122,5.8063,False,11.572,3.6414,0.3702,2.7696,4.81,#,True,4
+&svk-hästhagen,104,Sollentuna VK,Hästhagen,Kestutis Blyza,Elliot Bolin,float,6.4333,-8.6446,2.5366,2.9014,4.9742,0.6649,2.6265,6.0182,False,14.131,3.9848,1.2431,2.5236,4.8,+,True,3
+&svk-hästhagen,105,Hästhagen,Sollentuna VK,Holger Mjönes,Lucas Nordström,float,0.497,-9.9164,2.7171,4.4121,5.0617,0.8148,4.6417,5.9477,False,14.129,2.6504,3.1237,2.0547,4.538,!,False,3
+&svk-hästhagen,106,Hästhagen,Sollentuna VK,Holger Mjönes,Lucas Nordström,float,0.9018,-8.5292,2.8105,2.8343,5.6179,0.9977,2.8437,6.7237,False,13.455,3.3636,1.6202,1.4979,2.936,-,True,3
+&svk-hästhagen,107,Sollentuna VK,Hästhagen,Simon Meyer,Elliot Bolin,float,7.2594,-9.075,2.6175,5.6036,5.5899,0.6101,5.5673,6.5461,False,13.598,4.3518,-1.3536,1.924,5.798,/,True,2
+&svk-hästhagen,108,Hästhagen,Sollentuna VK,Markus Charlton,Kestutis Blyza,float,6.5882,-9.0683,2.8932,5.7388,5.3335,1.2606,6.0412,7.3807,False,14.004,3.2788,2.5741,2.7327,4.863,!,True,2
+&svk-hästhagen,109,Sollentuna VK,Hästhagen,Johan Nilsson,Kalle Blomstedt,float,7.8632,-9.0,2.6034,7.089,5.8129,2.3881,6.6691,9.8846,False,14.637,4.4178,0.5648,2.3893,4.92,+,True,1
+&svk-hästhagen,110,Hästhagen,Sollentuna VK,Kalle Blomstedt,Kestutis Blyza,float,8.253,-9.4385,2.8723,5.6366,5.8308,1.0181,5.1826,7.5451,False,17.231,1.9651,5.426,2.0755,5.289,-,True,1
+&svk-hästhagen,111,Sollentuna VK,Hästhagen,Axel Wendt,Neo Broady,float,7.1394,-7.8152,2.8015,8.3974,5.4326,1.4369,8.5782,7.4712,False,15.207,,,,5.326,-,True,6
+&svk-hästhagen,112,Hästhagen,Sollentuna VK,Hannes Engström,Lucas Nordström,float,3.325,-9.4231,2.8197,4.9807,8.986,0.1174,4.719,9.0219,False,13.514,,,,,=,False,6
+&svk-hästhagen,113,Hästhagen,Sollentuna VK,Hannes Engström,Lucas Nordström,float,2.4016,-9.3421,2.7891,4.931,5.3953,0.7017,5.0319,6.2105,False,15.176,2.1217,1.1438,2.565,4.045,+,True,6
+&svk-hästhagen,114,Sollentuna VK,Hästhagen,Diego Zagai Roel,Kalle Blomstedt,float,1.9639,-9.0,2.5871,6.474,4.2526,1.554,7.0196,5.6269,False,12.229,4.8293,0.4536,2.6028,4.983,#,True,5
+&svk-hästhagen,115,Hästhagen,Sollentuna VK,Alexander Beckman,Kestutis Blyza,float,6.4376,-9.1957,2.9039,6.4193,5.5742,1.0625,6.4857,6.6026,False,12.513,3.8308,1.4259,2.028,3.846,+,True,5
+&svk-randaberg,2,Randaberg,Sollentuna VK,Göran Rönneberg,Axel Wendt,float,7.1402,-8.8434,2.8556,5.7403,6.4732,0.8447,5.6184,7.572,False,18.921,4.2536,1.9996,2.651,5.938,+,True,2
+&svk-randaberg,3,Sollentuna VK,Randaberg,Christian Hansson,Albert Espeland,spin,7.4,-9.0087,2.9704,7.3055,6.271,1.2335,7.3081,7.6359,False,13.502,4.7749,1.3331,2.3203,4.528,#,True,1
+&svk-randaberg,4,Randaberg,Sollentuna VK,Henrik Kaldheim,Axel Wendt,spin,6.6593,-8.6091,3.1937,5.1137,6.4605,1.252,4.8179,8.5415,False,23.24,,,,7.487,=,False,1
+&svk-randaberg,5,Randaberg,Sollentuna VK,Henrik Kaldheim,Lucas Nordström,spin,6.9505,-8.4027,3.0981,3.4975,6.751,0.3535,3.2804,7.3737,False,21.847,2.1288,0.8662,2.4802,4.611,#,True,1
+&svk-randaberg,6,Sollentuna VK,Randaberg,Jakob Molin,Henrik Kaldheim,float,6.4351,-9.5057,3.1074,3.6253,4.5631,1.3371,3.3325,7.3129,False,17.778,4.5508,1.8656,1.9498,8.36,=,False,6
+&svk-randaberg,7,Sollentuna VK,Randaberg,Jakob Molin,Henrik Kaldheim,float,6.282,-9.4458,3.068,2.3348,4.463,2.1763,0.8973,8.0222,False,15.551,1.2377,0.5257,2.4126,5.33,!,False,6
+&svk-randaberg,8,Sollentuna VK,Randaberg,Jakob Molin,Albert Espeland,float,6.4082,-9.1314,3.0008,6.9406,4.078,1.363,6.9191,6.5282,False,16.183,4.819,0.1358,3.0328,3.666,/,False,6
+&svk-randaberg,9,Sollentuna VK,Randaberg,Jakob Molin,Henrik Kaldheim,float,6.5784,-9.0796,2.9864,2.7505,4.6091,1.2665,1.7643,6.8201,False,16.169,0.9592,0.9969,2.4129,4.235,!,True,6
+&svk-randaberg,10,Sollentuna VK,Randaberg,Simon Meyer,Tommi Silventoinen,float,7.2853,-8.6521,2.9082,4.3136,5.3351,1.6228,3.8469,7.3641,False,13.884,1.685,1.985,2.3593,6.561,!,True,5
+&svk-randaberg,11,Randaberg,Sollentuna VK,Simen Ödegĺrd,Jakob Molin,float,2.6042,-8.7954,2.9047,4.8692,4.5625,0.8627,5.0354,5.6163,False,13.078,4.0727,2.4144,2.2051,4.298,!,True,5
+&svk-randaberg,12,Sollentuna VK,Randaberg,Peter Blomgren,Henrik Kaldheim,float,8.7468,-9.4987,2.8527,5.1366,4.2089,1.2492,4.6951,6.703,False,16.664,5.7178,0.7319,2.4543,6.274,+,True,4
+&svk-randaberg,13,Randaberg,Sollentuna VK,Albert Espeland,Jakob Molin,float,7.7108,-9.2831,2.8038,4.7241,5.4719,2.5111,3.6404,9.7783,False,14.791,3.9074,2.6788,1.6084,3.614,-,False,4
+&svk-randaberg,14,Randaberg,Sollentuna VK,Albert Espeland,Lucas Nordström,float,7.2635,-8.7967,2.8712,3.3385,5.2377,0.9596,2.9917,6.927,False,15.328,3.8822,0.3478,2.6756,5.285,#,False,4
+&svk-randaberg,15,Randaberg,Sollentuna VK,Albert Espeland,Axel Wendt,float,7.6019,-8.179,2.9541,7.2883,4.9182,0.6524,7.259,5.6472,False,13.599,4.1406,-0.4973,2.8929,3.839,/,False,4
+&svk-randaberg,16,Randaberg,Sollentuna VK,Albert Espeland,Jakob Molin,float,6.8449,-9.1254,2.7265,6.3233,5.657,1.8233,6.2024,8.2069,False,13.785,,,,5.13,#,True,4
+&svk-randaberg,17,Sollentuna VK,Randaberg,Axel Wendt,Henrik Kaldheim,float,7.5214,-8.462,2.8378,8.2026,3.7631,1.88,8.3134,6.925,False,14.942,1.1503,5.9952,1.2984,5.518,-,False,3
+&svk-randaberg,18,Sollentuna VK,Randaberg,Axel Wendt,Henrik Kaldheim,float,7.6993,-8.3656,2.9144,7.3125,4.0082,1.9049,7.2741,7.973,False,15.378,3.9153,1.8091,2.3381,4.413,+,True,3
+&svk-randaberg,19,Randaberg,Sollentuna VK,Rune Berg,Axel Wendt,float,1.5503,-8.1436,2.7657,2.6109,6.2619,1.9084,3.1591,10.2558,False,16.897,5.5974,3.133,2.4237,6.266,!,True,3
+&svk-randaberg,20,Sollentuna VK,Randaberg,Shawn Ogbeide,Henrik Kaldheim,float,1.4618,-9.3414,3.0856,5.9998,3.6481,1.2315,6.6362,5.3749,False,14.974,2.8169,1.7121,2.4242,4.858,+,True,2
+&svk-randaberg,21,Randaberg,Sollentuna VK,Göran Rönneberg,Lucas Nordström,spin,7.3041,-8.5978,2.8555,2.6872,5.839,0.6909,2.3156,6.8239,False,19.479,3.2047,1.3747,2.7732,5.652,#,True,2
+&svk-randaberg,22,Sollentuna VK,Randaberg,Christian Hansson,Simen Ödegĺrd,float,7.4552,-8.927,3.26,7.7727,3.5941,0.987,7.8517,4.5166,False,12.028,6.3437,1.5236,1.7474,4.423,!,True,1
+&svk-randaberg,23,Randaberg,Sollentuna VK,Lars Maaseide,Axel Wendt,float,1.7122,-8.799,2.6881,5.9154,4.8766,0.9391,6.3843,6.2909,False,13.375,1.8894,2.3678,2.5683,4.952,!,False,6
+&svk-randaberg,24,Randaberg,Sollentuna VK,Lars Maaseide,Lucas Nordström,float,2.167,-8.6099,2.7554,6.4062,5.449,1.1898,6.8323,6.602,False,12.981,3.559,1.5496,2.5047,4.338,+,True,6
+&svk-randaberg,25,Sollentuna VK,Randaberg,Simon Meyer,Henrik Kaldheim,float,7.034,-7.9924,2.8874,4.8798,4.0679,2.0408,4.4022,7.3754,False,14.024,3.5394,0.8106,2.3682,4.966,#,True,5
+&svk-randaberg,26,Randaberg,Sollentuna VK,Simen Ödegĺrd,Lucas Nordström,float,2.1945,-9.6149,2.7404,4.3114,5.5799,1.0581,4.7668,7.1576,False,14.672,2.0884,3.2098,1.1943,2.669,-,True,5
+&svk-randaberg,27,Sollentuna VK,Randaberg,Peter Blomgren,Tommi Silventoinen,float,8.7562,-9.1239,2.8,1.9005,4.3357,1.5224,0.9686,6.1945,False,14.116,,,,,#,True,4
+&svk-randaberg,28,Randaberg,Sollentuna VK,Albert Espeland,Jakob Molin,float,6.347,-8.3988,2.8345,5.8455,4.5179,0.2451,5.898,4.5742,False,12.7,4.164,0.846,2.2458,3.57,+,True,4
+&svk-randaberg,29,Randaberg,Sollentuna VK,Rune Berg,Axel Wendt,float,1.446,-8.188,2.7237,1.5612,5.8409,1.3843,1.6465,7.948,False,14.647,-0.028,3.2711,1.9947,5.765,-,True,3
+&svk-randaberg,30,Randaberg,Sollentuna VK,Göran Rönneberg,Axel Wendt,spin,7.5646,-8.6675,2.9704,4.053,6.3442,1.4409,3.4306,8.364,False,19.959,,,,10.665,=,False,2
+&svk-randaberg,31,Randaberg,Sollentuna VK,Göran Rönneberg,Lucas Nordström,spin,7.4589,-8.9222,2.9134,2.1264,4.954,0.5118,2.0217,5.4863,False,19.321,4.3537,2.0971,2.7614,5.378,+,True,2
+&svk-randaberg,32,Sollentuna VK,Randaberg,Christian Hansson,Tommi Silventoinen,float,7.3593,-8.2814,3.2149,5.381,5.6482,0.6692,5.2699,6.4693,False,14.234,5.3053,4.0692,1.22,3.344,-,False,1
+&svk-randaberg,33,Sollentuna VK,Randaberg,Christian Hansson,Tommi Silventoinen,float,7.3208,-9.4621,2.9589,4.9094,5.3999,0.8177,4.6452,6.509,False,14.33,4.4177,4.8772,1.5752,4.609,-,False,1
+&svk-randaberg,34,Sollentuna VK,Randaberg,Christian Hansson,Albert Espeland,float,7.7045,-8.9016,3.0891,6.8035,4.9508,2.0969,6.4246,8.7914,False,15.313,3.9504,1.6318,2.3615,4.208,+,False,1
+&svk-randaberg,35,Sollentuna VK,Randaberg,Christian Hansson,Tommi Silventoinen,float,7.2685,-9.2145,3.0273,5.6391,4.8316,1.3197,5.4002,6.2856,False,14.056,0.2268,1.5613,2.0006,4.172,!,True,1
+&svk-randaberg,36,Randaberg,Sollentuna VK,Henrik Kaldheim,Lucas Nordström,spin,6.4629,-8.1949,3.0436,3.7411,5.2847,0.1899,3.7087,5.5406,True,13.826,2.4136,4.475,1.7075,4.189,-,False,1
+&svk-randaberg,37,Randaberg,Sollentuna VK,Henrik Kaldheim,Axel Wendt,spin,,,,,,,,,,,,,,,=,False,1
+&svk-randaberg,38,Randaberg,Sollentuna VK,Henrik Kaldheim,Jakob Molin,spin,6.4039,-8.0963,3.0754,7.3299,6.1933,1.1468,7.497,8.2809,False,23.341,3.3299,0.6198,2.4668,4.807,#,True,1
+&svk-randaberg,39,Sollentuna VK,Randaberg,Jakob Molin,Tommi Silventoinen,float,6.5133,-10.1982,3.0422,5.5666,4.5563,1.7443,5.8198,8.8519,False,16.471,2.4062,2.2128,2.3357,4.331,!,True,6
+&svk-randaberg,40,Randaberg,Sollentuna VK,Lars Maaseide,Axel Wendt,float,2.0525,-8.3814,2.8433,7.2362,4.5669,0.9515,7.616,5.6044,False,12.265,4.7116,1.074,2.6631,4.857,#,True,6
+&svk-randaberg,41,Sollentuna VK,Randaberg,Simon Meyer,Tommi Silventoinen,float,7.0953,-8.382,2.9489,2.9997,4.2783,0.8627,2.9797,4.9291,False,12.561,3.4688,1.981,2.294,4.028,+,True,5
+&svk-randaberg,42,Randaberg,Sollentuna VK,Simen Ödegĺrd,Jakob Molin,float,2.4491,-8.8559,2.8436,5.0017,5.2382,1.5529,5.3637,7.7271,False,14.114,3.2006,1.5332,2.1239,3.84,+,True,5
+&svk-randaberg,43,Sollentuna VK,Randaberg,Peter Blomgren,Tommi Silventoinen,float,8.6986,-9.1991,3.0169,3.3666,5.0459,1.7102,2.3996,7.1514,False,14.397,4.7871,0.8736,2.3807,5.639,#,False,4
+&svk-randaberg,44,Sollentuna VK,Randaberg,Peter Blomgren,Henrik Kaldheim,float,8.5963,-9.2281,2.9727,5.302,4.25,2.1066,4.3689,8.1911,False,16.241,3.6173,0.6449,2.5559,4.817,#,True,4
+&svk-randaberg,45,Randaberg,Sollentuna VK,Albert Espeland,Jakob Molin,float,6.6473,-7.916,2.8767,3.8689,5.318,1.4775,3.4048,7.4257,False,14.394,4.7337,1.4756,2.4241,5.436,#,True,4
+&svk-randaberg,46,Sollentuna VK,Randaberg,Axel Wendt,Henrik Kaldheim,float,7.4877,-7.9828,2.962,6.5761,3.7836,1.7454,6.3117,6.7727,False,14.754,3.9948,0.4689,2.6932,4.437,#,False,3
+&svk-randaberg,47,Sollentuna VK,Randaberg,Axel Wendt,Henrik Kaldheim,float,7.1991,-8.3975,2.8367,7.6078,3.8686,1.5639,7.4127,7.1177,False,15.085,3.4917,1.6634,2.4134,4.657,+,False,3
+&svk-randaberg,48,Sollentuna VK,Randaberg,Christian Hansson,Richards Pilkausis,float,7.6118,-8.8446,3.0176,8.0105,5.8632,1.3675,8.143,7.9112,False,14.181,4.1376,3.4888,2.3054,5.549,!,True,1
+&svk-randaberg,49,Randaberg,Sollentuna VK,Henrik Kaldheim,Axel Wendt,spin,7.0064,-8.1105,3.1308,5.0972,6.8481,1.0998,4.7548,8.8813,False,22.649,2.977,0.1517,2.8512,6.031,!,False,1
+&svk-randaberg,50,Randaberg,Sollentuna VK,Henrik Kaldheim,Jakob Molin,spin,6.7422,-7.5423,3.0189,6.414,5.4585,0.4084,6.3969,5.8484,True,12.991,3.1659,1.8518,2.514,4.304,+,True,1
+&svk-randaberg,51,Sollentuna VK,Randaberg,Jakob Molin,Richards Pilkausis,float,6.6748,-9.7426,3.0387,4.5289,5.1762,1.6617,3.9533,8.5874,False,17.187,6.831,0.9576,2.2116,5.663,+,False,6
+&svk-randaberg,52,Randaberg,Sollentuna VK,Lars Maaseide,Martin Ekholm,float,2.0523,-8.445,2.8236,6.4238,4.5513,0.8954,6.8329,5.8639,False,13.327,3.578,2.9134,1.9759,4.272,!,True,6
+&svk-randaberg,53,Sollentuna VK,Randaberg,Simon Meyer,Magnus Widding,float,6.3479,-8.2173,2.8022,2.9674,5.1511,0.9749,2.7669,6.5045,False,14.829,,,,4.694,!,True,5
+&svk-randaberg,54,Randaberg,Sollentuna VK,Simen Ödegĺrd,Jakob Molin,float,2.1511,-9.2501,2.7858,3.3372,5.4139,2.0514,3.4402,8.5359,False,13.259,2.0261,0.6088,2.4508,5.144,+,False,5
+&svk-randaberg,55,Randaberg,Sollentuna VK,Simen Ödegĺrd,Shawn Ogbeide,float,2.0657,-8.3569,2.8948,6.5416,3.4841,1.0062,6.9983,4.8498,False,13.821,2.6032,1.8676,1.9286,2.946,!,True,5
+&svk-randaberg,56,Randaberg,Sollentuna VK,Richards Pilkausis,Jakob Molin,float,7.3692,-8.6221,2.8805,5.5134,4.8087,1.5328,5.1899,7.2034,False,14.562,,,,4.9,!,True,4
+&svk-randaberg,57,Sollentuna VK,Randaberg,Axel Wendt,Magnus Widding,float,6.8165,-8.2854,2.9757,4.1003,5.4067,1.232,3.7651,7.1042,False,14.937,,,,5.191,-,False,3
+&svk-randaberg,58,Sollentuna VK,Randaberg,Axel Wendt,Richards Pilkausis,float,6.9622,-9.2177,2.7535,2.0193,5.0085,2.3968,0.7797,8.6935,False,14.794,1.7887,1.9241,2.4653,4.767,!,False,3
+&svk-randaberg,59,Sollentuna VK,Randaberg,Axel Wendt,Richards Pilkausis,float,6.9198,-8.6314,2.8507,2.8387,4.9072,1.9948,1.909,8.5213,False,15.13,3.9746,0.8656,2.548,4.391,+,False,3
+&svk-randaberg,60,Sollentuna VK,Randaberg,Axel Wendt,Magnus Widding,float,6.7393,-8.1991,2.859,4.6222,5.4032,1.0138,4.1809,7.1678,False,15.821,,,,5.458,/,False,3
+&svk-randaberg,61,Sollentuna VK,Randaberg,Axel Wendt,Magnus Widding,float,6.5257,-8.346,2.8152,4.7958,5.6996,1.5392,4.3974,8.1828,False,15.267,1.4627,0.9598,2.2726,6.353,!,False,3
+&svk-randaberg,62,Randaberg,Sollentuna VK,Rune Berg,Axel Wendt,float,1.8128,-8.059,2.7686,2.6326,5.8226,1.0488,2.7778,7.2673,False,13.247,3.0017,2.2133,2.4655,5.664,+,True,3
+&svk-randaberg,63,Sollentuna VK,Randaberg,Shawn Ogbeide,Magnus Widding,float,1.4722,-9.0788,3.2036,0.3035,4.8705,0.7427,0.2315,5.6976,False,13.583,2.6903,3.7212,1.872,4.046,-,True,2
+&svk-randaberg,64,Randaberg,Sollentuna VK,Göran Rönneberg,Axel Wendt,spin,7.2407,-9.4349,2.9036,4.9966,6.3482,0.7342,4.8266,7.2569,False,18.138,,,,5.193,#,True,2
+&svk-randaberg,65,Sollentuna VK,Randaberg,Christian Hansson,Richards Pilkausis,float,7.631,-8.8889,3.0612,6.6226,5.3137,1.002,6.6251,6.7637,False,14.351,3.3539,1.323,2.2617,5.829,#,False,1
+&svk-randaberg,66,Sollentuna VK,Randaberg,Christian Hansson,Richards Pilkausis,float,7.3164,-9.8885,3.016,6.2856,4.8752,1.1525,6.064,6.5107,False,14.348,-0.8673,0.7531,1.9318,5.334,-,True,1
+&svk-randaberg,67,Randaberg,Sollentuna VK,Henrik Kaldheim,Jakob Molin,spin,6.347,-8.5066,3.0318,6.5954,5.6956,0.8412,6.5549,6.9151,False,16.894,3.1122,0.7792,2.4965,4.783,#,True,1
+&svk-randaberg,68,Sollentuna VK,Randaberg,Jakob Molin,Magnus Widding,float,6.6334,-9.6472,3.0314,6.4942,5.9159,1.2398,6.7619,7.3325,False,15.237,2.7183,4.2102,2.2361,8.448,/,False,6
+&svk-randaberg,69,Sollentuna VK,Randaberg,Jakob Molin,Richards Pilkausis,float,6.6236,-9.4695,2.9845,6.2964,4.0756,1.8053,5.8927,7.5634,False,15.521,0.1701,4.2264,1.7492,5.332,-,False,6
+&svk-randaberg,70,Sollentuna VK,Randaberg,Jakob Molin,Magnus Widding,float,6.3293,-9.7107,2.9063,4.7697,4.9834,0.7896,4.7502,7.1977,False,16.086,1.3019,1.3738,2.7336,4.176,!,True,6
+&svk-randaberg,71,Randaberg,Sollentuna VK,Lars Maaseide,Jakob Molin,float,2.1471,-8.9172,2.7431,3.1585,4.1313,0.7077,3.3796,5.0998,False,12.518,4.6309,1.2318,2.7572,4.497,#,True,6
+&svk-randaberg,72,Sollentuna VK,Randaberg,Simon Meyer,Magnus Widding,float,6.5636,-9.0833,2.9539,1.3745,4.9182,1.5864,0.7259,7.2722,False,14.446,1.7382,0.9775,2.3707,3.724,+,True,5
+&svk-randaberg,73,Randaberg,Sollentuna VK,Simen Ödegĺrd,Jakob Molin,float,3.0912,-8.51,2.8933,5.2656,5.238,2.003,5.5752,8.1234,False,14.175,3.4557,0.3277,2.447,5.638,!,True,5
+&svk-randaberg,74,Sollentuna VK,Randaberg,Peter Blomgren,Henrik Kaldheim,float,8.6176,-9.4326,2.8402,4.8383,4.2595,0.8263,4.4568,5.5674,False,15.573,-0.0488,1.7543,1.9395,4.17,-,True,4
+&svk-randaberg,75,Randaberg,Sollentuna VK,Richards Pilkausis,Jakob Molin,float,7.3655,-8.5519,2.8853,6.7164,5.7517,1.6799,6.6792,8.0061,False,13.502,3.8921,0.9674,1.9604,4.168,-,True,4
+&svk-randaberg,76,Sollentuna VK,Randaberg,Axel Wendt,Magnus Widding,float,7.0726,-8.8027,2.7712,4.6213,5.5088,1.2501,4.1154,7.4478,False,15.274,5.9615,1.7387,1.5802,3.219,-,True,3
+&svk-randaberg,77,Randaberg,Sollentuna VK,Rune Berg,Martin Ekholm,float,1.4792,-8.6988,2.728,5.0278,5.8645,0.9042,5.3375,7.4334,False,17.16,4.7612,1.7104,2.5314,4.96,+,True,3
+&svk-randaberg,78,Sollentuna VK,Randaberg,Christian Hansson,Richards Pilkausis,float,7.283,-9.6511,3.0904,6.8685,5.1976,1.7232,6.6772,7.5683,False,13.252,2.3712,5.971,1.4893,4.28,-,True,1
+&svk-randaberg,79,Randaberg,Sollentuna VK,Henrik Kaldheim,Martin Ekholm,spin,6.6402,-8.2446,3.1298,5.516,6.8011,1.1959,5.177,8.8797,False,25.064,4.5216,1.4723,2.468,7.434,#,False,1
+&svk-randaberg,80,Randaberg,Sollentuna VK,Henrik Kaldheim,Axel Wendt,spin,6.6684,-7.9808,3.1441,4.7793,7.2759,1.1962,4.3769,9.7242,False,23.953,9.9401,6.5547,1.9211,7.096,-,True,1
+&svk-randaberg,81,Sollentuna VK,Randaberg,Jakob Molin,Henrik Kaldheim,float,6.4144,-9.5526,3.3187,3.3875,4.5585,0.9506,3.5563,5.7181,False,15.096,,,,4.054,/,False,6
+&svk-randaberg,82,Sollentuna VK,Randaberg,Jakob Molin,Magnus Widding,float,6.5634,-9.5996,2.9654,4.5223,5.0814,1.023,4.4456,6.967,False,17.145,2.145,0.3583,2.7472,5.71,+,True,6
+&svk-randaberg,83,Randaberg,Sollentuna VK,Lars Maaseide,Axel Wendt,float,1.9049,-8.3401,2.7692,8.4897,4.0033,1.5352,9.4846,5.5324,False,12.226,4.1981,0.7012,2.4504,6.399,#,True,6
+&svk-randaberg,84,Sollentuna VK,Randaberg,Simon Meyer,Henrik Kaldheim,float,6.4989,-7.8922,2.7467,4.0739,4.0982,1.7324,3.3454,7.2418,False,13.928,2.2163,1.5502,2.5694,4.546,+,True,5
+&svk-randaberg,85,Randaberg,Sollentuna VK,Simen Ödegĺrd,Jakob Molin,float,2.698,-8.5038,2.9436,5.3955,5.6151,1.697,6.109,8.8649,False,15.426,3.1507,2.0827,2.4977,5.661,+,True,5
+&svk-randaberg,86,Randaberg,Sollentuna VK,Christoffer Förland,Axel Wendt,spin,7.54,-7.8128,2.7139,5.4374,6.8642,1.7135,4.995,9.3558,False,15.325,1.9898,-0.2888,2.8396,5.966,/,False,2
+&svk-randaberg,87,Randaberg,Sollentuna VK,Christoffer Förland,Simon Meyer,spin,7.3804,-8.8223,2.8315,6.0695,3.2255,1.5492,5.8466,4.9625,False,12.181,4.075,0.8542,2.6285,5.116,#,True,2
+&svk-randaberg,88,Sollentuna VK,Randaberg,Christian Hansson,Tommi Silventoinen,float,7.3104,-8.6593,3.0679,4.0459,4.7441,1.2842,2.9362,7.6224,False,22.674,5.6872,1.7056,2.235,6.182,#,True,1
+&svk-randaberg,89,Randaberg,Sollentuna VK,Henrik Kaldheim,Jakob Molin,spin,6.4473,-8.0872,2.9992,7.1191,6.1714,1.0909,7.175,8.1686,False,24.466,2.3052,0.4215,2.5714,6.089,+,True,1
+&svk-randaberg,90,Sollentuna VK,Randaberg,Jakob Molin,Tommi Silventoinen,float,6.5948,-9.8796,3.0285,4.7194,4.7879,1.6818,4.262,8.6578,False,17.096,5.0436,1.7365,2.0447,5.868,+,True,6
+&svk-randaberg,91,Randaberg,Sollentuna VK,Lars Maaseide,Lucas Nordström,float,2.0505,-8.8147,2.7224,6.0316,5.1715,0.8643,6.3991,6.3658,False,14.23,4.4575,0.5606,2.513,4.069,#,True,6
+&svk-randaberg,92,Sollentuna VK,Randaberg,Simon Meyer,Tommi Silventoinen,float,6.4033,-8.5964,2.4777,3.1548,4.4345,2.0858,2.6552,7.19,False,13.465,,,,4.496,/,False,5
+&svk-randaberg,93,Sollentuna VK,Randaberg,Simon Meyer,Tommi Silventoinen,float,6.2,-8.2895,2.8957,1.748,4.1056,0.7774,1.414,5.1519,False,13.928,4.2517,1.8317,1.7042,3.611,+,False,5
+&svk-randaberg,94,Sollentuna VK,Randaberg,Simon Meyer,Tommi Silventoinen,float,6.2698,-8.6957,2.9182,3.1941,4.4772,2.2779,2.3967,7.9676,False,14.731,3.2686,1.4213,1.7358,3.386,+,False,5
+&svk-randaberg,95,Sollentuna VK,Randaberg,Simon Meyer,Henrik Kaldheim,float,6.0483,-8.7053,2.944,4.1048,3.7864,1.411,3.85,5.8396,False,13.747,4.3202,1.5486,2.3309,4.426,+,False,5
+&svk-randaberg,96,Sollentuna VK,Randaberg,Simon Meyer,Tommi Silventoinen,float,6.2829,-7.4871,2.8205,3.2971,4.4873,1.5325,2.7927,6.5015,False,14.684,2.2163,1.0003,1.6419,2.477,!,True,5
+&svk-randaberg,97,Randaberg,Sollentuna VK,Simen Ödegĺrd,Jakob Molin,float,2.5163,-8.766,2.7319,3.6836,5.0344,1.0255,3.9006,6.5632,False,13.922,5.4694,1.7061,2.0266,4.512,+,True,5
+&svk-randaberg,98,Sollentuna VK,Randaberg,Peter Blomgren,Henrik Kaldheim,float,2.3629,-9.2161,2.8821,6.534,5.6369,2.0035,7.1468,8.4187,False,14.876,5.4932,3.5618,1.7535,5.291,-,True,4
+&svk-randaberg,99,Randaberg,Sollentuna VK,Albert Espeland,Lucas Nordström,float,7.0319,-7.8291,2.904,2.0455,5.257,1.0137,1.5954,6.1589,False,13.665,3.0523,1.7206,2.389,4.322,+,True,4
+&svk-randaberg,100,Sollentuna VK,Randaberg,Axel Wendt,Tommi Silventoinen,float,6.9533,-8.8639,2.8227,5.7299,4.8077,0.9905,5.6768,6.089,False,13.986,10.5392,1.6476,1.5865,3.805,/,True,3
+&svk-randaberg,101,Randaberg,Sollentuna VK,Rune Berg,Axel Wendt,float,,,,,,,,,,,,,,,=,False,3
+&svk-randaberg,102,Randaberg,Sollentuna VK,Rune Berg,Jakob Molin,float,1.6775,-8.0972,2.8143,6.7324,5.1629,1.5196,8.604,8.7318,False,17.108,5.7024,0.67,1.6643,3.821,!,True,3
+&svk-randaberg,103,Sollentuna VK,Randaberg,Shawn Ogbeide,Albert Espeland,float,1.4851,-9.726,3.0961,3.3424,4.7541,0.9894,3.5774,6.3098,False,14.02,4.1118,2.1997,2.1096,4.47,!,True,2
+&svk-randaberg,104,Randaberg,Sollentuna VK,Christoffer Förland,Axel Wendt,float,7.7191,-9.4171,2.5119,3.6404,4.547,1.3734,2.9611,6.2217,False,12.475,3.7799,0.2507,2.6473,5.599,#,True,2
+&svk-randaberg,105,Sollentuna VK,Randaberg,Christian Hansson,Albert Espeland,float,7.792,-8.2116,3.0855,6.5371,4.5481,0.7622,6.4136,5.5619,False,14.203,4.7819,1.7548,2.114,3.614,+,False,1
+&svk-randaberg,106,Sollentuna VK,Randaberg,Christian Hansson,Henrik Kaldheim,float,7.6803,-9.8742,3.0862,3.0923,3.7276,1.194,2.6153,5.0935,False,12.854,2.8561,2.0696,2.205,4.587,!,True,1
+&svk-randaberg,107,Sollentuna VK,Randaberg,Jakob Molin,Magnus Widding,float,6.6268,-9.0,2.955,4.1591,5.1741,1.4078,3.8472,8.0822,False,17.202,7.2172,2.9536,1.6195,5.474,-,True,6
+&svk-randaberg,108,Sollentuna VK,Randaberg,Simon Meyer,Henrik Kaldheim,float,6.6934,-8.2468,2.8455,4.0645,3.8771,1.1769,3.5377,5.1103,False,14.651,2.9794,1.1497,2.3568,4.99,#,True,5
+&svk-randaberg,109,Randaberg,Sollentuna VK,Simen Ödegĺrd,Jakob Molin,float,2.4146,-9.3462,2.6998,3.2197,4.9489,1.2518,3.2746,6.6524,False,14.005,4.0711,0.5281,2.7278,4.142,+,True,5
+&svk-randaberg,110,Sollentuna VK,Randaberg,Peter Blomgren,Magnus Widding,float,2.2359,-10.177,2.794,2.0098,4.7795,1.4079,2.0437,7.0568,False,15.977,2.5135,1.0046,2.5584,4.951,#,False,4
+&svk-randaberg,111,Sollentuna VK,Randaberg,Peter Blomgren,Albert Espeland,float,2.1301,-9.8118,2.8306,6.7936,3.6836,1.9509,7.6225,6.6973,False,14.699,3.9188,0.7472,2.1496,4.025,+,False,4
+&svk-randaberg,112,Sollentuna VK,Randaberg,Peter Blomgren,Henrik Kaldheim,float,,,,8.4612,4.2526,0.2023,,,,,,,,0.213,=,False,4
+&svk-randaberg,113,Sollentuna VK,Randaberg,Peter Blomgren,Henrik Kaldheim,float,2.2308,-9.6377,2.8893,5.6007,4.3268,2.1241,6.4793,7.8756,False,14.547,3.9259,1.1477,2.0923,4.947,#,False,4
+&svk-randaberg,114,Sollentuna VK,Randaberg,Peter Blomgren,Magnus Widding,float,1.8787,-9.3709,3.179,3.0036,5.1028,1.1536,3.198,7.4189,False,16.711,2.1886,6.9075,1.4897,6.255,-,False,4
+&svk-randaberg,115,Sollentuna VK,Randaberg,Peter Blomgren,Albert Espeland,float,2.4985,-8.9614,2.8969,6.4413,3.7805,1.9858,7.448,7.3035,False,16.379,2.5113,1.7565,1.8209,3.307,+,True,4
+&svk-randaberg,116,Randaberg,Sollentuna VK,Albert Espeland,Lucas Nordström,float,7.0317,-8.3686,2.9967,1.8323,4.6522,0.8277,1.3487,5.4888,False,13.022,4.5612,0.2802,3.1238,5.043,!,False,4
+&svk-randaberg,117,Randaberg,Sollentuna VK,Albert Espeland,Lucas Nordström,float,7.3086,-8.4917,2.9215,3.0848,5.6682,1.5166,2.3697,7.8371,False,13.786,3.981,2.2817,2.4846,5.792,+,True,4
+&svk-randaberg,118,Sollentuna VK,Randaberg,Axel Wendt,Albert Espeland,float,6.883,-8.4606,2.8917,2.5551,5.2409,1.1251,2.1273,6.7314,False,14.424,-0.9594,0.9578,1.8881,5.192,-,False,3
+&svk-randaberg,119,Sollentuna VK,Randaberg,Axel Wendt,Henrik Kaldheim,float,6.7074,-8.4852,2.9183,6.3928,3.0097,1.3817,6.3969,3.939,True,11.365,6.247,3.4151,1.4249,1.447,#,True,3
+&svk-randaberg,120,Randaberg,Sollentuna VK,Rune Berg,Axel Wendt,float,1.6259,-9.0,2.7459,2.6185,6.3377,1.4208,3.0838,9.998,False,16.902,,,,,=,False,3
+&svk-randaberg,121,Randaberg,Sollentuna VK,Rune Berg,Axel Wendt,float,1.2468,-9.0,2.6474,1.6032,6.5972,1.5621,1.5085,9.685,False,16.363,3.0523,3.2053,1.9091,4.406,!,True,3
+&svk-randaberg,122,Sollentuna VK,Randaberg,Shawn Ogbeide,Magnus Widding,float,1.1163,-9.1629,3.1725,1.9173,4.6627,0.9967,2.0629,5.8922,False,15.624,,,,4.938,/,False,2
+&svk-randaberg,123,Sollentuna VK,Randaberg,Shawn Ogbeide,Magnus Widding,float,1.3311,-9.5128,3.0405,2.1898,4.9694,0.6698,2.3095,6.0702,False,14.94,3.8558,1.3394,1.9409,3.584,+,True,2
+&svk-randaberg,124,Randaberg,Sollentuna VK,Christoffer Förland,Axel Wendt,spin,7.5432,-8.6712,2.804,4.7122,6.6977,1.2227,4.2375,8.6013,False,17.944,,,,6.258,/,False,2
+&svk-randaberg,125,Randaberg,Sollentuna VK,Christoffer Förland,Axel Wendt,spin,7.5916,-8.3431,2.6952,4.5447,6.1406,0.9525,4.2892,7.2721,False,16.219,2.0493,0.9967,2.5471,5.719,+,True,2
+&svk-södermalm,1,Södermalm,Sollentuna VK,Niklas Dahlbom,Axel Wendt,float,1.0055,-8.3627,2.8235,5.9012,5.6753,1.9296,6.6728,7.3902,False,12.275,4.2171,0.5717,2.5175,5.181,#,False,2
+&svk-södermalm,2,Södermalm,Sollentuna VK,Niklas Dahlbom,Jakob Molin,float,1.6284,-8.065,2.8034,6.8984,4.7721,1.3761,7.6435,6.7745,False,14.076,6.2767,2.9681,2.5313,5.341,!,True,2
+&svk-södermalm,3,Sollentuna VK,Södermalm,Johan Nilsson,Grigorij Kan,float,7.8521,-8.9476,2.8678,7.4326,5.3803,1.0667,7.354,6.7168,False,13.561,3.1376,1.884,2.3339,5.459,+,True,1
+&svk-södermalm,4,Södermalm,Sollentuna VK,Albin Gustafsson,Martin Ekholm,float,8.3771,-8.3409,2.7135,1.3263,3.0282,0.4311,1.2146,3.3257,False,11.518,-0.8012,0.738,1.5248,3.917,/,True,1
+&svk-södermalm,5,Sollentuna VK,Södermalm,Jakob Molin,Giovanni Calzolari,float,6.4853,-9.7615,2.9997,4.4726,4.8913,1.2183,4.3223,7.997,False,16.687,5.0084,2.9429,1.8391,8.324,=,False,6
+&svk-södermalm,6,Södermalm,Sollentuna VK,Hubert Sliwinski,Jakob Molin,float,7.0587,-8.7,2.7728,3.2531,5.3518,1.1936,2.9045,7.3922,False,14.805,2.7508,1.6104,2.6057,4.986,#,True,6
+&svk-södermalm,7,Sollentuna VK,Södermalm,Diego Zagai Roel,Giovanni Calzolari,float,1.6246,-8.6314,2.9718,3.1277,5.729,1.394,3.4888,7.1465,False,14.082,3.768,3.8674,1.7807,6.062,-,True,5
+&svk-södermalm,8,Södermalm,Sollentuna VK,Olle Johansson,Jakob Molin,spin,1.4076,-9.1571,2.9293,4.3219,5.8008,0.5857,4.6542,7.0475,False,22.965,3.4304,2.1574,2.4454,5.581,+,True,5
+&svk-södermalm,9,Sollentuna VK,Södermalm,Gustaf Lindén,Albin Gustafsson,float,7.6492,-8.696,2.8879,6.5787,6.6272,1.5949,6.8612,8.3715,False,13.427,4.2857,0.3683,2.4346,4.158,+,True,4
+&svk-södermalm,10,Södermalm,Sollentuna VK,Grigorij Kan,Jakob Molin,float,1.4437,-7.7103,2.7065,6.4963,5.3182,0.949,7.2462,6.86,False,14.83,4.0815,1.7589,2.3962,4.234,#,True,4
+&svk-södermalm,11,Sollentuna VK,Södermalm,Axel Wendt,Albin Gustafsson,float,6.9411,-9.0,2.6134,6.9578,4.8874,1.2933,6.7775,8.32,False,16.449,4.3002,1.264,2.2658,5.033,#,False,3
+&svk-södermalm,12,Sollentuna VK,Södermalm,Axel Wendt,Albin Gustafsson,float,7.1206,-7.9493,2.5297,6.7114,4.6395,1.5958,6.5488,7.0721,False,14.641,4.8871,0.8254,0.9194,2.26,-,False,3
+&svk-södermalm,13,Sollentuna VK,Södermalm,Axel Wendt,Giovanni Calzolari,float,7.2216,-8.7325,2.7051,5.1599,5.3445,1.3465,4.7962,8.2452,False,15.587,3.4184,3.5105,2.176,7.003,!,True,3
+&svk-södermalm,14,Södermalm,Sollentuna VK,David Gudeta,Jakob Molin,float,7.883,-9.7323,2.5307,7.3385,3.1975,0.9762,7.3578,3.7691,False,9.651,5.7627,0.6626,2.0493,4.589,+,True,3
+&svk-södermalm,15,Sollentuna VK,Södermalm,Davyd Berezhnyi,Grigorij Kan,float,6.594,-9.126,2.9854,6.2087,5.8717,1.2251,5.8767,8.7002,False,16.374,,,,1.225,=,False,2
+&svk-södermalm,16,Sollentuna VK,Södermalm,Johan Nilsson,Grigorij Kan,float,7.839,-8.7225,2.6733,8.5719,6.0325,1.5561,8.702,8.1915,False,14.371,4.5997,2.4334,2.0398,5.175,!,True,1
+&svk-södermalm,17,Södermalm,Sollentuna VK,Albin Gustafsson,Martin Ekholm,float,8.7452,-9.0,2.1157,1.4815,5.3126,0.8326,1.0193,6.4315,False,12.8,3.6343,0.9922,2.1285,5.141,#,True,1
+&svk-södermalm,18,Sollentuna VK,Södermalm,Jakob Molin,Giovanni Calzolari,float,6.6426,-9.7525,2.6877,3.8155,5.6337,1.2049,3.731,7.2295,False,14.283,2.798,1.5936,2.3438,4.313,+,True,6
+&svk-södermalm,19,Sollentuna VK,Södermalm,Diego Zagai Roel,Albin Gustafsson,float,1.5088,-8.3797,2.5898,4.5086,5.7042,0.841,4.9881,6.9511,False,14.647,5.4771,1.5966,1.0361,3.16,-,True,5
+&svk-södermalm,20,Södermalm,Sollentuna VK,Olle Johansson,Martin Ekholm,spin,0.6918,-9.0,2.6541,0.4289,6.5747,0.5433,0.3692,7.5234,False,22.848,4.215,1.4515,2.1743,5.48,#,True,5
+&svk-södermalm,21,Sollentuna VK,Södermalm,Gustaf Lindén,Albin Gustafsson,float,7.5738,-8.2812,2.6963,4.9352,3.0667,1.4299,4.4763,5.5193,False,14.102,4.4833,4.9897,0.8297,1.43,!,False,4
+&svk-södermalm,22,Sollentuna VK,Södermalm,Gustaf Lindén,Albin Gustafsson,float,7.8557,-8.3074,2.8059,4.2015,5.1244,0.8511,3.9748,5.9001,False,13.497,-1.7113,-0.0541,1.4271,5.24,/,False,4
+&svk-södermalm,23,Sollentuna VK,Södermalm,Gustaf Lindén,David Gudeta,float,,,,1.2812,9.6964,2.4511,,,,,1.3464,8.541,2.7081,3.022,#,True,4
+&svk-södermalm,24,Sollentuna VK,Södermalm,Axel Wendt,Giovanni Calzolari,float,7.0372,-8.9089,2.6415,6.1456,5.1849,0.9563,5.7551,7.3607,False,15.076,9.8299,7.1622,1.6336,3.342,/,True,3
+&svk-södermalm,25,Södermalm,Sollentuna VK,David Gudeta,Axel Wendt,float,8.2002,-9.5357,2.4736,2.7702,6.5547,-0.2041,2.8875,6.5652,False,13.744,,,,,=,False,3
+&svk-södermalm,26,Södermalm,Sollentuna VK,David Gudeta,Axel Wendt,float,7.9264,-9.0845,2.3675,2.7875,5.71,1.2641,2.0447,7.9461,False,14.987,1.864,0.7576,2.2011,6.388,+,False,3
+&svk-södermalm,27,Södermalm,Sollentuna VK,David Gudeta,Axel Wendt,float,8.3368,-9.2042,2.4675,2.9064,3.8413,0.8203,2.7179,4.3553,False,11.117,4.9123,2.2612,2.1695,4.462,!,False,3
+&svk-södermalm,28,Södermalm,Sollentuna VK,David Gudeta,Axel Wendt,float,8.258,-9.2338,2.522,1.8083,5.4612,2.0054,0.6263,8.6315,False,14.048,4.3001,3.0522,1.2647,3.644,-,False,3
+&svk-södermalm,29,Södermalm,Sollentuna VK,David Gudeta,Martin Ekholm,float,8.3398,-9.3353,2.4872,3.6616,5.524,0.4639,3.5532,6.2877,False,15.974,4.9081,2.0202,2.4695,4.344,+,True,3
+&svk-södermalm,30,Sollentuna VK,Södermalm,Davyd Berezhnyi,Giovanni Calzolari,float,6.4196,-9.397,2.9325,4.0137,5.8154,1.4071,3.7245,7.5143,False,14.158,4.1333,2.1095,2.1423,4.505,+,True,2
+&svk-södermalm,31,Södermalm,Sollentuna VK,Niklas Dahlbom,Axel Wendt,float,1.1025,-8.6335,2.524,4.839,5.3978,1.3371,4.9685,7.3159,False,12.847,3.0683,1.584,2.4411,4.424,#,True,2
+&svk-södermalm,32,Sollentuna VK,Södermalm,Johan Nilsson,Grigorij Kan,float,8.2482,-9.4747,2.6297,8.208,4.991,0.2475,8.1989,5.1937,False,13.446,5.8229,0.5527,2.0594,3.681,+,True,1
+&svk-södermalm,33,Södermalm,Sollentuna VK,Albin Gustafsson,Martin Ekholm,float,8.8206,-9.0,2.2416,3.392,5.6224,1.0935,2.9102,7.1638,False,14.639,3.353,0.6639,2.3895,4.946,#,False,1
+&svk-södermalm,34,Södermalm,Sollentuna VK,Albin Gustafsson,Jakob Molin,float,1.6025,-8.3245,2.4891,5.9651,4.8556,1.3421,6.872,7.1208,False,14.774,,,,4.855,/,False,1
+&svk-södermalm,35,Södermalm,Sollentuna VK,Albin Gustafsson,Martin Ekholm,float,1.5426,-8.9244,2.5291,1.5815,2.935,0.4864,1.5275,3.4512,False,10.614,3.2702,1.5615,2.1899,5.507,+,True,1
+&svk-södermalm,36,Sollentuna VK,Södermalm,Jakob Molin,Giovanni Calzolari,float,6.3461,-9.101,2.8948,5.3716,5.4983,0.9062,5.386,6.5126,False,14.469,2.5411,-0.2382,1.9304,4.856,/,False,6
+&svk-södermalm,37,Sollentuna VK,Södermalm,Jakob Molin,Giovanni Calzolari,float,6.6331,-9.1104,2.7219,5.7966,5.3944,1.0302,5.8242,6.9763,False,14.231,6.534,1.205,2.1242,5.824,+,False,6
+&svk-södermalm,38,Södermalm,Sollentuna VK,Hubert Sliwinski,Martin Ekholm,float,7.0421,-8.3857,2.5002,5.1403,4.4684,0.4382,5.0891,4.6989,False,12.344,3.2916,0.1425,2.8366,4.524,/,True,6
+&svk-södermalm,39,Sollentuna VK,Södermalm,Diego Zagai Roel,Albin Gustafsson,float,1.3824,-8.7312,2.5728,3.8299,5.7667,1.6176,4.4642,8.9602,False,15.843,,,,,-,True,5
+&svk-södermalm,40,Södermalm,Sollentuna VK,Olle Johansson,Axel Wendt,spin,0.3737,-9.0,2.7774,7.1465,5.9934,1.4604,8.0074,7.8602,False,19.256,5.3634,3.7118,0.8168,7.831,=,False,5
+&svk-södermalm,41,Sollentuna VK,Södermalm,Gustaf Lindén,Albin Gustafsson,float,7.6302,-8.436,2.7118,5.5556,6.0136,1.358,5.2132,8.8243,False,15.773,0.2826,1.7323,1.8956,3.723,-,False,4
+&svk-södermalm,42,Sollentuna VK,Södermalm,Johan Nilsson,Albin Gustafsson,float,8.1402,-8.6463,2.6105,7.0054,5.278,1.8201,6.7171,7.986,False,13.691,4.1987,0.8519,2.1247,5.021,#,True,2
+&svk-södermalm,43,Sollentuna VK,Södermalm,Jakob Molin,Giovanni Calzolari,float,6.429,-9.1491,2.8719,4.3585,4.1744,0.1599,4.3896,4.2353,True,11.764,4.6368,2.282,1.553,2.62,!,True,1
+&svk-södermalm,44,Södermalm,Sollentuna VK,Albin Gustafsson,Kai Wendler,float,8.4148,-9.0,2.0311,6.3964,4.6833,0.8339,6.132,6.1709,False,13.783,4.3595,1.5592,2.5187,5.308,#,True,6
+&svk-södermalm,45,Sollentuna VK,Södermalm,Diego Zagai Roel,Albin Gustafsson,float,2.1162,-9.1679,2.4221,3.804,4.992,0.8457,3.8389,5.8638,False,13.237,4.4958,2.1892,2.0931,3.714,!,True,6
+&svk-södermalm,46,Södermalm,Sollentuna VK,Hubert Sliwinski,Kai Wendler,float,6.931,-9.0044,2.4291,7.8184,4.8698,1.1602,7.9272,6.6308,False,13.116,4.4706,3.4876,2.2962,6.046,!,True,5
+&svk-södermalm,47,Södermalm,Sollentuna VK,Olle Johansson,Lucas Nordström,spin,0.7888,-9.1083,2.692,3.9893,5.9588,1.0435,4.2367,7.535,False,16.705,4.607,0.9838,2.2781,5.029,#,True,4
+&svk-södermalm,48,Sollentuna VK,Södermalm,Kai Wendler,Grigorij Kan,float,3.2184,-8.8238,2.7156,7.0207,5.4367,1.2809,7.4366,7.6858,False,14.915,,,,4.505,-,False,4
+&svk-södermalm,49,Sollentuna VK,Södermalm,Kai Wendler,Grigorij Kan,float,3.1989,-8.8194,2.6943,6.7462,5.2952,0.2607,6.7427,5.9479,False,15.122,3.4219,3.1426,1.6638,3.754,!,True,4
+&svk-södermalm,50,Södermalm,Sollentuna VK,Grigorij Kan,Lucas Nordström,float,0.7538,-7.5256,2.4844,3.8197,5.7903,1.0823,4.2803,7.1482,False,14.447,,,,2.552,=,False,3
+&svk-södermalm,51,Södermalm,Sollentuna VK,Grigorij Kan,Kai Wendler,float,0.6283,-7.494,2.5301,1.6817,5.2993,1.3063,1.8897,7.79,False,14.264,5.8433,2.7258,2.1807,6.038,!,True,3
+&svk-södermalm,52,Sollentuna VK,Södermalm,Davyd Berezhnyi,Giovanni Calzolari,float,6.2075,-9.6233,3.0331,5.048,5.0569,0.8936,5.0872,6.3619,False,15.421,3.4566,1.1804,2.1234,5.11,#,True,3
+&svk-södermalm,53,Södermalm,Sollentuna VK,David Gudeta,Kai Wendler,float,8.0363,-9.3727,2.3968,5.1177,4.8652,0.3646,5.0101,5.41,False,14.318,1.0992,1.1942,1.7452,3.57,!,False,2
+&svk-södermalm,54,Södermalm,Sollentuna VK,David Gudeta,Jakob Molin,float,7.9473,-9.7419,2.3504,7.1457,4.6449,1.8031,6.9702,7.3019,False,14.833,3.2794,1.2766,2.232,4.684,+,True,2
+&svk-södermalm,55,Sollentuna VK,Södermalm,Johan Nilsson,Albin Gustafsson,float,8.0425,-9.0909,2.7407,8.5356,5.4365,1.3435,8.6985,7.9675,False,14.747,6.3793,0.9408,2.3799,5.422,+,False,2
+&svk-södermalm,56,Sollentuna VK,Södermalm,Johan Nilsson,Albin Gustafsson,float,7.9914,-9.521,2.6876,8.6454,4.6509,0.4669,8.766,5.254,False,13.898,5.3479,1.4854,2.3154,4.263,#,True,2
+&svk-södermalm,57,Södermalm,Sollentuna VK,Niklas Dahlbom,Lucas Nordström,float,1.2659,-8.2558,2.536,3.4672,5.4715,0.4347,3.4677,5.9567,False,13.426,3.3662,1.2622,2.3576,3.734,#,True,1
+&svk-södermalm,58,Sollentuna VK,Södermalm,Jakob Molin,Albin Gustafsson,float,,,,,,,,,,,,,,,=,False,1
+&svk-södermalm,59,Sollentuna VK,Södermalm,Jakob Molin,Albin Gustafsson,float,6.5348,-9.1404,2.8281,3.5415,5.9561,1.1415,3.362,7.8696,False,16.221,3.6214,3.5304,1.8259,4.589,!,True,1
+&svk-södermalm,60,Sollentuna VK,Södermalm,Diego Zagai Roel,Giovanni Calzolari,float,1.5557,-9.5032,2.6718,4.4476,4.8325,0.6702,4.6645,5.7577,False,14.855,-0.6265,4.3219,0.8284,2.489,-,True,6
+&svk-södermalm,61,Södermalm,Sollentuna VK,Hubert Sliwinski,Kai Wendler,float,6.9392,-8.5241,2.5471,7.3415,4.8749,2.0612,7.4266,8.284,False,13.443,3.6866,7.6976,1.8329,6.53,-,False,5
+&svk-södermalm,62,Södermalm,Sollentuna VK,Hubert Sliwinski,Kai Wendler,float,6.7375,-8.026,2.616,6.9271,4.7032,0.424,7.0057,5.4059,False,12.855,4.3568,0.6351,2.3209,5.46,#,True,5
+&svk-södermalm,63,Sollentuna VK,Södermalm,Gustaf Lindén,Albin Gustafsson,float,7.7352,-8.5291,2.7282,2.0961,4.9526,1.4304,1.5122,6.8209,False,14.596,2.5611,1.9124,2.2043,4.448,+,True,5
+&svk-södermalm,64,Södermalm,Sollentuna VK,Olle Johansson,Jakob Molin,spin,0.8302,-9.562,2.6196,6.0229,5.4596,1.0082,6.4741,6.9477,False,18.401,2.8682,0.9633,2.3833,4.851,#,True,4
+&svk-södermalm,65,Sollentuna VK,Södermalm,Kai Wendler,David Gudeta,float,3.2487,-8.6384,2.8059,7.9209,3.1109,1.2796,8.688,5.248,False,15.473,,,,,/,False,4
+&svk-södermalm,66,Sollentuna VK,Södermalm,Kai Wendler,Giovanni Calzolari,float,3.6906,-8.2277,2.7987,6.1939,4.8184,0.8571,6.3788,5.8643,False,14.225,3.942,0.3031,2.3844,4.526,+,True,4
+&svk-södermalm,67,Södermalm,Sollentuna VK,Grigorij Kan,Kai Wendler,float,0.4782,-7.4287,2.6408,2.1582,4.6828,1.4659,2.4938,6.9845,False,13.645,1.0629,3.3819,-0.0645,1.563,=,False,3
+&svk-södermalm,68,Södermalm,Sollentuna VK,Grigorij Kan,Kai Wendler,float,0.7448,-7.8921,2.4937,2.4,5.2508,1.4815,2.9726,8.4545,False,15.331,,,,6.392,=,False,3
+&svk-södermalm,69,Södermalm,Sollentuna VK,Grigorij Kan,Kai Wendler,float,0.283,-7.4027,2.5681,2.003,5.2947,0.9937,2.0609,6.9095,False,14.338,3.0392,0.254,2.612,5.018,!,True,3
+&svk-södermalm,70,Sollentuna VK,Södermalm,Shawn Ogbeide,Giovanni Calzolari,float,1.4684,-8.7251,2.9657,5.2589,4.6632,0.7292,5.4876,5.4961,False,13.316,3.8319,0.5843,2.3844,4.338,#,False,3
+&svk-södermalm,71,Sollentuna VK,Södermalm,Shawn Ogbeide,Oscar Jonsson,float,1.7213,-8.2895,2.9269,6.047,6.2308,1.1934,6.4453,8.0208,False,14.333,1.3469,8.6124,0.9888,2.18,=,False,3
+&svk-södermalm,72,Sollentuna VK,Södermalm,Shawn Ogbeide,Grigorij Kan,float,1.5267,-9.2706,2.8302,4.8453,5.1184,1.2793,5.1507,6.4511,False,12.92,3.5464,1.5139,2.2114,5.137,#,False,3
+&svk-södermalm,73,Sollentuna VK,Södermalm,Shawn Ogbeide,Albin Gustafsson,float,1.8044,-8.9275,2.9205,5.9678,5.3752,0.8059,6.2429,6.3483,False,14.051,2.6024,2.7684,2.2235,5.841,!,False,3
+&svk-södermalm,74,Södermalm,Sollentuna VK,David Gudeta,Kai Wendler,float,8.3257,-9.4843,2.3967,4.7668,5.2344,0.5596,4.6832,6.1083,False,14.893,4.5602,5.7787,1.7932,4.897,-,True,2
+&svk-södermalm,75,Sollentuna VK,Södermalm,Christian Hansson,Oscar Jonsson,spin,7.7735,-8.8559,2.8381,2.0233,5.6175,1.3271,1.3239,7.3977,False,14.799,5.3949,2.423,2.1019,5.305,+,False,2
+&svk-södermalm,76,Sollentuna VK,Södermalm,Christian Hansson,Oscar Jonsson,spin,,,,0.0978,4.2309,1.4351,,,,,,,,3.288,=,False,2
+&svk-södermalm,77,Södermalm,Sollentuna VK,Albin Gustafsson,Kai Wendler,float,8.6214,-9.0,2.4043,6.811,5.3517,1.5092,6.4306,8.2191,False,14.414,4.9699,2.3541,2.1025,5.317,+,True,6
+&svk-södermalm,78,Sollentuna VK,Södermalm,Simon Meyer,Grigorij Kan,float,6.9414,-8.4374,2.7219,7.4004,4.4406,0.3953,7.2986,5.1836,False,13.289,4.925,3.5338,1.9167,4.614,!,True,6
+&svk-södermalm,79,Södermalm,Sollentuna VK,Hubert Sliwinski,Jakob Molin,float,6.6739,-9.0,2.411,6.0929,4.3095,0.3205,6.0538,4.6236,False,11.774,3.1096,1.8315,1.3616,2.255,-,True,5
+&svk-södermalm,80,Södermalm,Sollentuna VK,Carl Lahne,Jakob Molin,float,2.0011,-7.4285,2.369,6.0771,4.3597,0.7752,6.3288,5.487,False,12.696,3.724,0.9133,2.1811,3.744,#,True,2
+&svk-södermalm,81,Södermalm,Sollentuna VK,Albin Gustafsson,Kai Wendler,float,8.7586,-9.0,1.9674,4.0388,5.3791,1.0586,3.4583,7.1285,False,15.316,3.3828,1.574,2.4756,5.691,#,True,1
+&svk-södermalm,82,Sollentuna VK,Södermalm,Jakob Molin,Oscar Jonsson,float,6.4586,-9.1288,2.8412,4.9357,6.1616,1.027,4.9112,7.4741,False,14.113,4.1934,1.1884,2.1575,5.49,#,True,6
+&svk-södermalm,83,Sollentuna VK,Södermalm,Simon Meyer,Albin Gustafsson,float,7.0868,-9.1447,2.4325,4.7961,5.0016,0.8517,4.7126,6.0424,False,13.123,4.3792,1.3526,2.136,5.044,#,True,5
+&svk-södermalm,84,Södermalm,Sollentuna VK,Olle Johansson,Kai Wendler,spin,0.5984,-9.0,2.6333,7.7272,4.6145,0.8235,8.2328,5.8383,False,20.515,2.5847,3.1166,2.229,5.099,!,True,5
+&svk-södermalm,85,Sollentuna VK,Södermalm,Gustaf Lindén,Oscar Jonsson,float,7.7382,-8.8332,2.6535,1.4601,5.2648,0.9772,0.4338,7.3726,False,15.489,2.3434,3.0434,2.0254,4.968,!,True,4
+&svk-södermalm,86,Södermalm,Sollentuna VK,Grigorij Kan,Kai Wendler,float,1.2562,-7.9064,2.4365,7.551,4.5957,1.4958,8.266,6.671,False,12.58,,,,5.203,/,False,4
+&svk-södermalm,87,Södermalm,Sollentuna VK,Grigorij Kan,Jakob Molin,float,2.6356,-7.9702,2.6208,6.2806,5.3178,1.124,6.7004,6.9346,False,14.176,2.8125,0.6073,2.274,4.046,#,True,4
+&svk-södermalm,88,Sollentuna VK,Södermalm,Kai Wendler,Oscar Jonsson,float,3.2224,-8.518,2.5734,4.5286,5.8687,0.9615,4.6889,7.3121,False,14.893,4.7191,0.8741,1.2929,2.799,!,True,3
+&svk-södermalm,89,Södermalm,Sollentuna VK,David Gudeta,Martin Ekholm,float,1.3814,-9.1792,2.3392,3.4168,5.7725,0.9939,3.5332,7.2935,False,14.488,3.733,2.3254,2.5693,4.93,#,True,3
+&svk-södermalm,90,Sollentuna VK,Södermalm,Shawn Ogbeide,Oscar Jonsson,float,1.1309,-9.0974,2.9454,2.5297,6.5561,1.6767,2.6009,9.1294,False,14.671,2.3885,2.5328,1.9149,3.927,!,False,2
+&svk-södermalm,91,Sollentuna VK,Södermalm,Shawn Ogbeide,Grigorij Kan,float,1.2267,-8.6775,3.0318,3.7513,5.4023,1.2979,4.0984,6.9182,False,12.99,4.1902,1.1104,2.004,4.713,+,True,2
+&svk-södermalm,92,Södermalm,Sollentuna VK,Carl Lahne,Kai Wendler,float,1.7158,-7.5916,2.5001,3.5933,5.1053,0.6032,3.6239,6.3594,False,13.724,4.0859,2.5444,2.5639,5.483,!,True,2
+&svk-södermalm,93,Sollentuna VK,Södermalm,Christian Hansson,Oscar Jonsson,float,,,,3.5655,2.3008,1.8049,,,,,,,,1.822,=,False,1
+&svk-södermalm,94,Sollentuna VK,Södermalm,Christian Hansson,Grigorij Kan,float,7.7728,-8.6957,2.8526,7.2249,4.934,1.1015,7.242,6.6237,False,14.485,4.7,0.5824,2.1573,5.328,#,False,1
+&svk-södermalm,95,Sollentuna VK,Södermalm,Christian Hansson,Grigorij Kan,float,7.7321,-9.1426,2.9553,7.9032,5.5361,1.0871,7.9138,7.2407,False,15.284,4.1605,0.5064,2.2668,6.056,#,False,1
+&svk-södermalm,96,Sollentuna VK,Södermalm,Christian Hansson,Oscar Jonsson,float,7.5505,-8.6605,2.8254,5.1934,5.9031,0.4909,5.0814,6.5623,False,14.282,3.0311,0.729,2.212,4.252,-,False,1
+&svk-södermalm,97,Sollentuna VK,Södermalm,Christian Hansson,Grigorij Kan,spin,7.5356,-9.6071,2.9503,7.5799,5.4214,0.828,7.4792,7.1167,False,22.609,,,,3.603,/,False,1
+&svk-södermalm,98,Sollentuna VK,Södermalm,Christian Hansson,Oscar Jonsson,float,7.6558,-9.8963,2.8696,4.9499,6.2131,0.3045,4.9208,6.6128,False,19.075,,,,4.89,/,True,1
+&svk-södermalm,99,Södermalm,Sollentuna VK,Albin Gustafsson,Kai Wendler,float,8.3464,-9.0,2.1981,5.2717,9.0804,-0.2231,5.5132,8.796,False,15.806,,,,,=,False,1
+&svk-södermalm,100,Södermalm,Sollentuna VK,Albin Gustafsson,Kai Wendler,float,8.5693,-9.0,2.1793,4.2087,3.5946,0.351,4.2097,3.7377,False,10.882,4.6076,-0.5952,2.3016,3.225,/,True,1
+&svk-södermalm,101,Sollentuna VK,Södermalm,Jakob Molin,Oscar Jonsson,float,6.4414,-9.3671,2.8773,4.6725,5.631,0.9736,4.7114,6.9122,False,14.217,4.0827,0.781,2.1344,4.708,#,True,6
+&svk-södermalm,102,Södermalm,Sollentuna VK,Wim Nordin,Martin Ekholm,float,2.0403,-8.1731,2.7372,6.1553,4.9332,1.2964,7.061,7.4101,False,14.3,,,,6.164,=,False,6
+&svk-södermalm,103,Sollentuna VK,Södermalm,Simon Meyer,Albin Gustafsson,float,6.8003,-8.6355,2.7708,4.9344,5.5003,1.5583,4.7288,7.3033,False,12.964,4.4138,1.7836,2.0125,4.6,#,True,5
+&svk-södermalm,104,Södermalm,Sollentuna VK,Olle Johansson,Martin Ekholm,spin,0.6982,-9.0,2.6573,2.6691,6.0673,0.8922,2.7482,7.3951,False,21.293,2.8392,4.5442,1.8143,6.535,-,False,5
+&svk-södermalm,105,Södermalm,Sollentuna VK,Olle Johansson,Jakob Molin,spin,0.5779,-9.0,2.6702,4.8113,6.3498,1.3068,5.4756,8.565,False,21.581,,,,5.751,/,False,5
+&svk-södermalm,106,Sollentuna VK,Södermalm,Gustaf Lindén,Albin Gustafsson,float,7.6831,-9.3605,2.5794,3.8555,5.2351,1.2104,3.4541,7.315,False,15.286,5.2776,0.8173,1.5314,4.856,#,True,4
+&svk-södermalm,107,Södermalm,Sollentuna VK,Grigorij Kan,Martin Ekholm,float,0.8347,-7.6474,2.4862,0.7897,5.8136,1.4387,0.8443,8.2341,False,14.575,2.3389,1.7282,2.1927,6.978,#,True,4
+&svk-södermalm,108,Sollentuna VK,Södermalm,Kai Wendler,Oscar Jonsson,float,3.5608,-8.7338,2.6163,4.6462,5.5903,0.2616,4.6243,5.6036,False,14.83,6.7339,0.9742,0.6478,2.323,/,False,3
+&svk-södermalm,109,Sollentuna VK,Södermalm,Kai Wendler,Grigorij Kan,float,3.7659,-8.9298,2.8853,4.312,5.3412,1.0979,4.4278,7.289,False,16.006,3.4339,3.8408,1.5496,5.574,-,True,3
+&svk-södermalm,110,Södermalm,Sollentuna VK,David Gudeta,Martin Ekholm,float,8.2179,-9.2279,2.5903,2.8914,2.5102,0.4093,2.7792,2.7925,False,10.716,4.1253,1.9051,1.5195,3.099,-,True,3
+&svk-södermalm,111,Sollentuna VK,Södermalm,Shawn Ogbeide,Grigorij Kan,float,1.3552,-8.7209,3.0323,3.4032,5.3524,0.5101,3.5454,5.8942,False,14.055,3.5596,1.0828,2.2492,3.956,+,True,2
+&svk-södermalm,112,Södermalm,Sollentuna VK,Carl Lahne,Martin Ekholm,float,1.5016,-7.5246,2.5546,1.3051,4.6571,0.8366,1.0867,5.6301,False,12.767,1.5048,-0.1392,2.4061,4.126,/,True,2
+&svk-södermalm,113,Sollentuna VK,Södermalm,Christian Hansson,Oscar Jonsson,float,7.5169,-8.3502,2.8156,6.0327,5.6873,0.5559,6.0044,6.5758,False,14.659,3.7983,0.1093,2.5283,3.824,!,True,1
+&svk-södermalm,114,Södermalm,Sollentuna VK,Albin Gustafsson,Jakob Molin,float,8.123,-9.0,2.2582,6.465,4.548,0.6222,6.3901,5.4966,False,14.803,3.1372,1.6059,2.4584,4.251,+,True,1
+&svk-södermalm,115,Sollentuna VK,Södermalm,Jakob Molin,Albin Gustafsson,float,6.3942,-9.5015,2.8654,2.966,5.3826,0.8102,2.6725,7.0243,False,16.78,4.5482,4.6365,1.1586,4.714,-,False,6
+&svk-södermalm,116,Sollentuna VK,Södermalm,Jakob Molin,Albin Gustafsson,float,6.5098,-9.2888,2.8189,3.4447,6.0554,1.1556,3.3147,8.6844,False,16.526,6.7712,1.6013,1.6032,3.882,!,False,6
+&svk-södermalm,117,Sollentuna VK,Södermalm,Jakob Molin,Albin Gustafsson,float,6.3705,-9.0237,2.8473,4.2282,5.2078,1.5537,4.0237,8.3005,False,15.657,,,,3.49,=,False,6
+&svk-södermalm,118,Södermalm,Sollentuna VK,Wim Nordin,Martin Ekholm,float,2.6711,-8.3679,2.6072,3.5626,6.1248,1.6485,3.4468,8.6852,False,14.714,4.188,1.553,2.1967,5.73,#,True,6
+&svk-södertelge,1,Södertelge,Sollentuna VK,Adrian Cabanne,Kestutis Blyza,float,0.3403,-9.0,2.6806,4.5506,6.3519,1.7192,5.4839,9.0587,False,15.218,,,,,=,False,2
+&svk-södertelge,2,Södertelge,Sollentuna VK,Adrian Cabanne,Kestutis Blyza,float,0.7843,-8.1369,2.8948,5.5609,6.0521,1.3239,6.1931,7.6173,False,15.654,6.4515,2.0357,2.5121,5.295,+,True,2
+&svk-södertelge,3,Sollentuna VK,Södertelge,Christian Hansson,Dario Dumancic,float,7.3525,-9.3912,3.0998,4.9527,5.7614,1.4196,4.2063,8.2542,False,21.618,3.8716,1.0313,2.402,4.866,#,True,2
+&svk-södertelge,4,Södertelge,Sollentuna VK,Lucas Olanders,Kestutis Blyza,spin,6.56,-9.0,2.985,4.171,6.3642,1.0228,3.7518,7.9509,False,22.808,1.4426,1.0925,2.6114,6.479,+,True,1
+&svk-södertelge,5,Sollentuna VK,Södertelge,Peter Blomgren,Alfred Mjörnheim,float,8.7562,-9.2515,2.8849,3.1444,5.2023,0.9754,2.5935,6.3973,False,15.034,1.0391,0.1182,2.7175,5.888,!,True,1
+&svk-södertelge,6,Södertelge,Sollentuna VK,Alfred Mjörnheim,Lucas Nordström,float,7.0432,-10.0341,2.7439,4.6665,5.0162,0.8275,4.5765,5.7682,False,12.192,3.2608,1.9609,2.507,3.952,+,True,6
+&svk-södertelge,7,Sollentuna VK,Södertelge,Davyd Berezhnyi,Valdemar Mjörnheim,float,6.4391,-9.5862,3.1571,5.4924,5.7763,1.3363,5.5188,8.4504,False,16.679,,,,,=,False,6
+&svk-södertelge,8,Sollentuna VK,Södertelge,Davyd Berezhnyi,Valdemar Mjörnheim,float,6.3116,-9.2574,3.1311,5.843,4.8572,0.8703,5.8295,5.8344,True,14.56,2.5472,0.3202,2.42,4.912,#,True,6
+&svk-södertelge,9,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,7.6872,-8.8443,2.5733,7.7886,5.878,2.2083,7.9478,8.3312,False,12.605,3.6713,5.8193,1.9968,6.276,-,False,5
+&svk-södertelge,10,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,,,,7.8723,6.0642,2.2988,,,,,5.6538,1.366,1.719,4.426,+,False,5
+&svk-södertelge,11,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,7.9634,-8.3412,2.7854,8.2796,4.793,1.4668,8.1869,7.0908,False,14.738,3.2005,-0.2888,2.6348,6.209,/,False,5
+&svk-södertelge,12,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,8.0636,-8.6875,2.717,7.7483,5.5341,1.2909,7.5818,7.3356,False,13.077,,,,,!,True,5
+&svk-södertelge,13,Sollentuna VK,Södertelge,Gustaf Lindén,Dario Dumancic,float,7.8581,-8.5242,2.7958,6.4942,4.9046,1.0251,6.2747,6.4152,False,14.495,5.3159,2.4414,2.3122,5.271,!,False,5
+&svk-södertelge,14,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.5723,-9.328,2.747,5.8903,5.5684,0.5166,5.7394,6.1617,False,14.811,3.9281,1.9923,2.3715,4.758,+,False,5
+&svk-södertelge,15,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.607,-9.3865,2.8273,6.0312,5.3186,0.8397,5.8418,6.5493,False,15.557,6.3365,1.96,2.066,4.719,!,False,5
+&svk-södertelge,16,Sollentuna VK,Södertelge,Gustaf Lindén,Dario Dumancic,float,7.633,-8.6982,2.7904,6.9082,5.1041,1.0846,6.7915,7.5947,False,15.404,4.8555,2.926,2.4186,5.516,!,True,5
+&svk-södertelge,17,Södertelge,Sollentuna VK,Deyan Marinov,Peter Blomgren,spin,2.2429,-8.5467,3.1224,5.3963,6.1348,0.7585,5.7544,7.296,False,25.453,8.8476,0.4609,2.4388,6.032,-,True,4
+&svk-södertelge,18,Sollentuna VK,Södertelge,Kestutis Blyza,Dario Dumancic,float,6.7106,-8.1601,2.7958,7.4704,5.1918,1.5804,7.5551,7.6496,False,13.977,4.599,1.6521,1.7984,3.104,!,True,4
+&svk-södertelge,19,Södertelge,Sollentuna VK,Dario Dumancic,Peter Blomgren,spin,4.1331,-9.5706,2.8139,7.1402,5.7704,1.3106,7.6253,8.1414,False,23.03,3.814,1.1681,2.3553,5.675,#,True,3
+&svk-södertelge,20,Sollentuna VK,Södertelge,Shawn Ogbeide,Valdemar Mjörnheim,float,1.6945,-9.6549,3.0925,4.7822,4.8182,1.0306,4.9776,5.9013,False,13.233,3.9597,1.9722,2.4791,4.776,-,True,3
+&svk-södertelge,21,Södertelge,Sollentuna VK,Adrian Cabanne,Kestutis Blyza,float,0.5064,-9.2209,2.7059,5.5641,6.0487,1.3207,6.6329,7.9468,False,15.853,4.7628,5.2596,2.1135,6.202,-,True,2
+&svk-södertelge,22,Sollentuna VK,Södertelge,Christian Hansson,Dario Dumancic,spin,7.6171,-9.3103,3.1978,5.9613,5.9949,1.537,5.2856,8.7991,False,20.335,5.2492,2.9369,1.4209,6.331,=,False,2
+&svk-södertelge,23,Sollentuna VK,Södertelge,Christian Hansson,Dario Dumancic,spin,7.6231,-9.3504,3.0537,4.7027,5.7075,1.1237,3.751,7.5814,False,22.07,5.2719,0.437,2.6958,4.161,+,False,2
+&svk-södertelge,24,Södertelge,Sollentuna VK,Lucas Olanders,Peter Blomgren,spin,6.3723,-8.3113,2.8706,6.5565,6.3359,1.259,6.5334,8.6382,False,21.121,2.251,2.1728,2.4025,4.451,-,False,1
+&svk-södertelge,25,Sollentuna VK,Södertelge,Peter Blomgren,Valdemar Mjörnheim,float,8.4591,-9.4239,3.0128,3.5351,5.7607,0.9409,3.0501,6.7947,False,13.862,2.3597,0.8008,2.7174,2.888,!,True,1
+&svk-södertelge,26,Södertelge,Sollentuna VK,Alfred Mjörnheim,Kestutis Blyza,float,6.7636,-10.0626,2.5223,8.4512,4.9734,1.2158,8.5791,6.3653,False,12.565,0.9221,2.7489,2.3639,5.19,!,True,6
+&svk-södertelge,27,Sollentuna VK,Södertelge,Davyd Berezhnyi,Valdemar Mjörnheim,float,6.5258,-9.091,3.087,6.3792,5.8821,1.064,6.2468,7.6456,False,17.162,4.1923,0.8983,2.3258,3.779,#,True,6
+&svk-södertelge,28,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,7.9529,-8.7485,2.7442,9.3167,5.528,-0.0645,9.2847,5.8576,False,13.779,,,,0.413,=,False,5
+&svk-södertelge,29,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,8.2161,-9.1412,2.511,7.0769,5.6931,1.2189,6.7703,7.3739,True,14.349,4.8076,-0.4843,2.8719,5.668,/,False,5
+&svk-södertelge,30,Södertelge,Sollentuna VK,Rasmus Wallden,Peter Blomgren,float,7.7845,-8.3881,2.7966,7.402,5.5163,1.371,7.313,7.3619,False,14.173,,,,5.142,#,False,5
+&svk-södertelge,31,Södertelge,Sollentuna VK,Rasmus Wallden,Peter Blomgren,float,8.0151,-8.649,2.7528,7.5622,5.6927,1.8632,7.4646,9.3403,False,15.503,3.1283,2.9245,1.5478,3.388,-,False,5
+&svk-södertelge,32,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,,,,,,,,,,,,,,,=,False,5
+&svk-södertelge,33,Södertelge,Sollentuna VK,Rasmus Wallden,Lucas Nordström,spin,7.9719,-8.164,2.7873,7.0973,5.1295,1.1451,6.8892,6.9664,False,14.285,3.9588,1.4845,2.5965,4.395,#,True,5
+&svk-södertelge,34,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.6613,-7.9353,2.8938,5.5129,5.4246,0.4812,5.4125,5.803,False,13.611,4.0292,-3.1877,1.2652,4.249,/,False,5
+&svk-södertelge,35,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.7126,-8.8689,2.7908,3.5757,5.2692,1.1542,3.0328,6.6425,False,14.208,2.193,0.5822,2.3786,5.721,+,False,5
+&svk-södertelge,36,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.6197,-9.2196,2.714,5.7709,5.2155,0.8508,5.5927,6.3201,False,14.116,5.9116,1.6552,2.384,5.688,+,False,5
+&svk-södertelge,37,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.7046,-8.3968,2.8007,5.8151,5.3015,1.1241,5.6114,6.8379,False,14.827,3.61,0.4999,2.7418,4.639,#,True,5
+&svk-södertelge,38,Södertelge,Sollentuna VK,Deyan Marinov,Kestutis Blyza,spin,1.3454,-10.159,2.9111,8.2981,4.885,0.5686,8.7647,5.2318,False,18.851,4.7111,2.6404,2.5791,4.943,#,True,4
+&svk-södertelge,39,Sollentuna VK,Södertelge,Kestutis Blyza,Dario Dumancic,float,5.9564,-8.2066,2.8017,6.1273,4.999,1.2009,6.108,6.6465,False,13.443,6.7853,0.9115,2.2942,5.053,+,False,4
+&svk-södertelge,40,Sollentuna VK,Södertelge,Kestutis Blyza,Dario Dumancic,float,,,,2.626,10.2752,1.3712,,,,,2.8853,8.7354,2.6513,2.896,+,True,4
+&svk-södertelge,41,Södertelge,Sollentuna VK,Dario Dumancic,Lucas Nordström,spin,4.0829,-8.7567,2.8923,4.9528,6.5419,0.7665,5.1025,7.9446,False,24.264,4.7058,3.6135,2.365,6.28,+,True,3
+&svk-södertelge,42,Sollentuna VK,Södertelge,Shawn Ogbeide,Alfred Mjörnheim,float,1.4775,-9.019,3.1724,7.5068,2.6384,0.5608,7.7206,2.9766,True,10.747,4.1305,2.0674,2.4481,4.512,+,True,3
+&svk-södertelge,43,Södertelge,Sollentuna VK,Adrian Cabanne,Lucas Nordström,float,0.52,-9.0,2.6001,4.5276,4.9824,0.4193,4.7863,5.2486,False,14.248,4.6342,2.8664,1.9772,3.688,!,False,2
+&svk-södertelge,44,Södertelge,Sollentuna VK,Adrian Cabanne,Peter Blomgren,float,0.432,-9.0,2.7391,6.6933,4.8296,0.9408,7.6755,6.0807,False,14.976,3.6663,2.0428,2.6121,5.79,+,True,2
+&svk-södertelge,45,Sollentuna VK,Södertelge,Christian Hansson,Alfred Mjörnheim,float,7.3707,-9.8679,3.1363,6.7123,5.318,1.1651,6.5252,6.8501,False,14.304,4.6734,0.261,2.5337,6.162,#,False,2
+&svk-södertelge,46,Södertelge,Sollentuna VK,Lucas Olanders,Peter Blomgren,spin,6.2019,-8.5224,2.8049,6.3532,6.0428,0.9334,6.3899,7.5634,False,22.728,-1.795,3.3972,1.6763,5.798,-,True,1
+&svk-södertelge,47,Sollentuna VK,Södertelge,Peter Blomgren,Valdemar Mjörnheim,float,8.486,-9.3236,2.9116,3.9423,5.4907,0.9551,3.4934,6.669,False,16.327,0.7535,0.9004,2.5925,4.636,!,True,1
+&svk-södertelge,48,Södertelge,Sollentuna VK,Alfred Mjörnheim,Kestutis Blyza,float,6.4697,-9.8396,2.6448,6.4655,5.4107,1.5535,6.2106,7.4785,False,13.668,4.1914,0.8348,2.307,4.318,#,True,6
+&svk-södertelge,49,Sollentuna VK,Södertelge,Davyd Berezhnyi,Dario Dumancic,float,6.6509,-8.8453,3.1566,6.7937,4.6716,0.9615,6.759,6.3316,False,16.908,,,,5.609,/,False,6
+&svk-södertelge,50,Sollentuna VK,Södertelge,Christian Hansson,Valdemar Mjörnheim,spin,7.6649,-9.9022,3.0542,5.1376,6.3515,1.1679,4.5287,8.3319,False,22.034,,,,3.627,=,False,3
+&svk-södertelge,51,Sollentuna VK,Södertelge,Christian Hansson,Alfred Mjörnheim,float,7.7575,-9.8746,3.0561,8.1211,5.3372,0.9851,8.1697,6.7474,False,14.407,3.1287,1.0108,2.3234,5.381,#,False,3
+&svk-södertelge,52,Sollentuna VK,Södertelge,Christian Hansson,Valdemar Mjörnheim,float,7.4592,-9.7896,2.9895,5.7241,5.6596,1.1584,5.5039,7.1408,False,14.259,2.9582,0.7476,2.4158,4.449,#,True,3
+&svk-södertelge,53,Södertelge,Sollentuna VK,Adrian Cabanne,Peter Blomgren,float,0.3971,-9.0,2.6926,5.7355,5.4162,1.057,6.3007,6.3717,False,14.223,5.1038,4.8917,1.9035,5.839,-,False,1
+&svk-södertelge,54,Södertelge,Sollentuna VK,Adrian Cabanne,Peter Blomgren,float,0.4574,-9.2588,2.5565,5.8928,5.2727,1.0428,6.7219,6.7507,False,16.058,4.9407,0.4545,2.8183,4.551,-,False,1
+&svk-södertelge,55,Södertelge,Sollentuna VK,Adrian Cabanne,Kestutis Blyza,float,0.5802,-9.1369,2.7145,5.5153,5.921,1.2517,6.3667,7.4282,False,15.818,,,,4.149,/,False,1
+&svk-södertelge,56,Södertelge,Sollentuna VK,Adrian Cabanne,Peter Blomgren,float,0.5313,-9.0014,2.6724,6.1439,4.9,0.7582,6.866,5.8911,False,13.989,,,,,!,True,1
+&svk-södertelge,57,Sollentuna VK,Södertelge,Peter Blomgren,Dario Dumancic,float,8.5899,-9.4772,2.7978,4.6619,4.3051,1.4402,3.9412,6.4097,False,14.729,4.4761,0.9397,2.3929,4.725,#,True,2
+&svk-södertelge,58,Sollentuna VK,Södertelge,Davyd Berezhnyi,Dario Dumancic,float,8.1032,-9.5112,3.1323,7.2108,4.6424,1.2087,6.9399,6.6649,False,17.15,6.8436,5.4231,1.7428,5.527,-,False,1
+&svk-södertelge,59,Sollentuna VK,Södertelge,Davyd Berezhnyi,Dario Dumancic,float,7.7933,-9.5572,3.2156,7.976,4.3924,1.0602,8.0162,6.336,False,16.358,7.7505,0.2723,2.7014,5.849,-,False,1
+&svk-södertelge,60,Södertelge,Sollentuna VK,Alfred Mjörnheim,Lucas Nordström,float,6.7155,-10.0145,2.6819,3.2754,5.4687,2.3558,2.3672,9.0207,False,14.628,1.3083,0.8961,1.9206,5.195,!,True,5
+&svk-södertelge,61,Sollentuna VK,Södertelge,Gustaf Lindén,Valdemar Mjörnheim,float,7.6186,-8.3305,2.8208,3.8168,5.598,0.5669,3.3218,6.6189,False,15.581,2.5155,0.8459,2.3713,5.274,#,False,6
+&svk-södertelge,62,Sollentuna VK,Södertelge,Gustaf Lindén,Valdemar Mjörnheim,float,7.6279,-8.7096,2.7764,5.2325,6.0818,1.4286,4.8856,8.4783,False,15.631,,,,4.807,/,False,6
+&svk-södertelge,63,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.6256,-9.43,2.7521,2.5015,5.6941,1.4922,1.6213,7.4768,False,14.993,-2.0164,0.4059,1.875,5.386,/,False,6
+&svk-södertelge,64,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,,,,3.7239,6.9535,0.7334,,,,,4.0292,6.3412,0.0904,1.061,=,False,6
+&svk-södertelge,65,Sollentuna VK,Södertelge,Gustaf Lindén,Valdemar Mjörnheim,float,7.7119,-8.509,2.9371,5.6537,5.7556,0.9243,5.6401,7.0183,False,14.923,1.8971,2.6685,1.3733,2.68,-,True,6
+&svk-södertelge,66,Södertelge,Sollentuna VK,Rasmus Wallden,Kestutis Blyza,float,7.9457,-8.4897,2.7278,8.0426,3.5107,1.912,7.9851,6.8713,False,14.604,5.1103,1.5491,2.8406,4.839,#,True,4
+&svk-södertelge,67,Sollentuna VK,Södertelge,Axel Wendt,Alfred Mjörnheim,float,6.5268,-8.1633,2.9593,3.9736,5.2258,0.6124,4.3141,5.5019,False,14.276,,,,5.189,/,False,5
+&svk-södertelge,68,Sollentuna VK,Södertelge,Axel Wendt,Alfred Mjörnheim,float,6.7765,-8.5511,2.846,5.0397,5.7252,1.2605,4.8956,7.7345,False,15.188,6.1666,4.7286,1.7757,5.893,-,False,5
+&svk-södertelge,69,Sollentuna VK,Södertelge,Axel Wendt,Valdemar Mjörnheim,float,6.8104,-8.5234,2.8592,5.7708,6.0278,1.0461,5.5705,7.5411,False,15.114,1.6022,2.3993,2.3197,5.02,-,False,5
+&svk-södertelge,70,Sollentuna VK,Södertelge,Axel Wendt,Valdemar Mjörnheim,float,6.5056,-8.1905,2.876,3.5491,5.6731,1.3791,3.014,7.4045,False,13.994,3.0526,3.1862,2.3832,4.926,!,True,5
+&svk-södertelge,71,Södertelge,Sollentuna VK,Deyan Marinov,Lucas Nordström,spin,1.5339,-9.8996,3.0255,4.5704,6.4662,1.2046,5.1691,8.0628,False,20.219,2.4907,1.9313,2.3204,6.646,+,False,3
+&svk-södertelge,72,Södertelge,Sollentuna VK,Deyan Marinov,Axel Wendt,spin,1.9859,-9.8637,2.9918,2.071,6.9612,1.6922,2.0992,9.3323,False,21.335,3.5726,-0.6452,2.3731,7.708,/,False,3
+&svk-södertelge,73,Sollentuna VK,Södertelge,Shawn Ogbeide,Dario Dumancic,float,1.0522,-9.7942,3.0861,7.1498,4.4978,0.6675,7.4408,5.1355,False,15.354,5.1934,0.0974,2.8531,4.821,!,False,4
+&svk-södertelge,74,Södertelge,Sollentuna VK,Dario Dumancic,Lucas Nordström,spin,4.224,-9.2504,2.8522,3.5927,3.6907,0.1768,3.5932,3.8227,False,12.516,,,,6.032,/,False,2
+&svk-södertelge,75,Sollentuna VK,Södertelge,Christian Hansson,Valdemar Mjörnheim,spin,7.6951,-9.8353,2.9787,3.6337,5.8002,0.688,3.194,6.8294,False,21.87,3.9414,-3.944,1.1461,5.731,/,False,3
+&svk-södertelge,76,Sollentuna VK,Södertelge,Christian Hansson,Dario Dumancic,spin,7.6472,-9.6756,2.9717,3.0119,5.547,1.398,0.9662,8.4939,False,23.369,,,,6.738,=,False,3
+&svk-södertelge,77,Södertelge,Sollentuna VK,Adrian Cabanne,Axel Wendt,float,0.7758,-8.3614,2.7451,4.8836,6.2039,1.4321,5.7785,8.4826,False,15.32,,,,,=,False,1
+&svk-södertelge,78,Södertelge,Sollentuna VK,Adrian Cabanne,Axel Wendt,float,0.8438,-8.5939,2.7935,5.3103,5.3802,0.6758,5.6134,6.0991,False,14.795,3.1927,2.1576,2.7516,4.571,+,True,1
+&svk-södertelge,79,Sollentuna VK,Södertelge,Peter Blomgren,Alfred Mjörnheim,float,8.0946,-8.9032,2.8983,6.9582,5.2382,1.2105,6.7576,7.5106,False,16.484,7.8749,3.6314,1.9866,6.495,-,False,2
+&svk-södertelge,80,Sollentuna VK,Södertelge,Peter Blomgren,Daniel Hoxha,float,8.8018,-9.2919,2.9598,4.18,5.5106,1.0863,3.6153,7.2538,False,15.975,6.1607,1.9948,2.1194,4.224,!,True,2
+&svk-södertelge,81,Sollentuna VK,Södertelge,Davyd Berezhnyi,Valdemar Mjörnheim,float,6.9998,-9.6434,3.0993,6.1803,5.6442,0.6616,5.8443,6.1761,False,17.478,5.8442,1.7775,1.9851,4.89,+,True,1
+&svk-södertelge,82,Södertelge,Sollentuna VK,Isak Björnsjö,Axel Wendt,float,7.39,-8.7669,2.669,8.2395,5.2579,1.2956,8.3207,7.0125,False,13.39,3.4551,1.751,2.3818,5.273,#,True,5
+&svk-södertelge,83,Sollentuna VK,Södertelge,Gustaf Lindén,Isak Björnsjö,float,7.6902,-8.25,2.9341,2.7719,5.1817,0.8159,2.0316,6.2011,False,16.055,2.6067,-0.4553,2.5851,5.863,/,True,6
+&svk-södertelge,84,Södertelge,Sollentuna VK,Rasmus Wallden,Axel Wendt,float,7.6859,-8.5637,2.7745,6.6998,5.1484,1.4509,6.4194,7.3518,False,14.326,5.8954,1.2308,2.747,5.925,+,True,4
+&svk-södertelge,85,Södertelge,Sollentuna VK,Alfred Mjörnheim,Axel Wendt,float,7.2766,-9.1977,2.9215,4.3097,4.8208,1.2482,3.8461,6.1204,False,13.009,4.2295,1.2789,2.7053,5.904,#,True,2
+&svk-södertelge,86,Södertelge,Sollentuna VK,Rasmus Wallden,Axel Wendt,float,8.2672,-8.5433,2.6265,4.7478,5.2992,0.7453,4.4847,6.8688,False,15.056,11.5252,7.5303,2.3595,4.551,/,True,1
+&svk-södertelge,87,Sollentuna VK,Södertelge,Peter Blomgren,Alfred Mjörnheim,float,8.1003,-9.5705,2.8985,6.337,6.4382,1.6354,5.7493,8.4001,False,14.005,5.5459,0.3675,2.3197,5.906,#,True,5
+&svk-södertelge,88,Södertelge,Sollentuna VK,Daniel Hoxha,Axel Wendt,spin,7.6029,-9.3711,2.9053,7.4845,5.7821,0.8588,7.4574,6.8675,False,18.171,,,,5.131,/,True,5
+&svk-södertelge,89,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.493,-8.3987,2.9813,6.1447,5.4853,1.2036,5.5074,8.7641,False,16.298,6.0262,1.193,2.2693,5.758,+,True,3
+&svk-södertelge,90,Södertelge,Sollentuna VK,Adrian Cabanne,Peter Blomgren,float,0.5001,-9.0,2.6769,5.8592,5.3548,0.7652,6.3532,6.3413,False,15.995,4.8582,2.3547,2.6074,5.13,!,False,4
+&svk-södertelge,91,Sollentuna VK,Södertelge,Axel Wendt,Alfred Mjörnheim,float,6.8334,-9.0781,2.8175,6.1564,5.5833,0.9577,6.0645,7.0508,False,14.962,4.9286,2.3039,2.1003,4.755,!,False,2
+&svk-södertelge,92,Sollentuna VK,Södertelge,Axel Wendt,Daniel Hoxha,float,7.2201,-9.0523,2.7811,5.6586,5.6129,1.1887,5.3894,7.7328,False,15.652,5.5284,6.7205,1.8654,3.901,-,True,2
+&svk-södertelge,93,Södertelge,Sollentuna VK,Gustav Mjörnheim,Shawn Ogbeide,float,6.6473,-8.9445,2.3347,3.4657,2.9122,2.3669,2.6338,5.9831,False,12.059,3.9449,2.6457,2.4479,5.16,!,True,3
+&svk-södertelge,94,Sollentuna VK,Södertelge,Shawn Ogbeide,Alfred Mjörnheim,float,1.954,-8.9537,3.1034,6.1562,5.0225,1.3876,6.6245,6.902,False,14.456,5.7807,2.5734,2.057,5.826,!,False,1
+&svk-södertelge,95,Sollentuna VK,Södertelge,Shawn Ogbeide,Daniel Hoxha,float,1.928,-8.6538,3.1811,8.0106,4.9773,1.2552,8.7125,6.4144,False,15.125,2.8087,4.0135,1.5359,5.625,-,True,1
+&svk-södertelge,96,Södertelge,Sollentuna VK,Alfred Mjörnheim,Lucas Nordström,float,6.8797,-9.5363,2.9472,4.1092,5.2926,0.8123,3.8111,6.252,False,13.205,3.2146,1.6491,2.7521,4.227,#,False,2
+&svk-södertelge,97,Södertelge,Sollentuna VK,Alfred Mjörnheim,Axel Wendt,float,6.6205,-9.734,2.8587,5.4015,6.1779,2.0316,5.1173,8.935,False,13.5,4.0316,0.9617,2.4347,5.831,#,True,2
+&svk-södertelge,98,Sollentuna VK,Södertelge,Christian Hansson,Daniel Hoxha,float,7.4692,-9.6203,3.0119,7.192,5.8546,0.9324,7.224,6.9618,False,14.442,,,,4.577,=,False,6
+&svk-södertelge,99,Sollentuna VK,Södertelge,Christian Hansson,Valdemar Mjörnheim,float,7.2651,-9.7779,2.8245,6.5577,5.8923,1.1472,6.5876,7.536,False,14.656,2.9491,1.9913,2.0811,4.451,!,False,6
+&svk-södertelge,100,Sollentuna VK,Södertelge,Christian Hansson,Daniel Hoxha,float,7.0623,-9.7625,3.0532,8.0956,5.3178,0.7147,8.2036,6.1509,False,14.784,5.8951,2.7941,1.6306,4.196,!,False,6
+&svk-södertelge,101,Sollentuna VK,Södertelge,Christian Hansson,Valdemar Mjörnheim,float,7.0407,-9.7778,3.0515,6.9322,5.4101,1.3735,7.0176,7.5697,False,15.524,2.6225,3.1676,2.2669,4.915,!,False,6
+&svk-södertelge,102,Sollentuna VK,Södertelge,Christian Hansson,Filip Kryske,float,7.3333,-9.1591,3.0111,7.7673,5.8834,1.5741,7.9364,8.402,False,15.361,4.7293,0.8405,2.3692,5.296,#,False,6
+&svk-södertelge,103,Sollentuna VK,Södertelge,Christian Hansson,Alfred Mjörnheim,float,7.4839,-9.8206,2.8735,1.9601,5.2471,1.17,1.3065,6.8709,False,15.669,3.8635,1.2832,2.1831,5.434,#,True,6
+&svk-södertelge,104,Södertelge,Sollentuna VK,Eoin Balkestĺhl,Lucas Nordström,float,1.3763,-9.3842,2.6914,3.7137,5.1081,1.0068,4.2477,6.508,False,13.679,3.4852,1.2253,2.525,4.853,#,True,1
+&svk-södertelge,105,Södertelge,Sollentuna VK,Liam Thynne,Axel Wendt,float,1.7752,-8.286,2.8209,6.6476,4.2533,0.51,6.9508,4.6573,False,13.979,3.531,1.1848,2.698,4.052,#,True,6
+&svk-södertelge,106,Södertelge,Sollentuna VK,Filip Kryske,Lucas Nordström,spin,7.1745,-8.6288,3.0222,4.2919,7.4756,0.0727,4.293,7.2866,False,23.411,,,,,=,False,5
+&svk-södertelge,107,Södertelge,Sollentuna VK,Filip Kryske,Peter Blomgren,spin,7.566,-8.317,2.8398,4.6572,5.2211,0.7237,4.5016,6.0412,False,15.466,3.1929,1.8168,2.6057,4.498,#,False,5
+&svk-södertelge,108,Södertelge,Sollentuna VK,Filip Kryske,Lucas Nordström,spin,6.4819,-9.0465,2.9389,2.9468,5.7244,0.6795,2.7627,6.9438,False,18.48,5.2756,1.9207,2.6966,5.848,#,True,5
+&svk-södertelge,109,Sollentuna VK,Södertelge,Gustaf Lindén,Alfred Mjörnheim,float,7.7104,-8.3423,2.8029,6.8514,5.3023,0.9336,6.5413,6.5103,False,14.614,4.4423,2.3293,2.3859,4.467,+,True,3
+&svk-södertelge,110,Södertelge,Sollentuna VK,Adrian Cabanne,Axel Wendt,float,0.6996,-8.4972,2.8094,6.9092,4.9614,1.2858,7.8776,6.3962,False,14.979,3.7772,5.2023,1.9058,6.034,-,True,4
+&svk-södertelge,111,Sollentuna VK,Södertelge,Axel Wendt,Alfred Mjörnheim,float,6.8613,-8.4279,2.8154,8.4037,5.5009,0.8887,8.5618,6.4239,False,14.427,5.2736,0.4171,2.5353,5.007,#,True,2
+&svk-södertelge,112,Södertelge,Sollentuna VK,Lucas Olanders,Shawn Ogbeide,float,6.5519,-8.927,2.8181,3.9028,3.4281,1.7416,3.3684,5.5867,False,13.903,4.0943,0.2405,2.7354,4.065,!,False,3
+&svk-södertelge,113,Södertelge,Sollentuna VK,Lucas Olanders,Lucas Nordström,spin,6.5236,-8.3705,2.6909,5.877,5.0339,0.8976,5.8663,5.8042,False,12.205,2.7252,0.7535,2.2283,4.381,#,True,3
+&svk-södertelge,114,Sollentuna VK,Södertelge,Shawn Ogbeide,Alfred Mjörnheim,float,1.2049,-8.9087,3.165,2.0523,3.8532,0.1756,1.9698,3.8514,False,12.676,1.9107,-0.23,2.6855,4.493,/,False,1
+&svk-södertelge,115,Sollentuna VK,Södertelge,Shawn Ogbeide,Valdemar Mjörnheim,float,1.29,-9.6538,2.9724,4.9788,4.1721,1.8577,5.9979,7.3149,False,15.89,5.3347,3.8421,1.1788,4.507,-,False,1
+&svk-södertelge,116,Sollentuna VK,Södertelge,Shawn Ogbeide,Valdemar Mjörnheim,float,1.5261,-8.7624,3.1375,4.4778,4.8043,1.1592,4.5206,6.9266,False,15.291,1.2309,2.0147,2.4847,4.996,!,True,1
+&svk-södertelge,117,Södertelge,Sollentuna VK,Alfred Mjörnheim,Lucas Nordström,spin,6.5124,-7.9711,2.9957,2.7537,5.7346,0.9521,2.3422,6.7854,False,16.191,3.4248,2.4134,2.5336,4.599,!,True,2
+&svk-södertelge,118,Sollentuna VK,Södertelge,Christian Hansson,Alfred Mjörnheim,float,7.5155,-8.6573,3.1458,2.7152,5.1378,0.8553,2.3738,6.4239,False,15.127,3.0703,2.7686,2.1133,4.963,!,True,6
+&svk-södertelge,119,Södertelge,Sollentuna VK,Eoin Balkestĺhl,Axel Wendt,float,1.1194,-10.079,2.6718,4.1847,5.3182,1.1952,4.5336,6.6607,False,13.061,3.844,0.8608,2.7192,5.308,#,True,1
+&svk-södertelge,120,Södertelge,Sollentuna VK,Liam Thynne,Lucas Nordström,float,1.4891,-8.3588,2.9433,4.7885,5.4013,0.7703,5.2348,6.5114,False,16.583,3.1996,2.2152,2.7382,4.521,#,True,6
+&svk-telge_ligacup,1,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Svante Fridström,float,-0.2098,-9.0,2.5801,4.8954,6.2627,1.9139,5.8994,9.8127,False,16.182,4.0188,1.5169,2.3521,4.805,+,True,2
+&svk-telge_ligacup,2,Sollentuna VK,Södertelge VBK,Christian Hansson,Alfred Mjörnheim,float,7.6124,-9.0,3.0952,7.832,5.0158,0.7528,7.7743,5.7498,False,14.493,4.9158,2.1171,2.6461,4.351,+,True,2
+&svk-telge_ligacup,3,Sollentuna VK,Södertelge VBK,Jakob Molin,Dario Dumancic,float,6.3745,-9.0,3.0331,6.5857,4.8889,0.911,6.7168,6.5247,False,15.805,7.3711,1.181,1.6361,6.499,!,False,1
+&svk-telge_ligacup,4,Södertelge VBK,Sollentuna VK,Alfred Mjörnheim,Jakob Molin,float,7.7434,-9.2926,3.1706,3.5372,5.7679,0.3765,3.3564,5.9873,False,21.64,3.2748,1.2871,2.6531,4.935,#,True,6
+&svk-telge_ligacup,5,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,8.3218,-8.4492,2.8739,7.4226,5.4766,1.5338,7.1559,8.9746,False,15.545,7.8836,2.9457,1.8028,5.946,-,True,5
+&svk-telge_ligacup,6,Sollentuna VK,Södertelge VBK,Peter Blomgren,Valdemar Mjörnheim,float,7.9923,-9.0,2.7448,1.6407,5.2838,1.0422,0.7271,6.8472,False,16.669,7.6079,2.2957,2.1076,4.256,-,True,5
+&svk-telge_ligacup,7,Södertelge VBK,Sollentuna VK,Deyan Marinov,Jakob Molin,spin,1.9276,-9.0,3.3647,6.1594,6.0681,1.4999,6.7891,8.1705,False,19.522,3.6718,0.9297,2.4557,5.838,#,True,4
+&svk-telge_ligacup,8,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,7.4607,-9.0,2.798,5.7955,4.1994,0.2895,5.7843,4.3825,True,11.537,3.7834,3.4699,1.7229,3.669,-,True,4
+&svk-telge_ligacup,9,Södertelge VBK,Sollentuna VK,Dario Dumancic,Lucas Nordström,spin,3.2556,-9.0,3.2096,3.7937,6.4916,1.3868,3.8793,8.7607,False,21.241,6.6098,0.2425,2.9467,6.172,!,True,3
+&svk-telge_ligacup,10,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Alfred Mjörnheim,float,2.0449,-9.0,2.9034,7.5039,3.978,1.0228,8.1715,6.1201,False,14.817,5.4086,0.7606,2.8328,6.075,#,False,3
+&svk-telge_ligacup,11,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Alfred Mjörnheim,float,2.1755,-8.864,2.9551,8.3752,3.7061,1.0832,9.3294,5.9031,False,15.192,3.4974,2.5383,2.4505,5.732,!,True,3
+&svk-telge_ligacup,12,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Svante Fridström,float,-0.2927,-9.0,2.7716,5.1526,5.6568,0.9524,5.6237,7.2495,False,16.013,1.0915,2.3488,2.6778,4.789,!,True,2
+&svk-telge_ligacup,13,Sollentuna VK,Södertelge VBK,Christian Hansson,Alfred Mjörnheim,float,7.2714,-9.0,2.9889,7.1486,5.9264,1.4009,6.8475,8.2086,False,18.431,3.4397,1.9102,2.5551,5.563,+,False,2
+&svk-telge_ligacup,14,Sollentuna VK,Södertelge VBK,Christian Hansson,Alfred Mjörnheim,spin,7.1182,-9.0,3.1063,7.8899,5.3229,0.8528,7.8461,6.6545,False,21.161,5.5535,3.5606,2.3035,6.217,-,True,2
+&svk-telge_ligacup,15,Sollentuna VK,Södertelge VBK,Jakob Molin,Alfred Mjörnheim,float,6.3534,-9.0,2.9204,6.976,5.669,1.4189,7.0878,7.9985,False,15.863,4.2784,-2.2432,1.365,6.099,/,False,1
+&svk-telge_ligacup,16,Sollentuna VK,Södertelge VBK,Jakob Molin,Dario Dumancic,float,6.2918,-9.0,2.9591,6.6573,5.5298,1.9509,6.8823,9.0633,False,16.455,1.0392,3.1187,1.6547,5.559,-,True,1
+&svk-telge_ligacup,17,Södertelge VBK,Sollentuna VK,Alfred Mjörnheim,Svante Fridström,spin,7.8276,-8.2914,3.1529,7.3599,6.439,0.8331,7.3882,7.7065,False,24.706,3.1385,3.2466,2.5199,7.489,!,True,6
+&svk-telge_ligacup,18,Sollentuna VK,Södertelge VBK,Davyd Berezhnyi,Dario Dumancic,float,6.9803,-9.0,3.2253,7.7624,4.8791,1.4122,7.867,6.4324,False,13.191,3.8197,0.1974,2.9078,5.664,!,True,6
+&svk-telge_ligacup,19,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,8.4633,-8.1383,2.9069,7.9503,5.6709,1.1999,8.0773,8.0494,False,15.186,3.4102,0.7279,2.8395,5.1,#,True,5
+&svk-telge_ligacup,20,Sollentuna VK,Södertelge VBK,Peter Blomgren,Valdemar Mjörnheim,float,7.8271,-9.0,2.9519,2.7966,6.1407,1.0682,2.2332,7.3749,False,15.012,2.3077,0.3108,2.6698,4.328,+,True,5
+&svk-telge_ligacup,21,Södertelge VBK,Sollentuna VK,Deyan Marinov,Lucas Nordström,spin,1.5646,-9.0,3.4871,1.3149,6.4659,0.5985,1.3719,7.1066,False,21.915,1.8196,-0.9012,2.0806,2.843,/,False,4
+&svk-telge_ligacup,22,Södertelge VBK,Sollentuna VK,Deyan Marinov,Jakob Molin,spin,1.0328,-9.0,3.3424,5.1174,5.8328,0.6751,5.4743,6.9342,False,26.386,0.4949,2.614,2.1807,4.589,!,True,4
+&svk-telge_ligacup,23,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,7.6492,-9.0,2.7235,3.9304,5.6922,1.2486,3.2368,7.4116,False,15.624,3.4538,0.4086,2.4442,5.779,#,False,4
+&svk-telge_ligacup,24,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,7.619,-9.0,2.8038,5.2231,5.77,1.3658,4.5827,7.9634,False,15.338,0.3908,2.0946,2.3396,5.676,!,True,4
+&svk-telge_ligacup,25,Södertelge VBK,Sollentuna VK,Dario Dumancic,Lucas Nordström,spin,3.2174,-9.0,3.054,4.3151,6.7468,0.9357,4.3471,8.3012,False,25.135,2.7595,3.2918,2.6305,6.036,!,True,3
+&svk-telge_ligacup,26,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Valdemar Mjörnheim,float,2.1165,-9.0,2.9073,6.2793,4.7658,0.8038,6.5588,5.7793,False,13.937,2.7602,0.673,2.4851,4.12,#,True,3
+&svk-telge_ligacup,27,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Svante Fridström,float,-0.1296,-9.0,2.697,5.4788,6.3279,1.5381,6.4274,9.0663,False,16.176,5.6018,2.546,2.4479,6.383,!,True,2
+&svk-telge_ligacup,28,Sollentuna VK,Södertelge VBK,Christian Hansson,Alfred Mjörnheim,spin,7.3569,-9.0,3.2292,8.5188,5.7453,1.2945,8.4792,7.5449,False,18.631,3.9894,4.4173,1.8127,5.76,-,False,2
+&svk-telge_ligacup,29,Sollentuna VK,Södertelge VBK,Christian Hansson,Dario Dumancic,spin,7.2169,-9.0,3.0271,5.3894,6.1677,1.4081,4.4986,8.8466,False,22.414,,,,6.938,/,True,2
+&svk-telge_ligacup,30,Södertelge VBK,Sollentuna VK,Gustav Mjörnheim,Svante Fridström,float,7.3842,-8.6862,2.7361,4.6397,5.1918,0.5515,4.5212,5.7499,False,14.953,5.7717,1.6405,2.2327,4.198,+,True,1
+&svk-telge_ligacup,31,Sollentuna VK,Södertelge VBK,Jakob Molin,Dario Dumancic,float,6.0677,-9.0,3.1412,4.493,6.1728,1.0187,4.1586,7.7353,False,15.817,5.1276,2.118,2.4711,5.617,+,False,1
+&svk-telge_ligacup,32,Sollentuna VK,Södertelge VBK,Jakob Molin,Dario Dumancic,float,6.2753,-9.0,2.944,5.5632,5.7616,1.6956,5.499,8.1218,False,16.22,7.6968,3.9813,1.583,3.718,-,True,1
+&svk-telge_ligacup,33,Sollentuna VK,Södertelge VBK,Davyd Berezhnyi,Valdemar Mjörnheim,float,7.4882,-9.0,3.3003,5.7498,6.5492,1.3306,5.5896,8.0216,False,15.081,4.257,1.1059,2.4029,4.943,#,True,6
+&svk-telge_ligacup,34,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,8.2706,-8.2399,2.894,7.3275,5.478,1.3285,7.1911,7.2808,False,13.357,3.4571,2.0562,2.6421,5.022,+,False,5
+&svk-telge_ligacup,35,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,8.3832,-8.4583,2.9258,8.6348,5.5948,1.1729,8.5139,7.7577,False,15.473,4.1829,2.3476,2.4691,6.421,+,False,5
+&svk-telge_ligacup,36,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,8.2701,-8.3692,2.805,7.0216,5.73,1.7034,6.3976,9.9276,False,15.46,5.051,1.9386,1.7868,3.835,!,True,5
+&svk-telge_ligacup,37,Sollentuna VK,Södertelge VBK,Peter Blomgren,Valdemar Mjörnheim,float,7.7858,-9.0,2.9914,3.0757,5.3519,0.8817,2.6156,6.5075,False,16.288,4.1876,2.1072,2.5327,4.442,!,True,5
+&svk-telge_ligacup,38,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,7.6283,-9.0,2.7734,5.6603,5.841,1.3852,5.0324,8.0658,False,15.699,2.2628,0.0588,2.7003,5.414,-,True,4
+&svk-telge_ligacup,39,Södertelge VBK,Sollentuna VK,Dario Dumancic,Shawn Ogbeide,spin,3.9529,-9.0,3.1285,4.3725,3.4203,1.0242,4.481,4.7868,False,14.378,,,,,!,True,3
+&svk-telge_ligacup,40,Sollentuna VK,Södertelge VBK,Christian Hansson,Alfred Mjörnheim,float,7.5763,-9.0197,3.1028,7.3747,6.3881,1.3398,7.2489,8.4506,False,15.223,2.5908,3.692,2.305,5.695,-,False,1
+&svk-telge_ligacup,41,Sollentuna VK,Södertelge VBK,Christian Hansson,Alfred Mjörnheim,float,8.162,-8.785,3.1958,7.1445,6.1846,1.9027,6.4975,9.5688,False,13.802,,,,,+,False,1
+&svk-telge_ligacup,42,Södertelge VBK,Sollentuna VK,Alfred Mjörnheim,Svante Fridström,spin,6.4895,-9.0,2.9909,4.0744,5.0338,0.4242,3.8871,5.3748,False,15.127,0.8824,3.1016,2.0576,5.049,!,False,1
+&svk-telge_ligacup,43,Sollentuna VK,Södertelge VBK,Jakob Molin,Alfred Mjörnheim,float,6.5484,-9.2847,3.0367,3.6472,6.4414,1.0006,3.5479,8.5493,False,15.983,4.0068,5.5338,1.9926,5.311,-,True,6
+&svk-telge_ligacup,44,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,7.6488,-9.0,2.7031,7.2996,4.9108,1.3465,7.086,6.8378,False,14.469,5.5798,0.8373,2.5697,5.697,#,True,6
+&svk-telge_ligacup,45,Sollentuna VK,Södertelge VBK,Peter Blomgren,Alfred Mjörnheim,float,8.5537,-9.117,2.9419,4.1947,6.5386,1.3173,3.7982,8.3653,False,15.188,3.8065,2.0163,2.406,6.489,+,False,4
+&svk-telge_ligacup,46,Sollentuna VK,Södertelge VBK,Peter Blomgren,Valdemar Mjörnheim,float,8.7599,-9.7282,2.8573,2.5706,6.2688,1.4563,1.8619,8.3244,False,15.832,3.8711,2.5463,2.5219,5.458,!,True,4
+&svk-telge_ligacup,47,Södertelge VBK,Sollentuna VK,Dario Dumancic,Jakob Molin,float,2.9602,-9.0,3.4087,4.6005,5.5107,1.9442,5.1724,8.571,False,15.956,5.4469,2.8985,2.3313,6.129,!,True,4
+&svk-telge_ligacup,48,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,8.2448,-8.8894,2.9015,6.829,5.5981,1.2906,6.4406,7.7649,False,14.939,6.4103,3.8394,1.653,5.774,-,True,3
+&svk-telge_ligacup,49,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Jakob Molin,float,0.2757,-9.0,2.7014,6.6167,5.4177,1.9214,8.6157,8.6297,False,15.635,2.8206,2.3897,2.575,7.076,!,True,3
+&svk-telge_ligacup,50,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Dario Dumancic,float,1.5527,-9.0,2.962,6.0287,4.9915,1.7769,6.8105,7.6329,False,14.245,3.4839,1.1443,2.4363,4.786,#,True,2
+&svk-telge_ligacup,51,Södertelge VBK,Sollentuna VK,Gustav Mjörnheim,Svante Fridström,float,6.9691,-9.0,2.7018,4.5332,5.363,1.3753,4.0206,7.8733,False,15.473,4.1007,1.6338,2.6672,5.467,+,False,2
+&svk-telge_ligacup,52,Södertelge VBK,Sollentuna VK,Gustav Mjörnheim,Svante Fridström,float,6.8528,-9.0,2.6354,4.4449,5.2221,0.9552,4.1305,6.5457,False,15.23,-3.0468,1.7085,0.869,4.603,/,False,2
+&svk-telge_ligacup,53,Sollentuna VK,Södertelge VBK,Christian Hansson,Dario Dumancic,spin,7.7695,-9.0896,3.1072,5.2958,6.3331,1.2339,4.5805,8.2512,False,19.956,3.8892,1.6443,4.2543,4.335,/,False,1
+&svk-telge_ligacup,54,Södertelge VBK,Sollentuna VK,Alfred Mjörnheim,Svante Fridström,float,6.8996,-9.0,2.8496,5.5315,5.4458,1.6452,5.0704,7.8505,False,14.381,3.703,3.5373,2.496,6.463,-,True,1
+&svk-telge_ligacup,55,Sollentuna VK,Södertelge VBK,Jakob Molin,Alfred Mjörnheim,float,6.6701,-9.2096,3.1445,3.3496,6.4244,1.3339,2.905,8.6508,False,15.409,3.6188,0.6919,2.3992,5.373,#,True,6
+&svk-telge_ligacup,56,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,7.7927,-9.0,2.7618,8.0969,4.6766,1.2744,8.055,6.0749,False,13.383,5.335,1.1583,2.8622,5.662,#,False,6
+&svk-telge_ligacup,57,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,7.9392,-9.0,2.7038,7.4997,4.8196,1.0904,7.3001,6.1974,False,15.106,4.7531,0.8764,2.3686,4.566,#,True,6
+&svk-telge_ligacup,58,Sollentuna VK,Södertelge VBK,Davyd Berezhnyi,Valdemar Mjörnheim,float,6.4291,-7.9369,3.3481,5.2996,5.4935,0.5071,5.2553,6.0958,False,17.146,4.0085,-0.0355,2.7863,4.132,!,True,5
+&svk-telge_ligacup,59,Södertelge VBK,Sollentuna VK,Deyan Marinov,Lucas Nordström,spin,1.531,-9.0,3.0269,3.0897,6.1535,0.6542,3.1688,6.772,True,16.159,5.3764,1.5328,2.4066,4.932,+,True,5
+&svk-telge_ligacup,60,Sollentuna VK,Södertelge VBK,Peter Blomgren,Valdemar Mjörnheim,float,8.5391,-9.2432,2.9388,2.1389,6.7292,1.1414,1.7899,7.9081,False,15.676,6.398,1.3636,1.7169,4.944,!,False,4
+&svk-telge_ligacup,61,Sollentuna VK,Södertelge VBK,Peter Blomgren,Valdemar Mjörnheim,float,8.6634,-9.8428,2.7639,2.8641,5.5816,0.3349,2.7099,5.9386,False,15.39,3.5226,-0.437,2.8158,3.623,/,False,4
+&svk-telge_ligacup,62,Sollentuna VK,Södertelge VBK,Peter Blomgren,Valdemar Mjörnheim,float,8.5791,-8.7826,3.0888,2.6408,5.535,0.6903,2.3055,6.2156,False,16.591,,,,5.347,/,True,4
+&svk-telge_ligacup,63,Södertelge VBK,Sollentuna VK,Dario Dumancic,Svante Fridström,spin,3.978,-9.5536,2.8985,6.1942,5.8009,0.7691,6.348,6.8067,False,22.357,5.8287,1.0486,2.5063,6.014,+,True,4
+&svk-telge_ligacup,64,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,8.1892,-8.9111,2.8614,6.699,5.7821,1.6712,6.158,8.6975,False,15.162,5.3413,1.9671,2.2927,6.188,+,False,3
+&svk-telge_ligacup,65,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,8.1902,-9.3568,2.7844,7.4293,5.7443,1.2218,7.5713,7.8172,False,15.19,2.0013,1.0633,2.2108,4.681,+,False,3
+&svk-telge_ligacup,66,Sollentuna VK,Södertelge VBK,Svante Fridström,Alfred Mjörnheim,float,8.1964,-8.6714,2.8837,6.8091,5.3743,0.9241,6.6437,6.6355,False,15.188,3.3386,1.869,2.57,5.568,+,True,3
+&svk-telge_ligacup,67,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Alfred Mjörnheim,float,1.2609,-9.0,3.0546,7.5235,4.3363,0.7337,7.9817,5.8804,False,14.804,-1.2009,1.5499,1.7492,5.168,-,False,2
+&svk-telge_ligacup,68,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Alfred Mjörnheim,float,1.4299,-9.0,3.1282,8.3814,4.2461,1.4165,9.7158,6.5498,False,14.884,,,,,-,True,2
+&svk-telge_ligacup,69,Södertelge VBK,Sollentuna VK,Liam Thynne,Jakob Molin,float,1.0576,-9.0,2.8303,7.2379,5.1346,2.615,9.745,8.6198,False,14.781,4.6224,5.7616,1.7418,7.681,-,True,2
+&svk-telge_ligacup,70,Sollentuna VK,Södertelge VBK,Christian Hansson,Alfred Mjörnheim,float,7.7165,-8.5843,3.0806,8.7135,6.3758,1.4138,8.8664,8.6674,False,15.632,4.8914,7.7347,2.2613,5.581,-,True,1
+&svk-telge_ligacup,71,Södertelge VBK,Sollentuna VK,Alfred Mjörnheim,Svante Fridström,float,7.2111,-9.0,2.8923,4.7235,5.2894,1.7366,4.1602,8.4513,False,15.41,3.6462,3.1187,2.605,6.598,!,True,1
+&svk-telge_ligacup,72,Sollentuna VK,Södertelge VBK,Jakob Molin,Valdemar Mjörnheim,float,6.965,-9.5193,2.9897,3.9846,6.0068,1.3403,3.3308,9.0286,False,16.698,4.966,4.1672,1.7478,4.542,-,False,6
+&svk-telge_ligacup,73,Sollentuna VK,Södertelge VBK,Jakob Molin,Valdemar Mjörnheim,float,6.9239,-9.5973,3.0609,4.6827,6.6882,1.0842,4.4892,8.5912,False,16.395,3.2359,1.6667,2.4729,5.014,+,False,6
+&svk-telge_ligacup,74,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,7.8204,-9.0,2.6745,8.3977,4.5938,1.1798,8.3563,6.0741,False,13.936,2.5377,2.2879,2.4929,5.023,!,True,6
+&svk-telge_ligacup,75,Södertelge VBK,Sollentuna VK,Filip Kryske,Svante Fridström,spin,6.2555,-9.0,3.396,4.4958,6.2359,0.8661,4.3937,7.2319,False,17.056,3.5237,1.781,3.0049,5.012,+,True,2
+&svk-telge_ligacup,76,Sollentuna VK,Södertelge VBK,Christian Hansson,Dario Dumancic,float,7.0391,-9.0,3.2449,6.5933,4.7647,1.3092,6.3411,6.5112,False,13.488,3.9556,1.8622,2.4619,5.047,+,True,6
+&svk-telge_ligacup,77,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Jakob Molin,float,-0.7738,-9.0,2.6565,7.8568,4.2672,0.9179,8.6128,5.4669,False,14.687,3.4108,1.2925,2.5868,5.424,#,True,1
+&svk-telge_ligacup,78,Sollentuna VK,Södertelge VBK,Jakob Molin,Valdemar Mjörnheim,float,6.2976,-9.0,2.9767,4.5029,6.0788,1.0263,4.2269,7.27,False,14.946,7.4682,3.7015,1.66,5.608,-,False,5
+&svk-telge_ligacup,79,Sollentuna VK,Södertelge VBK,Jakob Molin,Valdemar Mjörnheim,float,6.2299,-9.0,3.0663,6.2088,5.7495,0.8982,6.0916,6.9925,False,15.516,3.2635,1.8315,2.2366,5.307,+,True,5
+&svk-telge_ligacup,80,Sollentuna VK,Södertelge VBK,Davyd Berezhnyi,Dario Dumancic,float,7.0783,-9.0,3.106,9.0321,4.7738,1.2869,9.1572,6.776,False,16.247,,,,,+,False,4
+&svk-telge_ligacup,81,Sollentuna VK,Södertelge VBK,Davyd Berezhnyi,Valdemar Mjörnheim,float,6.4769,-9.0,3.0202,3.8722,4.2164,0.2885,3.8206,4.3698,True,11.795,2.951,1.4773,2.3216,3.304,+,False,4
+&svk-telge_ligacup,82,Sollentuna VK,Södertelge VBK,Davyd Berezhnyi,Valdemar Mjörnheim,float,5.4577,-9.0,3.2582,5.4657,5.6719,1.433,5.2172,7.9031,False,16.095,3.4095,4.8439,1.806,7.345,-,True,4
+&svk-telge_ligacup,83,Södertelge VBK,Sollentuna VK,Dario Dumancic,Lucas Nordström,spin,3.3347,-9.0,3.1969,2.367,6.0637,0.5809,2.2502,7.1021,False,24.619,0.8565,-0.2616,3.1388,6.597,/,True,5
+&svk-telge_ligacup,84,Sollentuna VK,Södertelge VBK,Peter Blomgren,Filip Kryske,float,7.5564,-9.0,2.9279,7.7186,5.0697,1.4804,7.6113,7.2074,False,14.656,5.1618,1.9369,2.6563,5.982,+,True,3
+&svk-telge_ligacup,85,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,8.4724,-9.1115,2.7299,8.0423,5.1902,1.7553,7.9498,7.9387,False,14.29,6.5036,0.8256,1.9538,4.482,!,True,4
+&svk-telge_ligacup,86,Sollentuna VK,Södertelge VBK,Svante Fridström,Dario Dumancic,float,7.4827,-9.0,2.7183,6.8327,4.6852,1.0709,6.7289,5.8584,False,14.864,2.2206,2.6973,2.3695,4.907,!,True,2
+&svk-telge_ligacup,87,Södertelge VBK,Sollentuna VK,Gustav Mjörnheim,Svante Fridström,float,7.7042,-8.9277,2.8076,2.355,4.3601,0.3932,2.1547,4.8361,False,15.016,3.0294,0.593,2.6363,4.879,#,True,3
+&svk-telge_ligacup,88,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Filip Kryske,float,1.9355,-9.0,2.8132,8.6264,4.5638,1.41,10.0935,6.7415,False,15.028,4.6424,2.4743,2.2463,5.566,!,False,1
+&svk-telge_ligacup,89,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Dario Dumancic,float,1.9142,-8.8827,2.8381,6.1928,4.5722,2.1249,7.9948,8.6074,False,15.907,,,,,+,True,1
+&svk-telge_ligacup,90,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Jakob Molin,float,-0.5275,-9.0,2.7839,6.9802,4.7372,1.2397,8.211,6.7699,False,15.966,3.3291,1.5956,2.8795,5.237,#,True,1
+&svk-telge_ligacup,91,Sollentuna VK,Södertelge VBK,Jakob Molin,Valdemar Mjörnheim,float,6.0733,-9.0,3.0529,3.4544,4.916,0.3434,3.3228,5.2121,False,15.618,3.2179,1.8737,2.5355,3.868,+,True,5
+&svk-telge_ligacup,92,Södertelge VBK,Sollentuna VK,Deyan Marinov,Jakob Molin,spin,1.33,-9.0,3.1639,3.4454,6.1466,0.9595,3.6859,7.7174,False,19.478,5.6285,2.9141,2.3843,4.922,!,False,6
+&svk-telge_ligacup,93,Södertelge VBK,Sollentuna VK,Deyan Marinov,Svante Fridström,spin,1.3007,-9.0,3.3768,6.887,5.533,0.5384,7.2172,6.2723,False,20.516,7.6586,0.1256,2.999,6.754,!,True,6
+&svk-telge_ligacup,94,Sollentuna VK,Södertelge VBK,Davyd Berezhnyi,Dario Dumancic,float,6.8386,-9.0,3.0631,7.8547,5.3188,1.1688,8.009,7.3606,False,17.291,6.8086,-0.2679,2.7154,7.453,/,False,4
+&svk-telge_ligacup,95,Sollentuna VK,Södertelge VBK,Gustaf Lindén,Filip Kryske,float,7.4056,-9.0,2.7602,9.5229,4.9949,1.917,10.1739,7.1241,False,12.858,5.3823,2.2932,1.9769,6.919,!,True,3
+&svk-telge_ligacup,96,Södertelge VBK,Sollentuna VK,Rasmus Ling Walldén,Svante Fridström,float,8.2756,-8.2211,2.9387,7.5923,5.2373,1.3112,7.4654,7.4092,False,15.216,4.6946,1.677,2.6414,5.109,+,True,4
+&svk-telge_ligacup,97,Sollentuna VK,Södertelge VBK,Svante Fridström,Filip Kryske,float,7.5585,-9.0,2.8675,6.24,5.2291,0.7802,5.8286,6.6365,False,15.717,6.1828,-0.5697,3.4412,4.828,/,False,2
+&svk-telge_ligacup,98,Sollentuna VK,Södertelge VBK,Svante Fridström,Filip Kryske,float,7.5274,-9.0,2.6844,7.7056,5.185,2.0886,7.126,8.8494,False,15.274,5.8756,2.1812,1.9067,4.71,!,False,2
+&svk-telge_ligacup,99,Sollentuna VK,Södertelge VBK,Svante Fridström,Valdemar Mjörnheim,float,7.6185,-9.0,2.8194,5.2728,5.402,1.2085,4.705,7.1012,False,15.475,3.1448,1.8541,3.5294,5.158,#,True,2
+&svk-telge_ligacup,100,Södertelge VBK,Sollentuna VK,Lucas Olanders,Lucas Nordström,spin,5.6486,-9.0,2.9921,3.3758,3.3877,0.3349,3.327,3.7101,False,11.767,0.3252,1.3929,2.4527,5.105,!,False,3
+&svk-telge_ligacup,101,Södertelge VBK,Sollentuna VK,Lucas Olanders,Lucas Nordström,spin,5.5857,-9.0,2.9791,4.4839,4.8712,0.4811,4.4642,5.139,True,12.051,2.4055,-0.2415,2.847,5.002,/,False,3
+&svk-telge_ligacup,102,Södertelge VBK,Sollentuna VK,Lucas Olanders,Lucas Nordström,spin,6.2143,-9.161,2.9553,4.6931,6.3652,0.3,4.6249,6.7485,False,20.655,2.4287,0.2939,2.2491,5.466,#,False,3
+&svk-telge_ligacup,103,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Daniel Hoxha,float,1.5843,-9.0,2.8216,6.663,6.1011,1.5814,7.7123,9.2224,False,15.297,5.963,1.763,1.8587,4.662,!,False,1
+&svk-telge_ligacup,104,Sollentuna VK,Södertelge VBK,Shawn Ogbeide,Daniel Hoxha,float,1.8746,-9.0,2.8137,7.2692,5.0549,0.7704,7.674,6.0268,False,14.98,3.694,3.1232,1.9997,3.841,!,True,1
+&svk-telge_ligacup,105,Södertelge VBK,Sollentuna VK,Filip Kryske,Lucas Nordström,spin,6.8735,-9.3988,3.0979,3.6733,6.6494,1.1013,3.0879,8.5908,False,24.135,5.3983,2.4494,2.8144,6.602,+,True,2
+&svk-telge_ligacup,106,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Svante Fridström,float,-0.3712,-9.0,3.2812,6.169,5.0527,0.7577,6.7407,6.2611,False,15.946,,,,5.572,=,False,1
+&svk-telge_ligacup,107,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Svante Fridström,float,-0.3537,-9.0,2.8176,5.285,6.0926,1.7463,5.9746,9.152,False,15.037,3.9036,1.357,1.9578,3.636,+,False,1
+&svk-telge_ligacup,108,Södertelge VBK,Sollentuna VK,Adrian Cabanne,Jakob Molin,float,-0.5103,-9.0,2.952,6.3031,5.5973,1.7585,7.9425,9.0649,False,16.969,5.1669,7.208,1.8403,7.284,-,True,1
+&svk-telge_ligacup,109,Sollentuna VK,Södertelge VBK,Jakob Molin,Filip Kryske,float,6.0398,-9.0,2.9695,5.0922,4.5575,0.9383,5.0113,5.8308,False,15.846,,,,,#,False,5
+&svk-telge_ligacup,110,Sollentuna VK,Södertelge VBK,Jakob Molin,Filip Kryske,float,6.2295,-9.0,2.8858,4.5555,5.1476,0.7958,4.18,6.3477,False,16.579,6.0235,1.2269,2.1546,4.075,+,False,5
+&svk-telge_ligacup,111,Sollentuna VK,Södertelge VBK,Jakob Molin,Filip Kryske,float,6.4267,-9.0,2.8844,4.5227,5.3098,0.8049,4.0706,6.6012,False,16.586,2.4153,0.316,3.0691,4.655,!,False,5
+&svk-uppsala,1,Uppsala,Sollentuna VK,Gustav Molin,Martin Ekholm,float,6.6476,-9.8672,2.6666,4.5643,6.708,0.6233,4.5241,7.3005,False,15.013,,,,0.623,=,False,2
+&svk-uppsala,2,Uppsala,Sollentuna VK,Gustav Molin,Axel Wendt,float,7.2918,-10.0191,2.5809,5.0959,4.6623,1.0864,4.9215,5.6954,False,13.082,3.7353,0.3023,2.7555,5.077,#,True,2
+&svk-uppsala,3,Sollentuna VK,Uppsala,Johan Nilsson,Pontus Fredstam,float,7.8101,-8.2199,2.8524,6.2554,5.5315,0.3812,6.249,5.8565,False,12.856,2.7982,1.0126,2.3105,3.749,#,True,1
+&svk-uppsala,4,Uppsala,Sollentuna VK,Theodor Neovius,Martin Ekholm,float,8.0448,-9.0466,2.7669,3.6325,5.6236,0.8187,3.3607,6.1658,False,11.629,4.0221,1.518,2.6022,5.159,+,True,1
+&svk-uppsala,5,Sollentuna VK,Uppsala,Gustaf Lindén,Pontus Fredstam,float,7.4964,-8.3021,2.9014,3.4168,6.4698,1.0529,3.0984,7.7851,False,14.372,2.1318,2.4788,1.8992,3.838,!,True,4
+&svk-uppsala,6,Uppsala,Sollentuna VK,Edvin Källströmer,Kai Wendler,float,7.8934,-9.402,2.6282,5.312,5.0461,1.3146,4.9583,6.7276,False,14.168,3.7194,3.3071,2.3817,5.868,!,False,4
+&svk-uppsala,7,Uppsala,Sollentuna VK,Edvin Källströmer,Kai Wendler,float,7.8863,-9.6392,2.5916,4.6559,5.203,2.0786,3.8691,7.9959,False,15.095,3.2617,0.9589,2.3207,4.81,#,True,4
+&svk-uppsala,8,Sollentuna VK,Uppsala,Axel Wendt,Pontus Fredstam,float,7.4672,-8.4362,2.8816,5.36,6.1213,1.7241,4.8263,8.6131,False,13.974,4.2843,1.8705,2.1399,5.618,+,True,3
+&svk-uppsala,9,Uppsala,Sollentuna VK,Pontus Hedebark,Axel Wendt,spin,8.1223,-8.626,3.1587,1.819,5.5158,0.6472,1.3104,6.2128,False,21.77,1.1557,0.093,2.9751,6.706,/,False,3
+&svk-uppsala,10,Uppsala,Sollentuna VK,Pontus Hedebark,Martin Ekholm,spin,8.1249,-8.4855,3.1979,5.645,6.3389,0.9262,5.2455,7.6215,False,24.497,1.5128,1.1699,2.4305,6.686,+,True,3
+&svk-uppsala,11,Sollentuna VK,Uppsala,Diego Zagai Roel,Theodor Neovius,float,1.9222,-8.3239,2.962,6.0813,6.0013,1.4925,6.8235,7.8814,False,14.637,5.4438,5.4358,0.7524,1.492,=,False,2
+&svk-uppsala,12,Uppsala,Sollentuna VK,Gustav Molin,Kai Wendler,float,6.6916,-10.0465,2.8149,6.7462,4.9023,0.9592,6.7269,5.9956,False,13.615,2.6769,2.4107,2.6313,6.363,+,True,2
+&svk-uppsala,13,Sollentuna VK,Uppsala,Johan Nilsson,Pontus Fredstam,float,7.6759,-9.2022,2.646,6.0432,6.7093,1.0985,5.9021,7.9241,False,13.245,7.8591,2.3657,1.6063,5.125,-,False,1
+&svk-uppsala,14,Sollentuna VK,Uppsala,Johan Nilsson,Edvin Källströmer,float,7.7264,-8.3101,2.8773,7.5177,6.1867,1.0822,7.562,7.513,False,15.236,6.2674,2.2142,1.9179,5.956,!,True,1
+&svk-uppsala,15,Uppsala,Sollentuna VK,Theodor Neovius,Davyd Berezhnyi,float,7.5558,-8.945,2.9299,5.5101,3.8819,1.3223,5.1557,5.1542,False,13.74,,,,4.521,=,False,1
+&svk-uppsala,16,Uppsala,Sollentuna VK,Theodor Neovius,Martin Ekholm,float,7.818,-9.4252,2.804,2.5833,7.2825,1.4442,1.9553,9.2526,False,14.82,4.3882,5.3194,1.6333,6.267,-,True,1
+&svk-uppsala,17,Sollentuna VK,Uppsala,Kai Wendler,Theodor Neovius,float,3.5991,-8.8786,2.8459,3.4111,4.5714,0.6935,3.3368,5.1535,False,13.752,,,,,#,True,6
+&svk-uppsala,18,Uppsala,Sollentuna VK,Hugo Sörvik Sjölin,Kai Wendler,float,1.4737,-9.5328,3.097,2.7708,6.4071,1.5332,2.8639,8.6885,False,14.698,4.9875,6.7738,1.7229,6.817,-,False,6
+&svk-uppsala,19,Uppsala,Sollentuna VK,Oliver Reed,Martin Ekholm,spin,7.1858,-9.7019,3.1423,1.8886,5.8016,1.3061,1.1506,7.3131,False,18.235,3.9775,1.1537,2.3476,4.365,#,False,5
+&svk-uppsala,20,Sollentuna VK,Uppsala,Gustaf Lindén,Edvin Källströmer,float,7.6367,-8.4341,3.0142,6.7217,6.1239,1.2052,6.5081,8.2615,False,15.436,3.8809,4.0618,2.3119,5.073,-,True,4
+&svk-uppsala,21,Uppsala,Sollentuna VK,Edvin Källströmer,Kai Wendler,float,7.9928,-9.486,2.6302,5.4615,5.7744,1.2574,4.9765,7.5212,False,14.163,,,,6.055,/,False,4
+&svk-uppsala,22,Uppsala,Sollentuna VK,Edvin Källströmer,Axel Wendt,float,7.7982,-9.5526,2.5607,7.1176,5.4625,2.4037,7.2088,9.3147,False,14.634,4.9635,3.3193,2.3762,5.159,!,False,4
+&svk-uppsala,23,Uppsala,Sollentuna VK,Edvin Källströmer,Kai Wendler,float,7.9281,-9.4811,2.6502,6.2808,5.887,1.4292,5.5968,8.9554,False,15.732,,,,,=,False,4
+&svk-uppsala,24,Uppsala,Sollentuna VK,Edvin Källströmer,Axel Wendt,float,7.8007,-9.4087,2.5608,6.9605,4.8915,1.6835,6.9089,7.483,False,15.201,5.2275,5.8858,1.7207,6.297,-,True,4
+&svk-uppsala,25,Sollentuna VK,Uppsala,Axel Wendt,Theodor Neovius,float,7.2896,-8.2337,2.8936,7.5516,5.8577,1.9108,7.4558,9.5105,False,15.782,5.9546,6.1253,2.0242,8.268,-,True,3
+&svk-uppsala,26,Sollentuna VK,Uppsala,Diego Zagai Roel,Pontus Fredstam,float,1.8173,-9.4458,2.7739,4.2389,5.637,1.2453,4.6422,6.9213,False,13.297,1.7296,2.845,1.8681,4.56,!,True,2
+&svk-uppsala,27,Uppsala,Sollentuna VK,Gustav Molin,Martin Ekholm,float,6.5925,-9.7637,2.7355,3.6434,5.7512,1.0163,3.3525,6.9744,False,14.802,1.4039,2.3019,2.4707,5.155,!,True,2
+&svk-uppsala,28,Sollentuna VK,Uppsala,Johan Nilsson,Edvin Källströmer,float,7.882,-7.9173,2.8566,7.6646,6.168,0.2531,7.5459,6.437,False,14.009,4.1101,1.4922,2.3393,4.478,+,True,1
+&svk-uppsala,29,Uppsala,Sollentuna VK,Theodor Neovius,Axel Wendt,float,7.6005,-8.3653,3.1092,4.9726,5.0802,0.9065,4.7694,6.0772,False,13.787,,,,5.515,/,False,1
+&svk-uppsala,30,Uppsala,Sollentuna VK,Theodor Neovius,Kai Wendler,float,7.6054,-8.604,3.0315,5.7394,4.4132,0.5943,5.653,4.6167,False,13.36,3.1584,2.6847,2.4875,4.283,!,True,1
+&svk-uppsala,31,Sollentuna VK,Uppsala,Kai Wendler,Pontus Fredstam,float,2.8919,-8.9538,2.8046,3.8337,5.4651,0.5982,3.9477,6.0782,False,14.213,4.5523,2.7044,2.1574,4.075,!,True,6
+&svk-uppsala,32,Uppsala,Sollentuna VK,Hugo Sörvik Sjölin,Davyd Berezhnyi,float,1.4876,-9.8887,3.0577,6.8569,2.6524,0.696,7.1336,3.0658,False,11.625,1.5767,4.6823,1.1843,3.164,-,False,6
+&svk-uppsala,33,Sollentuna VK,Uppsala,Johan Nilsson,Theodor Neovius,float,7.8858,-8.3796,2.8911,8.1932,5.1299,0.8847,8.1786,6.7316,False,14.433,5.0111,3.6038,2.2668,5.585,!,False,2
+&svk-uppsala,34,Sollentuna VK,Uppsala,Johan Nilsson,Theodor Neovius,float,7.7207,-8.5725,2.8456,8.6863,5.2713,1.1857,8.5473,7.73,False,15.917,3.6158,2.9323,1.6766,3.103,!,False,2
+&svk-uppsala,35,Sollentuna VK,Uppsala,Johan Nilsson,Edvin Källströmer,float,7.7774,-8.6105,2.8002,7.6643,7.2542,1.0705,7.67,8.5164,False,14.416,5.8012,0.3995,2.4143,5.24,+,True,2
+&svk-uppsala,36,Uppsala,Sollentuna VK,Gustav Molin,Kai Wendler,float,6.2808,-9.4955,2.8568,3.9804,5.6599,1.3053,3.5576,7.1155,False,13.896,5.5909,0.5982,2.4047,5.815,#,True,1
+&svk-uppsala,37,Uppsala,Sollentuna VK,Theodor Neovius,Kai Wendler,float,7.4712,-9.0765,2.8893,6.6337,4.8364,2.2445,6.3237,8.2518,False,14.786,1.6346,1.5342,2.4945,4.836,!,True,6
+&svk-uppsala,38,Sollentuna VK,Uppsala,Davyd Berezhnyi,Pontus Fredstam,float,7.1205,-9.367,3.1591,5.6907,5.4302,1.3159,5.4732,7.2559,False,15.251,2.2662,2.0244,2.1382,5.353,+,False,6
+&svk-uppsala,39,Sollentuna VK,Uppsala,Davyd Berezhnyi,Edvin Källströmer,float,6.0771,-9.0022,3.1918,8.0002,5.5979,1.484,8.0817,8.6317,False,16.495,1.2088,2.9619,1.8895,6.406,-,True,6
+&svk-uppsala,40,Uppsala,Sollentuna VK,Hugo Sörvik Sjölin,Lucas Nordström,float,0.8554,-9.6791,2.699,3.4285,5.8017,1.0635,3.6826,7.2477,False,14.93,,,,4.874,+,True,5
+&svk-uppsala,41,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.4727,-8.5521,2.9774,5.4012,5.4402,1.0473,5.3324,6.6198,False,13.597,2.4671,2.5539,2.316,4.822,!,False,5
+&svk-uppsala,42,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.6045,-7.9396,2.8932,6.4181,5.4819,0.9181,6.1287,6.8507,False,14.415,,,,5.132,#,True,5
+&svk-uppsala,43,Uppsala,Sollentuna VK,Oskar Törner,Kai Wendler,float,6.3964,-9.1305,2.7644,6.2267,3.7025,0.5785,6.2196,4.3242,False,12.698,,,,3.97,=,False,4
+&svk-uppsala,44,Uppsala,Sollentuna VK,Oskar Törner,Kai Wendler,float,5.9604,-8.4323,2.9632,6.2204,4.7592,1.3658,6.2729,6.3174,False,13.536,4.8861,0.2521,1.9086,3.019,/,True,4
+&svk-uppsala,45,Sollentuna VK,Uppsala,Kai Wendler,Pontus Fredstam,float,1.6745,-9.6247,2.61,3.8601,5.3882,1.0909,4.1487,6.6565,False,15.0,,,,4.381,/,False,1
+&svk-uppsala,46,Sollentuna VK,Uppsala,Kai Wendler,Pontus Fredstam,float,2.6706,-8.8319,2.8975,4.6922,6.0005,1.9226,5.1436,8.4487,False,14.583,5.8033,2.3444,2.1325,5.778,!,True,1
+&svk-uppsala,47,Uppsala,Sollentuna VK,Edvin Källströmer,Lucas Nordström,float,7.591,-9.6542,2.7367,3.0194,5.2523,1.2022,2.4313,6.7164,False,14.612,3.044,0.479,2.6478,3.809,#,True,3
+&svk-uppsala,48,Sollentuna VK,Uppsala,Diego Zagai Roel,Edvin Källströmer,float,1.6999,-9.456,2.7397,2.7742,6.0595,1.1417,2.9135,7.6345,False,15.541,4.1061,0.2092,2.5038,5.032,+,True,6
+&svk-uppsala,49,Uppsala,Sollentuna VK,Linus Stjernberg,Kai Wendler,float,1.6489,-8.9529,2.9268,5.5726,5.8896,1.1856,5.8338,7.1119,False,14.24,2.1757,1.8098,2.5983,5.059,+,False,2
+&svk-uppsala,50,Uppsala,Sollentuna VK,Linus Stjernberg,Jakob Molin,float,0.9864,-9.8235,2.7316,5.9907,4.6724,1.1095,6.4401,5.8007,False,14.057,3.4305,0.9016,2.6463,4.736,#,True,2
+&svk-uppsala,51,Sollentuna VK,Uppsala,Johan Nilsson,Edvin Källströmer,float,7.4245,-9.078,2.745,5.7853,6.1035,0.7604,5.6357,7.1242,False,14.63,2.8349,0.5263,2.8696,4.944,#,True,5
+&svk-uppsala,52,Uppsala,Sollentuna VK,Pontus Hedebark,Lucas Nordström,spin,7.8839,-9.1373,3.1167,3.5418,6.6283,1.0829,3.258,7.737,False,20.843,4.2,1.8785,2.5386,4.899,+,True,1
+&svk-uppsala,53,Sollentuna VK,Uppsala,Jakob Molin,Theodor Neovius,float,6.4787,-9.8241,3.0086,6.3499,5.0586,1.0435,6.3871,6.3179,False,14.598,4.2512,2.7596,2.427,4.307,!,True,4
+&svk-uppsala,54,Uppsala,Sollentuna VK,Theodor Neovius,Kai Wendler,float,7.5414,-9.19,2.7939,7.3857,4.2845,1.207,7.3736,6.8969,False,15.975,,,,,=,False,6
+&svk-uppsala,55,Uppsala,Sollentuna VK,Theodor Neovius,Lucas Nordström,float,7.5415,-9.5792,2.7448,6.5723,6.1171,1.3911,6.5712,8.1213,False,15.472,4.8238,0.9034,1.2256,3.155,-,False,6
+&svk-uppsala,56,Uppsala,Sollentuna VK,Theodor Neovius,Kai Wendler,float,7.3461,-9.1991,2.7913,7.8451,4.9558,1.649,7.9471,7.9404,False,15.159,4.3818,1.0927,2.4704,5.666,#,False,6
+&svk-uppsala,57,Uppsala,Sollentuna VK,Theodor Neovius,Lucas Nordström,float,7.3579,-9.7443,2.8559,5.3917,8.8258,0.0666,5.276,8.9585,False,14.581,,,,,=,False,6
+&svk-uppsala,58,Uppsala,Sollentuna VK,Theodor Neovius,Jakob Molin,float,7.6434,-9.7076,2.8165,2.5444,6.2059,2.1594,1.3952,9.5362,False,15.725,1.0089,8.7573,2.0124,6.138,=,False,6
+&svk-uppsala,59,Uppsala,Sollentuna VK,Theodor Neovius,Lucas Nordström,float,7.6118,-9.5851,2.8827,5.1591,6.1938,0.8582,4.6545,7.5127,False,19.157,2.1395,1.6866,2.7568,5.45,+,False,6
+&svk-uppsala,60,Uppsala,Sollentuna VK,Theodor Neovius,Lucas Nordström,float,7.2932,-9.6468,2.7546,5.5321,5.937,1.1181,5.2748,7.5471,False,15.11,4.4805,0.556,2.274,5.197,#,True,6
+&svk-uppsala,61,Uppsala,Sollentuna VK,Hugo Sörvik Sjölin,Jakob Molin,float,1.007,-8.7889,2.9995,4.9591,5.267,0.5609,5.0343,5.7649,False,12.648,3.1323,1.0141,2.4833,4.482,#,False,5
+&svk-uppsala,62,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.4343,-8.3378,2.9209,5.5235,5.887,1.4792,5.291,8.1577,False,14.933,3.9702,2.733,2.3151,6.891,!,False,2
+&svk-uppsala,63,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.4813,-8.4318,2.8733,4.875,5.5557,1.5053,4.259,7.9248,False,15.515,2.2884,1.9688,2.4781,5.962,+,False,2
+&svk-uppsala,64,Uppsala,Sollentuna VK,Oskar Törner,Kai Wendler,float,6.297,-8.9142,2.9107,7.7164,4.8462,1.9495,8.2206,7.7493,False,15.101,3.8361,0.4283,2.6661,6.758,#,True,4
+&svk-uppsala,65,Sollentuna VK,Uppsala,Kai Wendler,Edvin Källströmer,float,1.9451,-9.3931,2.8159,1.0826,5.7945,1.2735,1.1274,7.4117,False,13.669,3.6871,0.7935,2.3853,4.43,#,True,1
+&svk-uppsala,66,Uppsala,Sollentuna VK,Edvin Källströmer,Lucas Nordström,float,7.8274,-9.7513,2.671,3.0472,5.6596,1.282,2.3531,7.0285,False,13.863,3.0472,1.228,2.3422,3.974,+,False,3
+&svk-uppsala,67,Uppsala,Sollentuna VK,Edvin Källströmer,Kai Wendler,float,7.5291,-9.8145,2.6387,2.3699,5.1256,1.1746,1.8383,7.0619,False,15.921,1.1096,2.2218,2.6241,6.499,!,True,3
+&svk-uppsala,68,Sollentuna VK,Uppsala,Diego Zagai Roel,Theodor Neovius,float,1.9101,-9.1664,2.8082,7.3376,4.6535,1.9266,8.841,7.8106,False,15.672,5.6168,1.5893,1.1139,3.371,-,True,6
+&svk-uppsala,69,Uppsala,Sollentuna VK,Linus Stjernberg,Jakob Molin,float,1.5754,-9.2703,2.8307,6.7002,4.765,1.3496,7.3445,6.6327,False,15.575,,,,5.093,#,True,2
+&svk-uppsala,70,Sollentuna VK,Uppsala,Johan Nilsson,Edvin Källströmer,float,7.7392,-8.3929,2.9018,6.5954,6.7764,1.3059,6.2684,9.0448,False,14.289,3.8298,1.0453,1.6489,3.284,+,False,5
+&svk-uppsala,71,Sollentuna VK,Uppsala,Johan Nilsson,Theodor Neovius,float,7.8713,-8.7092,2.8736,8.4266,5.7708,1.5068,8.5069,8.0038,False,14.26,3.9931,2.4925,2.2616,7.111,!,True,5
+&svk-uppsala,72,Uppsala,Sollentuna VK,Pontus Hedebark,Lucas Nordström,spin,7.4281,-8.4109,3.2236,3.208,6.26,0.473,2.8839,6.7818,False,22.69,,,,4.387,/,False,1
+&svk-uppsala,73,Uppsala,Sollentuna VK,Pontus Hedebark,Lucas Nordström,spin,7.7479,-8.5279,3.1035,2.9267,6.1926,1.0638,2.0901,7.7342,False,25.669,2.0842,1.5588,2.4918,5.133,+,True,1
+&svk-uppsala,74,Sollentuna VK,Uppsala,Jakob Molin,Pontus Fredstam,float,6.5196,-9.3286,3.0764,3.2311,5.9136,0.777,2.8591,6.7721,False,17.59,4.9967,3.3359,2.5715,5.803,!,True,4
+&svk-uppsala,75,Uppsala,Sollentuna VK,Oskar Törner,Martin Ekholm,float,6.199,-8.5613,3.0143,2.8722,5.819,1.1229,2.4433,6.5959,False,11.921,4.0593,1.3673,2.4411,5.214,#,True,2
+&svk-uppsala,76,Sollentuna VK,Uppsala,Johan Nilsson,Edvin Källströmer,float,8.0545,-8.3883,2.8447,7.7386,6.7509,1.3338,7.7187,8.2354,False,13.593,3.7801,1.3031,2.3835,6.497,#,True,1
+&svk-uppsala,77,Sollentuna VK,Uppsala,Jakob Molin,Theodor Neovius,float,6.4889,-9.6519,3.0527,2.9799,5.4559,1.049,2.5801,7.0506,False,15.486,4.9989,0.7105,1.8469,3.301,+,True,6
+&svk-uppsala,78,Uppsala,Sollentuna VK,Linus Stjernberg,Martin Ekholm,float,1.2148,-9.6558,2.7616,6.0661,6.8249,1.64,6.6246,8.9029,False,14.818,2.6092,2.8475,2.4925,5.138,!,False,6
+&svk-uppsala,79,Uppsala,Sollentuna VK,Linus Stjernberg,Martin Ekholm,float,1.3775,-9.4416,2.9141,4.6574,5.1951,0.5986,4.7468,5.731,False,13.615,6.8306,1.8694,1.6352,3.706,-,True,6
+&svk-uppsala,80,Sollentuna VK,Uppsala,Davyd Berezhnyi,Edvin Källströmer,float,6.6997,-8.7877,3.1821,8.6204,5.7515,0.8191,8.7417,6.8372,False,15.982,6.1912,2.0587,2.5114,5.847,!,True,5
+&svk-uppsala,81,Uppsala,Sollentuna VK,Oliver Reed,Martin Ekholm,spin,7.6813,-9.6452,3.1253,2.5112,5.7771,0.5952,2.0317,6.4963,False,20.735,4.0517,0.7432,2.6079,6.111,#,True,5
+&svk-uppsala,82,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.499,-8.5139,2.7499,4.0473,8.3651,-0.0543,4.1977,8.3675,False,15.881,,,,,=,False,4
+&svk-uppsala,83,Uppsala,Sollentuna VK,Edvin Källströmer,Axel Wendt,float,7.8788,-9.5795,2.5649,6.3456,5.9313,1.7683,5.9384,8.9771,False,15.114,5.0338,-0.3082,2.6637,5.654,/,False,4
+&svk-uppsala,84,Uppsala,Sollentuna VK,Edvin Källströmer,Jakob Molin,float,7.822,-9.7782,2.5649,6.1926,5.5051,0.7255,6.0791,6.2985,False,14.533,4.7131,1.2612,2.7449,4.621,#,False,4
+&svk-uppsala,85,Uppsala,Sollentuna VK,Edvin Källströmer,Axel Wendt,float,7.7343,-9.5668,2.6239,7.0426,5.0317,2.2324,6.79,8.1613,False,14.13,4.3815,1.8416,2.8195,4.903,+,True,4
+&svk-uppsala,86,Sollentuna VK,Uppsala,Axel Wendt,Theodor Neovius,float,7.1087,-8.6522,2.9218,7.5994,5.2144,1.3558,7.6934,7.1601,False,13.989,,,,4.643,+,True,3
+&svk-uppsala,87,Sollentuna VK,Uppsala,Diego Zagai Roel,Elvin Lindkvist,float,2.0042,-9.4764,2.7395,3.564,5.6881,1.0213,3.738,6.6038,False,14.076,2.4045,2.826,2.6362,5.399,!,False,2
+&svk-uppsala,88,Uppsala,Sollentuna VK,Oskar Törner,Jakob Molin,float,6.3555,-8.6476,2.8863,6.6542,5.7143,1.963,6.9154,8.3956,False,13.721,4.4715,2.122,2.6406,4.546,!,True,2
+&svk-uppsala,89,Sollentuna VK,Uppsala,Johan Nilsson,Elvin Lindkvist,float,7.394,-8.5766,2.9089,3.5728,5.221,1.5035,3.0867,7.1613,False,13.692,3.158,1.2839,2.4041,5.486,#,True,1
+&svk-uppsala,90,Uppsala,Sollentuna VK,Theodor Neovius,Martin Ekholm,float,7.7401,-9.3413,2.807,2.4019,6.4117,1.1776,1.6864,7.5149,False,13.968,4.0518,1.9752,2.5354,5.638,+,False,1
+&svk-uppsala,91,Uppsala,Sollentuna VK,Theodor Neovius,Axel Wendt,float,7.7143,-9.7851,2.8673,4.5738,5.4873,1.3267,3.8937,8.066,False,17.304,4.8327,4.8171,2.0663,8.089,-,True,1
+&svk-uppsala,92,Sollentuna VK,Uppsala,Jakob Molin,Theodor Neovius,float,6.4066,-8.8996,2.9916,3.2381,6.1126,1.6821,2.7577,8.7083,False,15.202,2.8483,1.8242,1.6373,3.409,!,False,6
+&svk-uppsala,93,Sollentuna VK,Uppsala,Davyd Berezhnyi,Edvin Källströmer,float,7.1475,-9.3148,3.1084,7.4363,6.3279,1.3413,7.3593,8.337,False,15.46,2.3221,3.4796,1.9396,5.48,!,True,5
+&svk-uppsala,94,Uppsala,Sollentuna VK,Oliver Reed,Martin Ekholm,spin,6.5888,-8.6157,3.1957,2.8953,5.939,0.6276,2.574,6.5554,False,20.179,2.8346,1.2724,2.6827,4.716,#,False,5
+&svk-uppsala,95,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.4133,-8.3334,2.8355,4.8354,5.7913,1.6047,4.3608,7.884,False,13.971,,,,1.607,=,False,4
+&svk-uppsala,96,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.3896,-8.6581,2.8224,4.1109,5.54,1.4796,3.4708,7.7619,False,15.481,0.6745,2.1618,2.5797,5.691,!,True,4
+&svk-uppsala,97,Uppsala,Sollentuna VK,Edvin Källströmer,Jakob Molin,float,7.7368,-9.6299,2.5465,6.4452,5.1212,0.5025,6.2782,5.4331,False,13.99,2.883,1.1908,2.2258,4.067,+,False,4
+&svk-uppsala,98,Uppsala,Sollentuna VK,Edvin Källströmer,Jakob Molin,float,7.8419,-9.7029,2.606,6.386,6.3195,1.5786,6.0622,8.7627,False,14.962,3.9544,2.377,2.3831,5.178,+,False,4
+&svk-uppsala,99,Sollentuna VK,Uppsala,Axel Wendt,Theodor Neovius,float,7.3241,-8.453,2.7837,7.2328,5.1184,2.0013,7.3237,8.8969,False,15.055,3.1966,1.5449,2.1303,4.023,#,True,3
+&svk-uppsala,100,Uppsala,Sollentuna VK,Hugo Sörvik Sjölin,Martin Ekholm,float,0.9852,-9.8161,2.747,3.1696,4.1292,0.9213,3.2785,4.9755,False,12.384,3.8826,0.7945,2.6302,3.756,#,True,3
+&svk-uppsala,101,Sollentuna VK,Uppsala,Diego Zagai Roel,Theodor Neovius,float,2.3476,-8.7743,2.9219,7.8071,4.7759,1.1356,8.7913,6.1598,False,14.71,3.1043,1.5911,2.3932,4.072,+,True,2
+&svk-uppsala,102,Uppsala,Sollentuna VK,Oskar Törner,Axel Wendt,float,6.2085,-8.5719,2.9648,3.7917,5.4983,1.3058,3.1958,6.9495,False,13.887,0.5739,1.8393,1.9985,5.626,!,False,2
+&svk-uppsala,103,Uppsala,Sollentuna VK,Oskar Törner,Axel Wendt,float,6.1858,-8.8892,2.9843,5.1479,2.9996,0.3554,5.1224,3.029,False,10.515,4.2206,0.4561,2.01,2.27,/,False,2
+&svk-uppsala,104,Uppsala,Sollentuna VK,Oskar Törner,Axel Wendt,float,6.3079,-9.3037,2.737,4.6796,5.208,2.0752,4.3408,7.7589,False,13.682,3.8264,0.2028,2.5994,5.072,#,True,2
+&svk-uppsala,105,Sollentuna VK,Uppsala,Johan Nilsson,Elvin Lindkvist,float,7.6263,-9.7984,2.7012,6.6745,5.8328,1.406,6.7632,7.8009,False,14.033,2.4339,3.8404,1.757,4.063,-,True,1
+&svk-uppsala,106,Uppsala,Sollentuna VK,Theodor Neovius,Jakob Molin,float,7.4779,-9.6148,2.8487,7.8338,5.6725,1.4016,7.9134,7.4228,False,14.553,3.0404,1.0177,2.35,5.304,#,True,1
+&svk-uppsala,107,Sollentuna VK,Uppsala,Jakob Molin,Theodor Neovius,float,6.4653,-9.0127,2.9285,2.6343,5.7494,1.5866,1.8182,8.3025,False,16.349,7.0992,2.1825,1.7517,5.343,!,True,6
+&svk-uppsala,108,Uppsala,Sollentuna VK,Linus Stjernberg,Martin Ekholm,float,1.3404,-9.3202,2.7844,6.3929,5.9512,1.283,7.0425,7.604,False,14.89,1.9988,1.7902,2.5477,4.383,!,True,6
+&svk-uppsala,109,Sollentuna VK,Uppsala,Davyd Berezhnyi,Theodor Neovius,float,6.8504,-8.8395,3.2567,4.8679,5.5736,1.349,4.6245,7.7409,False,15.798,6.1753,2.6344,2.4776,5.81,!,True,5
+&svk-uppsala,110,Uppsala,Sollentuna VK,Oliver Reed,Martin Ekholm,spin,7.47,-9.9272,3.1517,1.7194,5.7491,1.3021,0.6661,7.6016,False,19.644,3.5169,1.7053,2.5145,5.87,+,True,5
+&svk-uppsala,111,Sollentuna VK,Uppsala,Gustaf Lindén,Theodor Neovius,float,7.5255,-8.4998,2.8519,5.6264,5.4039,0.7244,5.4511,5.9579,False,13.409,3.8726,2.0592,2.5124,4.25,+,True,4
+&svk-vingåker_ligacup,1,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Hampus Fält,float,6.7837,-9.0,2.9157,5.2443,6.3422,1.7451,4.6724,9.2944,False,15.803,2.5012,1.2133,2.4323,5.549,#,True,6
+&svk-vingåker_ligacup,2,Vingĺkers VBK,Sollentuna VK,Kalle Bergström,Jakob Molin,float,0.9148,-9.0,2.8263,5.6821,5.4881,1.15,6.0321,7.7562,False,15.427,3.3273,0.337,3.1515,3.84,/,False,1
+&svk-vingåker_ligacup,3,Vingĺkers VBK,Sollentuna VK,Kalle Bergström,Axel Algulin,float,0.4384,-9.0,2.7896,4.9077,6.1225,1.78,5.4967,9.1326,False,15.787,2.7461,1.0057,2.477,4.768,#,True,1
+&svk-vingåker_ligacup,4,Sollentuna VK,Vingĺkers VBK,Jakob Molin,Jérémie Doyon,float,6.2931,-9.0,2.9565,5.0594,5.8473,1.5756,4.6289,8.4654,False,15.599,3.1665,1.6962,5.2882,5.528,/,False,5
+&svk-vingåker_ligacup,5,Vingĺkers VBK,Sollentuna VK,Nezar Harouk,Jakob Molin,spin,4.8944,-9.0568,3.3651,3.3989,6.4372,0.9715,3.1042,7.7572,False,23.326,5.2837,-0.4244,2.6671,5.972,/,True,6
+&svk-vingåker_ligacup,6,Sollentuna VK,Vingĺkers VBK,Davyd Berezhnyi,Reed Venning,float,6.5055,-9.0,3.2265,7.2349,4.8166,0.502,7.2019,5.399,False,14.707,,,,2.92,=,False,4
+&svk-vingåker_ligacup,7,Sollentuna VK,Vingĺkers VBK,Davyd Berezhnyi,Jérémie Doyon,float,7.1922,-9.0,3.1301,4.8892,5.2532,0.6527,4.4659,6.0904,False,17.887,1.7306,1.4426,2.2748,3.624,!,True,4
+&svk-vingåker_ligacup,8,Vingĺkers VBK,Sollentuna VK,Reed Venning,Jakob Molin,spin,4.6656,-9.0,3.2589,6.1057,6.0274,0.8077,6.1401,7.1643,False,25.407,0.1438,2.7565,2.5976,6.687,-,True,5
+&svk-vingåker_ligacup,9,Sollentuna VK,Vingĺkers VBK,Gustaf Lindén,Jérémie Doyon,float,7.4,-9.0,2.7554,7.4804,4.1638,0.8144,7.3589,4.9427,False,13.443,1.8593,3.5303,2.0418,4.178,!,True,3
+&svk-vingåker_ligacup,10,Vingĺkers VBK,Sollentuna VK,Andreas Brink,Jakob Molin,float,1.6893,-9.0,3.544,6.3696,4.7582,1.1453,7.1827,6.4281,False,14.058,4.5946,4.9117,1.9716,4.758,-,False,4
+&svk-vingåker_ligacup,11,Vingĺkers VBK,Sollentuna VK,Andreas Brink,Jakob Molin,float,1.7499,-9.0,3.4603,4.9299,5.3049,1.2976,5.3807,7.3593,False,15.41,2.9694,1.854,2.5303,5.065,+,True,4
+&svk-vingåker_ligacup,12,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Reed Venning,spin,7.1644,-9.0,3.1336,5.836,6.0206,0.6166,5.5878,6.5763,False,18.107,,,,5.544,/,False,2
+&svk-vingåker_ligacup,13,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Reed Venning,spin,7.0051,-9.0,3.0017,5.0589,5.811,1.2187,4.5063,7.4699,False,25.68,3.2754,-0.3977,2.8611,6.875,/,False,2
+&svk-vingåker_ligacup,14,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Hampus Fält,spin,6.9911,-9.0,3.1847,3.2822,3.9712,0.3863,3.0786,4.2374,False,13.33,1.6807,1.0154,2.4268,4.325,+,False,2
+&svk-vingåker_ligacup,15,Vingĺkers VBK,Sollentuna VK,Lorenz Rudolf,Jakob Molin,spin,5.6668,-8.2188,3.1109,6.7941,4.7636,1.3566,7.0554,7.6835,False,21.439,,,,,=,False,3
+&svk-vingåker_ligacup,16,Vingĺkers VBK,Sollentuna VK,Lorenz Rudolf,Shawn Ogbeide,float,5.9425,-8.8545,2.979,7.8966,1.8782,0.6564,7.9581,2.1183,True,7.78,3.9347,6.1668,1.9301,3.732,-,True,3
+&svk-vingåker_ligacup,17,Sollentuna VK,Vingĺkers VBK,Shawn Ogbeide,Jérémie Doyon,float,1.3718,-9.0,2.897,2.0402,5.2308,1.5721,2.2704,7.4194,False,14.766,7.0607,2.2977,1.8398,4.681,-,False,1
+&svk-vingåker_ligacup,18,Sollentuna VK,Vingĺkers VBK,Shawn Ogbeide,Hampus Fält,float,1.6806,-8.6896,2.9542,3.1401,4.6403,0.707,3.2375,5.4378,False,13.302,0.5727,0.9997,2.1482,3.403,-,True,1
+&svk-vingåker_ligacup,19,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Lucas Nordström,float,3.3417,-9.0,3.0452,3.612,4.7409,1.0646,3.6281,5.6153,False,10.799,3.0545,0.3371,2.5888,4.454,#,False,2
+&svk-vingåker_ligacup,20,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Jakob Molin,spin,,,,,,,,,,,,,,,=,False,2
+&svk-vingåker_ligacup,21,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Lucas Nordström,spin,3.6092,-9.0,3.3238,2.0403,5.9933,0.6023,2.0474,6.6385,False,24.48,3.5939,0.7183,2.4624,3.084,+,True,2
+&svk-vingåker_ligacup,22,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.0918,-9.0,3.1132,8.1472,5.4987,2.098,8.3762,9.3308,False,15.981,,,,,-,True,6
+&svk-vingåker_ligacup,23,Vingĺkers VBK,Sollentuna VK,Kalle Bergström,Jakob Molin,float,0.5089,-9.0,2.9049,6.2425,5.1055,1.3192,7.0876,7.668,False,16.457,3.7136,4.0701,2.0251,5.187,-,True,1
+&svk-vingåker_ligacup,24,Sollentuna VK,Vingĺkers VBK,Jakob Molin,Jérémie Doyon,float,5.888,-9.0,3.1363,4.9413,5.4023,1.0004,4.6625,6.9604,False,16.104,4.9093,2.9692,2.7025,4.993,!,True,5
+&svk-vingåker_ligacup,25,Vingĺkers VBK,Sollentuna VK,Nezar Harouk,Jakob Molin,spin,5.1031,-8.4865,3.3587,2.9632,6.1167,0.8194,2.5899,7.3828,False,26.286,5.2757,5.5425,1.6825,6.319,-,False,6
+&svk-vingåker_ligacup,26,Vingĺkers VBK,Sollentuna VK,Nezar Harouk,Lucas Nordström,spin,5.2776,-8.9071,3.3214,5.7681,6.6193,0.741,5.8579,7.7687,False,25.838,4.2721,5.9336,2.1459,6.425,-,True,6
+&svk-vingåker_ligacup,27,Sollentuna VK,Vingĺkers VBK,Davyd Berezhnyi,Reed Venning,float,6.827,-9.0,3.2139,7.6589,5.6827,1.3627,7.4164,8.0072,False,17.805,4.3564,1.6802,2.5686,7.377,+,True,4
+&svk-vingåker_ligacup,28,Vingĺkers VBK,Sollentuna VK,Reed Venning,Lucas Nordström,spin,,,,,,,,,,,,,,,=,False,5
+&svk-vingåker_ligacup,29,Vingĺkers VBK,Sollentuna VK,Reed Venning,Jakob Molin,spin,5.4589,-8.0482,3.2333,4.9151,6.0287,0.9193,4.8195,7.5707,False,26.48,8.3784,-3.0538,1.6367,6.867,/,False,5
+&svk-vingåker_ligacup,30,Vingĺkers VBK,Sollentuna VK,Reed Venning,Axel Algulin,spin,5.1289,-7.642,3.2499,6.5899,6.1286,0.7677,6.8065,7.0987,False,26.614,3.9955,1.5193,2.882,8.876,#,False,5
+&svk-vingåker_ligacup,31,Vingĺkers VBK,Sollentuna VK,Reed Venning,Shawn Ogbeide,spin,5.2545,-8.1825,3.0989,6.7438,3.5347,1.3124,6.8805,5.6445,False,18.287,3.6723,3.4133,2.2486,8.889,!,True,5
+&svk-vingåker_ligacup,32,Sollentuna VK,Vingĺkers VBK,Marko Matic,Hampus Fält,float,7.5219,-9.0,2.7642,5.7376,5.4588,1.3167,5.3407,7.5829,False,15.668,5.0647,-0.3844,3.2274,4.612,/,False,3
+&svk-vingåker_ligacup,33,Vingĺkers VBK,Sollentuna VK,Andreas Brink,Axel Algulin,float,1.9077,-9.0,3.5785,6.7254,5.1299,0.9409,7.1,6.6766,False,14.465,4.8765,2.292,2.1316,4.287,!,False,1
+&svk-vingåker_ligacup,34,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Reed Venning,spin,7.4342,-9.0,2.7935,5.1937,5.8721,0.8657,4.8691,6.6274,False,16.578,3.338,2.3324,2.7552,5.211,!,True,2
+&svk-vingåker_ligacup,35,Vingĺkers VBK,Sollentuna VK,Lorenz Rudolf,Jakob Molin,float,5.9588,-8.6522,3.077,7.0707,5.0764,0.6666,7.0254,5.8238,False,14.484,,,,4.183,#,True,6
+&svk-vingåker_ligacup,36,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Axel Algulin,spin,3.4499,-9.0,3.1296,4.8604,6.3087,1.3329,5.2509,8.7203,False,22.16,3.5551,3.4375,2.6356,7.503,!,True,5
+&svk-vingåker_ligacup,37,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.231,-9.0,3.1059,6.8553,4.9536,0.8218,6.8062,5.8971,False,13.878,2.6067,2.7485,2.4347,4.809,!,False,6
+&svk-vingåker_ligacup,38,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.4166,-9.0,2.919,6.3291,5.0659,0.8301,6.0645,6.1904,False,14.869,3.9513,1.4162,2.408,4.121,#,True,6
+&svk-vingåker_ligacup,39,Vingĺkers VBK,Sollentuna VK,Mikhatzhan Mussutov,Jakob Molin,float,,,,2.0341,2.2695,2.6935,,,,,,,,2.694,!,False,1
+&svk-vingåker_ligacup,40,Vingĺkers VBK,Sollentuna VK,Mikhatzhan Mussutov,Axel Algulin,float,8.4614,-9.1764,2.7259,5.7591,5.3545,1.3199,5.5744,7.5344,False,15.799,2.6376,2.2532,2.5689,3.937,+,True,1
+&svk-vingåker_ligacup,41,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Axel Algulin,spin,3.4962,-9.0,2.9754,4.56,6.3375,1.4209,4.8375,8.6954,False,23.347,,,,,-,False,2
+&svk-vingåker_ligacup,42,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Axel Algulin,spin,3.4417,-9.0,2.8634,5.3633,5.7649,2.1751,5.8899,9.9345,False,15.623,3.0435,1.7235,2.5518,6.238,+,True,2
+&svk-vingåker_ligacup,43,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.7934,-9.5677,3.0666,2.2853,2.3801,2.9127,6.4291,8.202,False,15.74,,,,2.913,+,True,6
+&svk-vingåker_ligacup,44,Vingĺkers VBK,Sollentuna VK,Kalle Bergström,Jakob Molin,float,0.866,-9.8288,2.6864,6.1493,5.1535,1.0648,7.0089,7.1466,False,15.968,4.0254,0.7573,2.4793,5.554,#,True,1
+&svk-vingåker_ligacup,45,Vingĺkers VBK,Sollentuna VK,Nezar Harouk,Jakob Molin,spin,4.7947,-9.0,3.1754,3.4618,6.3793,1.0939,3.0252,7.9931,False,25.299,5.5525,2.086,2.4328,6.555,!,False,6
+&svk-vingåker_ligacup,46,Sollentuna VK,Vingĺkers VBK,Davyd Berezhnyi,Reed Venning,float,7.0519,-9.6089,3.246,7.7695,6.1604,1.2261,7.9035,8.1953,False,17.409,6.0484,3.2848,2.3232,5.354,!,False,4
+&svk-vingåker_ligacup,47,Sollentuna VK,Vingĺkers VBK,Davyd Berezhnyi,Jérémie Doyon,float,6.9862,-9.4625,3.1903,4.4146,5.8795,1.6916,3.8502,8.7261,False,17.247,,,,4.458,-,True,4
+&svk-vingåker_ligacup,48,Sollentuna VK,Vingĺkers VBK,Gustaf Lindén,Reed Venning,float,7.7284,-9.0157,2.7858,3.1586,6.799,1.6286,2.4637,9.0627,False,14.651,5.2719,3.5416,1.9999,4.445,-,True,3
+&svk-vingåker_ligacup,49,Vingĺkers VBK,Sollentuna VK,Andreas Brink,Jakob Molin,float,1.4789,-10.0667,2.7971,4.9403,4.9473,2.3602,5.8857,8.5657,False,13.947,3.0569,2.8136,2.4969,5.993,!,False,4
+&svk-vingåker_ligacup,50,Vingĺkers VBK,Sollentuna VK,Andreas Brink,Jakob Molin,float,1.9501,-9.5961,3.0044,5.9555,4.8337,1.5422,7.4252,8.8685,False,15.261,5.9103,3.4867,2.7386,7.035,-,False,4
+&svk-vingåker_ligacup,51,Vingĺkers VBK,Sollentuna VK,Andreas Brink,Jakob Molin,float,1.5297,-9.97,2.9167,4.9914,5.4283,0.9715,5.3636,7.0014,False,16.029,4.1679,1.7177,2.5819,4.564,+,True,4
+&svk-vingåker_ligacup,52,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Reed Venning,float,5.2939,-7.8259,2.9649,4.7557,5.9243,0.6997,4.7107,6.6008,False,14.807,3.3537,2.1875,2.8223,4.489,+,False,2
+&svk-vingåker_ligacup,53,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Hampus Fält,spin,4.9756,-8.6336,3.0999,2.4547,5.1784,0.4403,2.3403,5.5421,False,14.01,4.2781,0.9712,2.7253,4.248,#,False,2
+&svk-vingåker_ligacup,54,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Reed Venning,spin,5.5949,-7.8959,3.0688,4.3053,6.0681,0.7418,4.0429,7.3925,False,22.56,3.1345,2.5641,2.3577,6.414,!,False,2
+&svk-vingåker_ligacup,55,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Hampus Fält,spin,5.1274,-8.6867,3.1081,3.0139,5.7821,0.4993,2.8793,6.2314,False,16.787,3.4009,3.5198,2.4437,4.55,!,False,2
+&svk-vingåker_ligacup,56,Sollentuna VK,Vingĺkers VBK,Axel Algulin,Reed Venning,spin,5.2849,-8.788,3.1404,4.1761,4.9847,0.8043,4.0682,5.7781,False,14.785,1.376,2.8814,2.1556,4.656,!,True,2
+&svk-vingåker_ligacup,57,Vingĺkers VBK,Sollentuna VK,Lorenz Rudolf,Martin Ekholm,spin,5.2651,-9.0,2.8478,5.0811,6.3537,1.1099,4.9805,8.0662,False,21.105,1.3909,0.0788,2.7404,6.117,!,True,3
+&svk-vingåker_ligacup,58,Sollentuna VK,Vingĺkers VBK,Shawn Ogbeide,Jérémie Doyon,float,1.1857,-9.0,3.0545,1.7139,5.1281,1.5599,1.6815,7.7715,False,14.661,2.9114,2.3818,2.4438,4.839,!,True,1
+&svk-vingåker_ligacup,59,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Axel Algulin,spin,3.3079,-9.0,3.0791,4.1593,5.9068,0.8287,4.3801,7.1524,False,23.757,2.0429,3.1654,2.6,5.569,!,False,2
+&svk-vingåker_ligacup,60,Vingĺkers VBK,Sollentuna VK,Jérémie Doyon,Jakob Molin,spin,3.9964,-9.0,3.0371,5.921,5.2819,1.181,6.4155,7.2562,False,26.37,3.7503,1.1069,2.585,8.873,#,True,2
+&svk-vingåker_ligacup,61,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.7399,-8.4571,3.0791,6.7236,5.4786,0.9689,6.3608,7.2635,False,16.938,,,,4.812,/,False,6
+&svk-vingåker_ligacup,62,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.5933,-8.8556,3.1426,7.7899,5.5405,0.8197,7.9313,6.5354,False,14.453,6.4692,3.1618,2.0143,4.718,!,False,6
+&svk-vingåker_ligacup,63,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.5941,-8.6945,3.1329,7.3707,4.7451,0.6007,7.3804,5.1091,False,13.954,4.3844,1.5909,2.1476,3.024,+,True,6
+&svk-vingåker_ligacup,64,Vingĺkers VBK,Sollentuna VK,Kalle Bergström,Jakob Molin,float,0.9427,-9.9546,2.5343,6.589,5.0892,1.3252,7.6079,7.4505,False,16.472,2.729,1.6336,2.5391,5.629,+,False,1
+&svk-vingåker_ligacup,65,Vingĺkers VBK,Sollentuna VK,Kalle Bergström,Axel Algulin,float,0.85,-9.7233,2.7489,5.251,5.9939,1.5202,6.0334,8.2976,False,15.691,3.7909,1.4429,2.6183,6.115,#,True,1
+&svk-vingåker_ligacup,66,Sollentuna VK,Vingĺkers VBK,Jakob Molin,Jérémie Doyon,float,6.5692,-9.3069,3.0928,4.669,5.8061,1.4026,4.6961,7.7021,False,15.238,6.6781,2.2188,2.082,4.76,!,False,5
+&svk-vingåker_ligacup,67,Vingĺkers VBK,Sollentuna VK,Nezar Harouk,Martin Ekholm,spin,5.1835,-9.0,3.0377,3.6042,6.1117,0.7584,3.3625,6.9954,False,18.611,3.8222,3.232,2.7844,6.388,!,True,6
+&svk-vingåker_ligacup,68,Sollentuna VK,Vingĺkers VBK,Davyd Berezhnyi,Reed Venning,float,6.9965,-9.7566,3.4059,7.0095,5.2626,1.0345,7.0646,6.9139,False,14.941,4.2552,2.57,2.4399,4.648,!,True,4
+&svk-vingåker_ligacup,69,Vingĺkers VBK,Sollentuna VK,Reed Venning,Axel Algulin,spin,3.8732,-9.0,3.0582,6.3877,5.9989,0.9216,6.748,7.4294,False,27.069,8.9534,-1.4733,1.7737,8.422,/,True,5
+&svk-vingåker_ligacup,70,Sollentuna VK,Vingĺkers VBK,Gustaf Lindén,Hampus Fält,float,7.9719,-8.4993,2.9851,5.1906,5.964,0.921,4.8872,7.317,False,15.111,1.7823,2.7889,2.4263,5.167,!,False,3
+&svk-vingåker_ligacup,71,Sollentuna VK,Vingĺkers VBK,Gustaf Lindén,Jérémie Doyon,float,7.6736,-8.2963,3.0622,6.3039,4.4846,0.8166,6.135,5.0419,False,10.68,4.5935,2.1654,2.3171,4.301,!,True,3
+&svk-vingåker_ligacup,72,Vingĺkers VBK,Sollentuna VK,Andreas Brink,Jakob Molin,float,1.6918,-9.8037,2.979,5.2722,5.7785,1.8617,6.2453,9.1221,False,15.469,2.4006,1.4055,2.5965,6.632,#,True,4
+&svk-vingåker_ligacup,73,Vingĺkers VBK,Sollentuna VK,Lorenz Rudolf,Martin Ekholm,float,5.4607,-9.0,2.8526,5.4651,6.2862,1.0931,5.2119,8.0125,False,21.062,4.1083,2.3577,2.4726,6.063,!,True,3
+&svk-vingåker_ligacup,74,Sollentuna VK,Vingĺkers VBK,Shawn Ogbeide,Jérémie Doyon,float,,,,7.6572,6.2811,3.5425,,,,,6.7505,-4.9209,2.0084,3.742,+,False,1
+&svk-vingåker_ligacup,75,Sollentuna VK,Vingĺkers VBK,Shawn Ogbeide,Jérémie Doyon,float,0.8614,-9.0,3.0053,1.0873,4.9268,1.5305,1.2206,7.0436,False,13.785,4.7154,0.2952,2.0795,3.786,+,True,1
+&svk-vingåker_ligacup,76,Sollentuna VK,Vingĺkers VBK,Christian Hansson,Reed Venning,float,7.4379,-10.1607,3.0595,7.07,5.1102,0.9223,7.0655,6.3926,False,15.986,6.2003,2.3104,2.436,4.828,!,True,6
+&svk-vingåker_ligacup,77,Vingĺkers VBK,Sollentuna VK,Olle Fält,Jakob Molin,spin,4.5085,-9.0,3.2176,2.7444,6.1955,0.9309,2.4578,7.1671,False,16.907,2.8526,0.8238,2.9129,5.068,#,False,6
+&svk-vingåker_ligacup,78,Vingĺkers VBK,Sollentuna VK,Olle Fält,Jakob Molin,spin,,,,3.4829,1.8098,0.505,,,,,5.2242,2.7945,0.1198,0.505,=,False,6
+&svk-vingåker_ligacup,79,Vingĺkers VBK,Sollentuna VK,Olle Fält,Jakob Molin,spin,4.3814,-9.0,3.2121,0.8611,5.8965,0.9454,0.4439,7.0989,False,20.923,5.392,5.3317,1.6773,5.424,-,True,6

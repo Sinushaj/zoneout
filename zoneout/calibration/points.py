@@ -21,17 +21,12 @@ window was closed without saving, and the caller decides what to do with them.
 import tkinter as tk
 from tkinter import ttk
 
-import cv2
 from PIL import Image, ImageTk
 
 from ..court import CALIBRATION_POINTS
 from .court_diagram import (COURT_FILL, CURRENT_FILL, DONE_FILL, PANEL_BG,
                             CourtDiagram, describe_point)
-
-# Clicks are recorded in this frame size and nothing downstream rescales them:
-# `reconstruction`'s camera matrices are written for a 1920x1080 image, so the
-# frame is resized to it before anything is clicked, whatever the source is.
-FRAME_SIZE = (1920, 1080)
+from .frames import FRAME_SIZE, VideoFrames
 
 # The side panel is fixed and the video takes everything else, so the picture
 # is as large as the window allows with the diagram still beside it.
@@ -70,55 +65,6 @@ def pick_court_points(video_file, points=CALIBRATION_POINTS, title=None,
                             frame_number).run()
     finally:
         frames.close()
-
-
-def read_frame(video_file, frame_number=0):
-    """One frame of a video, as a PIL image at the size the intrinsics assume."""
-    frames = VideoFrames(video_file)
-    try:
-        return frames.image(frame_number)
-    finally:
-        frames.close()
-
-
-class VideoFrames:
-    """One video, decoded a frame at a time for the picker to show.
-
-    The capture is kept open for the life of the window rather than reopened
-    per frame, and stepping to the next frame is a plain read: seeking into a
-    long recording is what costs, so the common way of moving - one frame on -
-    is the one that does not seek at all.
-    """
-
-    def __init__(self, video_file):
-        self.capture = cv2.VideoCapture(video_file)
-        if not self.capture.isOpened():
-            raise IOError(f"Cannot open video file: {video_file}")
-
-        self.count = int(self.capture.get(cv2.CAP_PROP_FRAME_COUNT))
-        self.rate = self.capture.get(cv2.CAP_PROP_FPS) or 0.0
-        # Where the capture will read next, so a step forward can skip the seek.
-        self.position = 0
-
-    def image(self, number):
-        """Frame `number`, resized to the size the camera matrices assume."""
-        if number != self.position:
-            self.capture.set(cv2.CAP_PROP_POS_FRAMES, number)
-            self.position = number
-
-        read, frame = self.capture.read()
-        if not read:
-            # Leave the position alone: the capture is now somewhere unknown,
-            # and the next request will seek rather than trust it.
-            self.position = -1
-            raise IOError(f"Cannot read frame {number}")
-
-        self.position = number + 1
-        frame = cv2.resize(frame, FRAME_SIZE)
-        return Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-
-    def close(self):
-        self.capture.release()
 
 
 class _PointPicker:

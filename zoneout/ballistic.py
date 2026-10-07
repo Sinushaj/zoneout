@@ -205,8 +205,10 @@ SEAM_SEARCH_MARGIN = 30
 class FitOptions:
     """How to cut a trajectory into flights, and what counts as one.
 
-    The defaults are exactly the behaviour the reception pipeline has always
-    had, and `correct_trajectory` uses them when given nothing else, so a caller
+    The defaults are the behaviour the reception pipeline had until it moved to
+    its own settings (`pipeline.RECEPTION_FIT`, with the old ones kept beside it
+    as `pipeline.LEGACY_RECEPTION_FIT`), and `correct_trajectory` uses them when
+    given nothing else, so a caller
     that passes no options is unaffected by anything tuned here. That matters:
     a serve and a spike are not the same fitting problem — a serve is slow, long
     and seen in a hundred frames, a spike is fast, short and seen in fifteen —

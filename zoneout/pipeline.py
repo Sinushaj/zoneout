@@ -15,9 +15,12 @@ from .detection import (DEFAULT_MODEL, DETECTION_CONF_THRESHOLD,
                         process_video)
 from .events import find_reception, find_serve_and_receive
 from .figures import save_trajectory_figure, save_trajectory_html
+from .figures.style import RECEPTION, RECEPTION_END, SERVE
 from .reconstruction import (match_detections, match_summary,
                              point_from_camera_coordinates)
 from .scout import add_serve_direction
+from .reception_dataset import DrawnPoints, record_reception
+from .serve_dataset import record_serve
 from .timing import camera_timing
 from .trajectory import interpolate_nones, remove_bad_points, smooth_trajectory
 from .video import create_video_chunk
@@ -47,6 +50,71 @@ USE_BALLISTIC_FIT = True
 # .dvw, that bias is worth removing. Requires USE_BALLISTIC_FIT, since without
 # it there are no segments to read.
 USE_BALLISTIC_RECEPTION = True
+
+# Add each reception's serve to `datasets/serves.csv` (see
+# `zoneout/serve_dataset.py`). Requires USE_BALLISTIC_FIT, since the row is the
+# serve's fitted parabola. A serve that cannot be measured is reported and
+# skipped; it never stops the reception from being written to the .dvw.
+WRITE_SERVE_DATASET = True
+
+# Add each reception to `datasets/receptions.csv`, the serve-and-reception
+# dataset (see `zoneout/reception_dataset.py`): who served and received, the
+# serve's start, landing, speed and net touch, the reception, how high the pass
+# went and where it ended. Requires USE_BALLISTIC_FIT. Like the serve dataset,
+# a measurement that cannot be made is reported and left blank; it never stops
+# the reception from being written to the .dvw.
+WRITE_RECEPTION_DATASET = True
+
+# How long a reception clip is, in seconds from the scouted video_time forward.
+# The pass ends - normally at the set - 1.4-2.0 s after the reception (85-120
+# frames over the cached receptions of the Uppsala match), and the reception
+# itself lands anywhere from 1.7 to 4.7 s into a clip - so a 5 s clip ended
+# before the pass did on 45 of the 108 cached receptions. The longer clip is
+# only cut when the reception dataset is on, since it is the only thing that
+# reads to the end of the pass, and detection time grows with the clip: 7 s is
+# ~40% more per reception.
+CLIP_DURATION = 5.0
+RECEPTION_DATASET_CLIP_DURATION = 7.0
+
+# How the ballistic fit is tuned for receptions. `RECEPTION_FIT` is what runs;
+# `LEGACY_RECEPTION_FIT` is every setting the pipeline used before the switch,
+# written out in full rather than left as `FitOptions()` so a later change to the
+# module defaults cannot quietly alter it. To go back, point `RECEPTION_FIT` at
+# `LEGACY_RECEPTION_FIT` - nothing else reads either.
+#
+# Why the switch: the legacy 'worst' split removes a span's single worst-fitting
+# observation and recurses, and when the span begins with a whole clean flight
+# that one parabola cannot share with the rest, every one of that flight's
+# points is in turn the worst - so it is peeled off one frame at a time and
+# dropped. Reception 28 lost its entire serve (frames 30-89, rms 0.027 on its
+# own), and reception 36 the pass out of the dig (111-171), after which the
+# remainder fitted as one arc bending *upward* at +3.2 m/s^2, which the module's
+# (-30, 5) gate let through; the reception was read off it 5 m in the air.
+# 'changepoint' cuts at the time the flight changes instead and keeps every
+# observation, `merge` undoes cuts that land inside one flight, and the
+# vertical gate is the one the attack fit uses: a ball in flight is falling.
+#
+# Measured by replaying the 42 reproducible cached receptions (1-41, 121) from
+# the raw points in their figures. Median movement of the reception point is
+# ~0.1 m. Fixed outright: 13, 36 and 39 had read the set, 4.5-5 m up, and now
+# read the dig at 0.9-1.8 m; 15 had read a ball rolling on the floor; 28 had lost
+# its serve and put both points in the wrong place. 7 and 21 move 1.05 and
+# 0.49 m, both toward the low point of the dig. One regression, 23: frames 39-50
+# are a near-stationary object at the net that the legacy split happened to drop
+# and 'changepoint' isolates cleanly, and since it precedes the serve both the
+# serve and the reception readings go wrong. The gate on its own changes little -
+# it trims 15's floor-rolling tail and otherwise touches only 121, which is
+# broken either way.
+LEGACY_RECEPTION_FIT = ballistic.FitOptions(
+    split='worst',
+    merge=False,
+    plausible_vertical_acceleration=(-30.0, 5.0),
+)
+RECEPTION_FIT = ballistic.FitOptions(
+    split='changepoint',
+    merge=True,
+    plausible_vertical_acceleration=(-25.0, -4.0),
+)
 
 
 def _report_matching(name, matches):
@@ -78,8 +146,12 @@ def get_data_from_reception(dvw_filepath, reception_number, sideline_filepath, b
 
     sideline_reception_frame, baseline_reception_frame, video_time = (
         timing.frames_for_action(dvw_filepath, 'Reception', reception_number))
-    create_video_chunk(sideline_filepath, 'sideline_temp.mp4', sideline_reception_frame)
-    create_video_chunk(baseline_filepath, 'baseline_temp.mp4', baseline_reception_frame)
+    duration = (RECEPTION_DATASET_CLIP_DURATION
+                if USE_BALLISTIC_FIT and WRITE_RECEPTION_DATASET else CLIP_DURATION)
+    create_video_chunk(sideline_filepath, 'sideline_temp.mp4', sideline_reception_frame,
+                       duration_seconds=duration)
+    create_video_chunk(baseline_filepath, 'baseline_temp.mp4', baseline_reception_frame,
+                       duration_seconds=duration)
     print(f"Done creating video chunks (frames {sideline_reception_frame} /"
           f" {baseline_reception_frame}, at {sideline_rate:.4f} /"
           f" {baseline_rate:.4f} frames per video_time second)")
@@ -128,7 +200,8 @@ def get_data_from_reception(dvw_filepath, reception_number, sideline_filepath, b
         # are linear inventions, and handing them to the fit as though they were
         # measurements would let a straight-line guess bend the very parabola it
         # is meant to be corrected by.
-        real_coords, ballistic_report = ballistic.correct_trajectory(matched_points)
+        real_coords, ballistic_report = ballistic.correct_trajectory(
+            matched_points, options=RECEPTION_FIT)
         print(" ", ballistic_report.summary())
     else:
         # The chosen pixels, per camera, with None where the gate found nothing.
@@ -179,6 +252,13 @@ def get_data_from_reception(dvw_filepath, reception_number, sideline_filepath, b
                   f" ({moved:.2f} m from the direction-change reception)")
             raw_end = point
 
+    if USE_BALLISTIC_FIT and WRITE_SERVE_DATASET:
+        record_serve(dvw_filepath, reception_number, ballistic_report.segments)
+
+    drawn = DrawnPoints()
+    if USE_BALLISTIC_FIT and WRITE_RECEPTION_DATASET:
+        drawn = record_reception(dvw_filepath, reception_number, ballistic_report.segments)
+
     # ----------------------
     # Add direction to file
     # ----------------------
@@ -199,12 +279,19 @@ def get_data_from_reception(dvw_filepath, reception_number, sideline_filepath, b
 
     # Interactive version: open in a browser and drag to rotate. It also gets
     # the pre-fit points, so the fitted curve can be checked against them;
-    # clicking a legend entry hides either series.
+    # clicking a legend entry hides either series. With the reception dataset
+    # on, the serve is the dataset's serve start rather than the geometric
+    # reading written to the .dvw, and the end and the top of the pass are
+    # marked too - all exactly as they went into the row, so a blank there is
+    # an absent marker here.
+    use_dataset = USE_BALLISTIC_FIT and WRITE_RECEPTION_DATASET
     save_trajectory_html(
         f"reception_data/reception{reception_number}/raw_trajectory.html",
         real_coords,
-        serve_point=raw_start,
-        receive_point=raw_end,
         title=f"Reception {reception_number}",
         raw_points=matched_points,
+        markers=[("Serve", drawn.serve_start if use_dataset else raw_start, SERVE),
+                 ("Reception", raw_end, RECEPTION),
+                 ("Reception end", drawn.reception_end, RECEPTION_END)],
+        heights=[("Pass apex", drawn.apex_point)],
     )

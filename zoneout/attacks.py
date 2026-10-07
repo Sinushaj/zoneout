@@ -26,8 +26,18 @@ the same detector, confidence floor and candidate limit from `zoneout.detection`
 the same matcher and geometric gate from `zoneout.reconstruction`, the same
 figure code from `zoneout.figures`, and the same `zoneout.ballistic` fit - though
 that one is *tuned* per caller through `ballistic.FitOptions`, since a serve and
-a spike are not the same fitting problem. What is still missing is the write-back
-to the `.dvw`, which needs the coordinate orientation settled first.
+a spike are not the same fitting problem.
+
+Sixth and last, the measurement goes back into the scout file
+(`write_to_scout_file`), as the attacker's contact and where the attack
+finished, on the attack's own line - and a set line is added in front of every
+attack the scout left without one, located at the measured set point where
+there is one (`set_codes` has the rules). That step waited on the orientation question
+`ATTACK_PLAN.md` §5 posed - which end of the grid a coordinate is written from -
+because there was nothing in either processed match to answer it with: every
+coordinate in both was written by this pipeline. `dv_grid.orient_for_action` has
+the measurement that settled it, and `tools/check_orientation.py` is the check,
+re-runnable on any scout file a human put coordinates in.
 """
 
 import csv
@@ -37,10 +47,12 @@ from typing import List, Optional, Sequence
 
 import numpy as np
 
-from . import ballistic
+from . import ballistic, court, dv_grid, set_codes
 from .detection import (DEFAULT_MODEL, DETECTION_CONF_THRESHOLD,
                         MAX_CANDIDATES_PER_FRAME, Detection, annotate_video,
                         process_video)
+from .dv_grid import NO_COORDINATE
+from .dvw_edit import DvwFile
 from .figures import save_trajectory_html
 from .figures.style import ATTACK_CONTACT, ATTACK_END, SET_CONTACT
 from .reconstruction import match_detections
@@ -575,11 +587,14 @@ def save_attack_figure(attack, raw_points, output_dir, fitted_points=None,
             ("End", contacts.end_point, ATTACK_END),
         ]
         if segments:
-            # The three flights an attack is made of: the defence or reception
-            # that preceded the set, the set, and the attack. Everything before
-            # those belongs to the previous rally and everything after the
-            # attack's end is the defence of it.
-            first = segments[max(0, contacts.attack_index - 2)].start
+            # The flights an attack is made of: the defence or reception that
+            # preceded the set, the set - two flights when it went above the
+            # top of a picture - and the attack. Everything before those belongs
+            # to the previous rally and everything after the attack's end is
+            # the defence of it.
+            set_index = (contacts.attack_index - 1 if contacts.set_index is None
+                         else contacts.set_index)
+            first = segments[max(0, set_index - 1)].start
             last = contacts.end_frame
             raw_points = _only_frames(raw_points, first, last)
             if fitted_points is not None:
@@ -677,3 +692,340 @@ def save_attack_points(rows, csv_path=ATTACK_POINTS_CSV):
             writer.writerow(by_number[number])
 
     return csv_path
+
+
+# --- Writing the measurement back into the scout file -----------------------
+
+# Whether a line whose coordinates a human scout entered may be overwritten.
+# Off, and the writer skips those lines and reports them. This is not about
+# re-running: `dvw_edit.DvwFile` keeps an untouched backup of the file from
+# before this pipeline first wrote to it, so it can tell its own earlier output
+# from a scout's clicks exactly, and re-running an attack after a fix always
+# replaces its own row. It is about the case that would be unrecoverable - a
+# match scouted with coordinates, of which there is at least one on this disk
+# carrying 104 hand-clicked attack positions.
+OVERWRITE_SCOUTED_COORDINATES = False
+
+# How close to a sideline the setter has to have been for the set to be scouted
+# as a shifted one - `KM` toward zone 2, `KP` toward zone 4, see
+# `set_codes.SHIFTED_SETTER_CALLS`. Measured from the set point, which is the
+# setter's own contact rather than where the ball went, so this is a statement
+# about where the setter was standing.
+#
+# 2 m is comfortably outside a setter's base position. The three hand-scouted
+# sets on this disk that carry a coordinate put it at x = 5.46, 6.36 and 6.47 in
+# the setting team's own frame - 2.5 to 3.5 m in from the right sideline - so a
+# setter at their normal station is never within the margin, and a set measured
+# out at x = 7.40 (attack 1 of the quarter final) genuinely was pulled wide.
+SHIFTED_SET_MARGIN = 2.0
+
+
+@dataclass(frozen=True)
+class WriteReport:
+    """What one write-back run did, for printing and for the run summary."""
+
+    written: int = 0
+    skipped_scouted: Sequence = ()      # (attack number, code)
+    skipped_implausible: Sequence = ()  # (attack number, reason)
+    backup_path: Optional[str] = None
+    sets_added: Sequence = ()           # (attack number, set code, start or None)
+    sets_located: Sequence = ()         # (attack number, start): earlier additions
+    sets_already_there: int = 0
+    sets_not_needed: int = 0            # PR, PP and P2
+    sets_not_added: Sequence = ()       # (attack number, reason)
+
+    def summary(self):
+        parts = [f'wrote {self.written} attack(s) to the scout file']
+        with_location = sum(1 for _, _, start in self.sets_added if start)
+        parts.append(f'added {len(self.sets_added)} set(s),'
+                     f' {with_location} with a set location;'
+                     f' {self.sets_already_there} attack(s) already had one'
+                     f' and {self.sets_not_needed} are never set')
+        if self.sets_located:
+            parts.append(f'located {len(self.sets_located)} set(s) this pipeline'
+                         f' added on an earlier run')
+        if self.backup_path:
+            parts.append(f'original backed up to {self.backup_path}')
+        if self.sets_not_added:
+            parts.extend(f'no set added before attack {n}: {reason}'
+                         for n, reason in self.sets_not_added)
+        if self.skipped_scouted:
+            numbers = ', '.join(str(n) for n, _ in self.skipped_scouted)
+            parts.append(f'{len(self.skipped_scouted)} skipped, the scout had'
+                         f' already put coordinates on those lines ({numbers})'
+                         f' - set attacks.OVERWRITE_SCOUTED_COORDINATES to'
+                         f' replace them')
+        if self.skipped_implausible:
+            numbers = ', '.join(str(n) for n, _ in self.skipped_implausible)
+            parts.append(f'{len(self.skipped_implausible)} skipped as'
+                         f' implausible ({numbers})')
+        return '\n  '.join(parts)
+
+
+def _implausible(points):
+    """Why this measurement must not be written, or None if it may be.
+
+    The gate is `court.BALL_VOLUME_*`, the same volume the matcher already
+    rejects triangulations against, applied to the two points that get written.
+    It matters here because `dv_grid.xy_to_index` **clamps** a point that falls
+    off the grid rather than refusing it: a reconstruction that put the ball
+    thirty metres away would otherwise be written as a confident coordinate on
+    the edge of the court, which is a worse outcome than no coordinate at all.
+
+    A warning on `AttackPoints` is deliberately *not* a reason to skip. A
+    warning means one coordinate rests on less evidence than the others, and the
+    scout file has no way to say that - but it is still the best measurement of
+    that attack, and 17 of the 35 measured attacks carry one.
+    """
+    for name, point in (('attack', points.attack_point), ('end', points.end_point)):
+        if point is None:
+            return f'no {name} point'
+        x, y = float(point[0]), float(point[1])
+        if not (court.BALL_VOLUME_X[0] <= x <= court.BALL_VOLUME_X[1]
+                and court.BALL_VOLUME_Y[0] <= y <= court.BALL_VOLUME_Y[1]):
+            return (f'the {name} point (x={x:.2f}, y={y:.2f}) is outside the'
+                    f' volume a ball can be in')
+    return None
+
+
+def attack_coordinates(points):
+    """The two grid indices one attack is written as: `(start, end)`.
+
+    The start is where the attacker struck the ball and the end is where the
+    attack finished, both turned so the attacking team is at the bottom of the
+    grid - see `dv_grid.orient_for_action` for the measurement that settled that
+    this is the convention DataVolley files use.
+
+    Which half the attacker was on is read off the reconstruction.
+    `events.find_attack_points` picks the attack flight *because* its contact
+    and its end lie on opposite sides of the net, so the two points always
+    disagree in the sign of `y` and either one alone would answer the question.
+
+    **The one further from the net decides it**, and that is not fussiness. An
+    attack is struck at the net, so the contact is routinely within a quarter of
+    a metre of `y = 0` - of the 35 attacks measured so far, three sit inside
+    0.25 m and the closest is 0.10 m. At that range a fit error smaller than the
+    pipeline's own accepted tolerance flips the sign, and a flipped sign does
+    not produce a slightly wrong coordinate: it writes the entire attack in from
+    the opposite end of the court. Taking the more distant point costs nothing -
+    the two are guaranteed to give the same answer whenever both are clear of
+    the net - and removes the only input the answer is sensitive to.
+    """
+    half = _attacking_half(points)
+    start, end = dv_grid.orient_for_action([points.attack_point, points.end_point],
+                                           half)
+    return (dv_grid.format_index(dv_grid.xy_to_index(start[0], start[1])),
+            dv_grid.format_index(dv_grid.xy_to_index(end[0], end[1])))
+
+
+def _attacking_half(points):
+    """The half the attacking team was on, `-1` or `+1` - see `attack_coordinates`."""
+    attack_point, end_point = points.attack_point, points.end_point
+    decider = (attack_point if abs(attack_point[1]) >= abs(end_point[1])
+               else end_point)
+    # The end is on the far side, so its sign is the attacker's half reversed.
+    half = 1 if decider[1] > 0 else -1
+    return -half if decider is end_point else half
+
+
+def set_coordinate(points):
+    """The grid index the set is written at, or None when there is none to write.
+
+    Oriented like everything else in the file: the acting team - the setting
+    team, which is the attacking team - at the bottom. The three hand-scouted
+    sets that carry a coordinate in `Elitserien 25-26/` all sit in the bottom
+    half, 0.3-1.6 m from the net, which is what this produces for a setter at
+    the net.
+
+    The half is the attack's, from `_attacking_half`, and not read off the set
+    point. A setter stands at the net, so the set point is exactly the kind of
+    near-zero `y` that a small error flips, and a flipped half would write the
+    set in from the wrong end of the court.
+
+    None when no set was located, when the attack itself is not written (its
+    half is then not trusted either), or when the set point falls outside
+    `court.BALL_VOLUME_*` - `xy_to_index` clamps, so the gate has to be here.
+    """
+    oriented = _oriented_set_point(points)
+    if oriented is None:
+        return None
+    return dv_grid.format_index(dv_grid.xy_to_index(oriented[0], oriented[1]))
+
+
+def _oriented_set_point(points):
+    """The measured set point turned so the setting team is at the bottom, or None.
+
+    Shared by everything that reads the set location, so the coordinate written
+    and the call decided from it can never be turned different ways. In this
+    frame the acting team's own zone numbering applies: `x` runs from their
+    zone 4 sideline at 0 to their zone 2 sideline at `court.COURT_WIDTH`.
+    """
+    if points is None or points.set_point is None or _implausible(points):
+        return None
+    x, y = float(points.set_point[0]), float(points.set_point[1])
+    if not (court.BALL_VOLUME_X[0] <= x <= court.BALL_VOLUME_X[1]
+            and court.BALL_VOLUME_Y[0] <= y <= court.BALL_VOLUME_Y[1]):
+        return None
+    (oriented,) = dv_grid.orient_for_action([points.set_point],
+                                            _attacking_half(points))
+    return oriented
+
+
+def shifted_setter_call(points):
+    """`KM`, `KP` or None: the setter call this set's location implies.
+
+    A set made within `SHIFTED_SET_MARGIN` of a sideline is a shifted one, named
+    after the front-row zone that sideline belongs to in the setting team's own
+    numbering - `KP` out by zone 4, `KM` out by zone 2. Which sideline is which
+    is exactly what `_oriented_set_point` settles, so nothing here needs to know
+    about teams or ends.
+
+    This is only the geometry. Whether the call is actually written also needs
+    the rally to be a sideout and the reception to have been graded well enough,
+    which `set_codes` decides from the scout lines, and the file to define the
+    call at all.
+    """
+    oriented = _oriented_set_point(points)
+    if oriented is None:
+        return None
+    x = float(oriented[0])
+    if x <= SHIFTED_SET_MARGIN:
+        return set_codes.SHIFTED_SETTER_CALLS[4]
+    if x >= court.COURT_WIDTH - SHIFTED_SET_MARGIN:
+        return set_codes.SHIFTED_SETTER_CALLS[2]
+    return None
+
+
+@dataclass(frozen=True)
+class ScoutedAttack:
+    """An attack as the scout file has it, with no video attached.
+
+    What adding a set needs, and all it needs: the attack's number, its line and
+    its code. `Attack` carries the same three, so either can be passed where
+    one is expected.
+    """
+
+    number: int
+    scout_line: int
+    code: str
+
+
+def scouted_attacks(dvw_filepath, set_number=None, first=None, last=None):
+    """Every attack in a run's selection, **including** the grades it skips.
+
+    The same selection as `attack_timeline` - the set and the range - but
+    without dropping blocked and recycled attacks, and without anything that
+    needs a video. Those grades are skipped for *measuring* because the flight
+    after the contact is a rebound; the set in front of them happened all the
+    same, and leaving 48 of a match's attacks without one would make the file
+    inconsistent for no reason.
+    """
+    numbers = selected_attacks(dvw_filepath, set_number, first, last,
+                               skip_evaluations=())
+    attacks = get_actions(dvw_filepath, SKILL)
+    return [ScoutedAttack(number=n,
+                          scout_line=int(attacks['scout_line'].iloc[n - 1]),
+                          code=_text(attacks['code'].iloc[n - 1]))
+            for n in numbers]
+
+
+def write_to_scout_file(dvw_filepath, measured, attacks=(),
+                        overwrite_scouted=OVERWRITE_SCOUTED_COORDINATES):
+    """Patch the run's attacks into the scout file, and add their sets, in one save.
+
+    `measured` is the `(attack, points)` pairs a run produced; each attack's
+    contact and end are written onto its own line. `attacks` is every attack
+    the run covers - `scouted_attacks` - and each gets a set added in front of
+    it where `set_codes.decide` says one belongs, located at the measured set
+    point when `measured` has one for that attack.
+
+    The setter call on an added set needs two things this function is the only
+    place that has both of: the rally above the attack, which says whether it is
+    a sideout and how the pass was graded (`set_codes.sideout_reception`), and
+    the measured set location, which says whether the setter was out by a
+    sideline (`shifted_setter_call`). An attack with no measurement can still
+    get a quick call; only the shifted calls need the reconstruction.
+
+    The file is read, every change is queued against the file as opened and
+    checked against the `code` on its line, and the whole thing is written
+    **once** - so a run that dies half way through leaves the scout file
+    exactly as it was rather than partly patched. That is the opposite trade
+    from `attack_data/attack_points.csv`, which is this pipeline's own output;
+    the scout file is a human's work.
+
+    No existing code is ever rewritten. The zone and cone letters on an attack
+    are the scout's reading of the rally, and a set they scouted stays exactly
+    as they scouted it - it is not relocated either. The one set line whose
+    coordinates are refreshed is one **this pipeline added** on an earlier run
+    (`DvwFile.added_by_pipeline`), which is what makes a re-run after a fix, or
+    after a run that failed to locate a set, fill it in rather than leave the
+    first answer standing. Re-running never adds a second set: the one added
+    last time is directly above the attack, so it counts as already there.
+
+    See `dvw_edit` for the rest of what is enforced.
+    """
+    scout_file = DvwFile(dvw_filepath, overwrite_existing=overwrite_scouted)
+    calls = set_codes.setter_calls(
+        scout_file.section_lines(set_codes.SETTER_CALL_SECTION))
+    targets = set_codes.attack_targets(
+        scout_file.section_lines(set_codes.ATTACK_COMBINATION_SECTION))
+
+    implausible, scouted, written = [], [], 0
+    for attack, points in measured:
+        reason = _implausible(points)
+        if reason is not None:
+            implausible.append((attack.number, reason))
+            continue
+
+        start, end = attack_coordinates(points)
+        if scout_file.set_coordinates(attack.scout_line,
+                                      expect_code=attack.code,
+                                      start=start, end=end):
+            written += 1
+        else:
+            scouted.append((attack.number, attack.code))
+
+    points_by_number = {attack.number: points for attack, points in measured}
+    codes = scout_file.codes()
+    added, located, not_added = [], [], []
+    already_there = not_needed = 0
+    for attack in attacks:
+        line = attack.scout_line
+        previous = scout_file.code(line - 1) if line > 0 else None
+        points = points_by_number.get(attack.number)
+        decision = set_codes.decide(
+            scout_file.fields(line), previous, calls, targets,
+            reception=set_codes.sideout_reception(codes, line),
+            shifted_call=shifted_setter_call(points))
+        start = set_coordinate(points)
+
+        if decision.existing:
+            already_there += 1
+            if start is not None and scout_file.added_by_pipeline(line - 1):
+                scout_file.set_coordinates(line - 1, expect_code=previous,
+                                           start=start, end=NO_COORDINATE)
+                located.append((attack.number, start))
+        elif decision.code is not None:
+            scout_file.insert_before(
+                line, expect_code=attack.code,
+                fields=set_codes.set_line_fields(scout_file.fields(line),
+                                                 decision.code, start))
+            added.append((attack.number, decision.code, start))
+        elif decision.skipped_by_rule:
+            not_needed += 1
+        else:
+            not_added.append((attack.number, decision.reason))
+
+    pending = scout_file.pending
+    scout_file.save()
+    return WriteReport(
+        written=written,
+        skipped_scouted=tuple(scouted),
+        skipped_implausible=tuple(implausible),
+        backup_path=scout_file.backup_path if pending else None,
+        sets_added=tuple(added),
+        sets_located=tuple(located),
+        sets_already_there=already_there,
+        sets_not_needed=not_needed,
+        sets_not_added=tuple(not_added),
+    )

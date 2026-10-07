@@ -174,6 +174,23 @@ def world_to_pixel(camera: str, point):
     return homogeneous[:2] / homogeneous[2]
 
 
+def cameras_near_top_edge(point, margin):
+    """The cameras that show `point` within `margin` pixels of the top of the picture.
+
+    Above the picture counts too. Pixels are the 1920x1080 space the calibration
+    is written in, so the top edge is row 0 whatever the source video is. A
+    point behind a camera is not near its top edge.
+
+    Returns a set of camera names, the keys of `CAMERAS`.
+    """
+    near = set()
+    for camera in CAMERAS:
+        pixel = world_to_pixel(camera, point)
+        if pixel is not None and pixel[1] < margin:
+            near.add(camera)
+    return near
+
+
 def reprojection_error(point, gopro_pixel, zve10_pixel) -> float:
     """How far, in pixels, `point` reprojects from the detections it came from.
 

@@ -10,8 +10,13 @@ so the two can never drift apart.
 COURT_WIDTH = 9.0     # x, sideline to sideline
 HALF_LENGTH = 9.0     # |y|, net to baseline
 ATTACK_LINE = 3.0     # |y| of the attack lines
-NET_HEIGHT = 2.43
+NET_HEIGHT = 2.43     # men's; the women's net is 2.24
 ANTENNA_HEIGHT = 3.23
+
+# The ball's radius (FIVB: 65-67 cm around). The reconstruction tracks the
+# ball's centre - the middle of a detection box - so this is how high that
+# centre is when the ball touches the floor.
+BALL_RADIUS = 0.105
 
 # 3D reference points used as the world half of the 2D<->3D correspondence in
 # solvePnP.

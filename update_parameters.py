@@ -16,14 +16,25 @@ court diagram with the point being asked for marked on it, because the clicks
 are matched positionally with `zoneout.court.CALIBRATION_POINTS` and clicking
 them in the wrong order solves quietly for the wrong camera pose.
 
+The scout file step picks the `.dvw` the match is processed against, and stores
+it in `scout_filepath.csv` for the pipelines to read. The sync step looks up its
+action's video_time in that file, so the two belong together: changing the
+scout file means redoing the sync, and this script says so when it does.
+
 The sync step asks which set to sync in and whether to use that set's first
 serve or its first reception, then has you find that action in each camera. Set
 by set is the useful granularity because a match is often filmed as one video
 per set, and a frame number only means anything within one recording — but an
 anchor taken in any set also works for a whole match filmed continuously, since
 the frame lookup works in signed elapsed time from wherever the anchor is.
+
+Finding that action is done in a window (`calibration.sync`) with the picture
+filling it and a scrubber under it, because the rally can be an hour into the
+recording. Closing either camera's window writes nothing: the two frames only
+mean anything as a pair.
 """
 
+import os
 import tkinter as tk
 from tkinter import filedialog
 
@@ -31,30 +42,64 @@ from zoneout.cameras import MODELS, camera_matrix, describe
 from zoneout.calibration import navigate_video, pick_court_points
 from zoneout.config import (CAMERA_POSITIONS, extract_dict_from_csv,
                             read_camera_models, read_csv_to_tuples_np,
-                            read_sync_anchor, write_camera_models,
-                            write_dict_to_csv, write_to_csv, write_tuples_to_csv)
+                            read_scout_filepath, read_sync_anchor,
+                            write_camera_models, write_dict_to_csv,
+                            write_scout_filepath, write_to_csv,
+                            write_tuples_to_csv)
 from zoneout.court import CALIBRATION_POINTS
-from zoneout.scout import get_sync_video_time, video_time_frame_rates
+from zoneout.scout import (describe_scout_file, get_sync_action,
+                           get_sync_video_time, video_time_frame_rates)
+from zoneout.timing import anchor_mismatch
 from zoneout.video import get_frame_rate
 
-# The scout file the sync is being taken against — the same one `run_pipeline.py`
-# will process. It is only read here, to look up the video_time of the action
-# being synced on.
-DVW_FILEPATH = "/home/neo/Desktop/&svk-ork_q5.dvw"
 
-
-def select_file():
+def select_file(**dialog_options):
     root = tk.Tk()
     root.withdraw()
     root.update()  # ensures the dialog appears
 
-    file_path = filedialog.askopenfilename()
+    file_path = filedialog.askopenfilename(**dialog_options)
 
     root.destroy()  # clean up
     return file_path.replace("\\", "\\\\")
 
 
-def suggested_start_frames(video_time):
+def update_scout_filepath():
+    """Pick the `.dvw` scout file and store it for every entry point to read.
+
+    Returns the path on file afterwards, which is the old one when the dialog is
+    cancelled. Checks the sync anchor against the new file straight away, since
+    an anchor taken against another scout file is exactly the mistake that
+    goes unnoticed until the clips come out of the wrong minutes of the video.
+    """
+    try:
+        current = read_scout_filepath()
+    except (OSError, ValueError):
+        current = None
+
+    path = select_file(
+        title='Choose the DataVolley scout file',
+        initialdir=os.path.dirname(current) if current else None,
+        filetypes=[('DataVolley scout file', '*.dvw'), ('All files', '*')])
+
+    if not path:
+        print('Cancelled; the scout file on record is unchanged.')
+        return current
+
+    write_scout_filepath(path)
+    print(f'Scout file: {describe_scout_file(path)}')
+
+    try:
+        mismatch = anchor_mismatch(path)
+    except (OSError, KeyError, ValueError):
+        mismatch = None  # no anchor on file yet, so nothing to disagree with
+    if mismatch:
+        print(f'Note: {mismatch}')
+
+    return path
+
+
+def suggested_start_frames(dvw_filepath, video_time):
     """Where to start scrubbing each video, from the anchor already on file.
 
     Only a convenience: it applies the frame lookup's own arithmetic to the old
@@ -71,7 +116,7 @@ def suggested_start_frames(video_time):
     if known_time is None:
         # Written before the anchor was selectable, so it is the match's first
         # reception, whatever set that was in.
-        known_time = get_sync_video_time(DVW_FILEPATH, skill='Reception')
+        known_time = get_sync_video_time(dvw_filepath, skill='Reception')
 
     paths = extract_dict_from_csv('video_filepaths.csv')
     sideline_rate, baseline_rate = video_time_frame_rates(
@@ -226,6 +271,12 @@ def update_camera_models():
           ' calibrations: no lens distortion is modelled.')
 
 
+def _ordinal(n):
+    """'1st', '2nd', '3rd', '4th', ... '11th', '12th', '13th', '21st'."""
+    suffix = 'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
+    return f'{n}{suffix}'
+
+
 def sync_videos():
     """Record the frame each camera shows one known action at.
 
@@ -234,6 +285,16 @@ def sync_videos():
     is an offset from this one pair of numbers, and an anchor off by a second is
     a second of error on every reception in the set.
     """
+    try:
+        dvw_filepath = read_scout_filepath()
+    except (OSError, ValueError) as error:
+        print(error)
+        dvw_filepath = update_scout_filepath()
+        if dvw_filepath is None:
+            print('No scout file, so nothing to sync against; start frames unchanged.')
+            return
+    print(f'Syncing against {describe_scout_file(dvw_filepath)}')
+
     set_number = input('Which set to sync (blank for the whole match)? ').strip()
     set_number = set_number or None
 
@@ -244,22 +305,50 @@ def sync_videos():
     skill = 'Reception' if input('Sync on the first reception instead of the'
                                  ' first serve? ').capitalize() == 'Yes' else 'Serve'
 
-    video_time = get_sync_video_time(DVW_FILEPATH, set_number, skill)
+    try:
+        video_time, ordinal, code = get_sync_action(dvw_filepath, set_number, skill)
+    except ValueError as error:
+        print(f'{error} Start frames unchanged.')
+        return
     where = 'the match' if set_number is None else f'set {set_number}'
-    print(f'\nSyncing on the first {skill.lower()} of {where},'
+    # Usually the first. When the scout started the video clock late the first
+    # few have no video_time, and the anchor is the first that does - which has
+    # to be said, or the rally found in the video is not the one the time is for.
+    action = f'first {skill.lower()}'
+    if ordinal > 1:
+        action = (f'{_ordinal(ordinal)} {skill.lower()} ({code.split("~")[0]})')
+        print(f'\nThe first {ordinal - 1} {skill.lower()}(s) of {where} have no'
+              f' video_time in the scout file, so the sync is on the'
+              f' {_ordinal(ordinal)}.')
+    note = (f'Find the {action} of {where}, at video_time'
+            f' {video_time}, and stop on the frame the serve is struck — or up'
+            ' to a second before it.\n\n'
+            'Each 5 s clip is cut *forward* from here, so a little lead is'
+            ' insurance: the scout file timestamps rallies to the second and'
+            ' lands up to ~1.5 s from the serve, and a serve before its clip'
+            ' starts is a reception with no arc to fit.')
+    print(f'\nSyncing on the {action} of {where},'
           f' at video_time {video_time}.')
-    print('Find that rally in each camera and stop on the frame the serve is'
-          ' struck, or up to a second before it.')
-    print('The pipeline cuts each 5 s clip *forward* from the matching point, so'
-          ' a little lead is insurance: the scout file timestamps rallies to the'
-          ' second and lands up to ~1.5 s from the serve, and a serve before the'
-          ' clip starts is a reception with no arc to fit.')
+    print(note.replace('\n\n', '\n'))
 
     paths = extract_dict_from_csv('video_filepaths.csv')
-    sideline_start, baseline_start = suggested_start_frames(video_time)
+    sideline_start, baseline_start = suggested_start_frames(dvw_filepath, video_time)
 
-    sideline_frame = navigate_video(paths['sideline'], sideline_start)
-    baseline_frame = navigate_video(paths['baseline'], baseline_start)
+    # Both cameras are found before anything is written, so closing either
+    # window leaves the anchor on file alone. Half a sync is worse than none:
+    # the two frames are only meaningful as a pair, and an anchor from two
+    # different rallies cuts every clip of the run from the wrong minute.
+    sideline_frame = navigate_video(paths['sideline'], sideline_start,
+                                    title='sideline', note=note)
+    if sideline_frame is None:
+        print('Cancelled; the frames on record are unchanged.')
+        return
+
+    baseline_frame = navigate_video(paths['baseline'], baseline_start,
+                                    title='baseline', note=note)
+    if baseline_frame is None:
+        print('Cancelled; the frames on record are unchanged.')
+        return
 
     write_dict_to_csv('first_reception_frames.csv', {
         'set': set_number if set_number is not None else '',
@@ -275,9 +364,14 @@ def sync_videos():
 def main():
     # uppdatera court coordinates och videolänk:
     if input('Change video paths?').capitalize() == 'Yes':
+        print('Choose the sideline video file:')
         sideline_path = select_file()
+        print('Choose the baseline video file:')    
         baseline_path = select_file()
         write_to_csv('video_filepaths.csv', sideline_path, baseline_path)
+
+    if input('Change scout file?').capitalize() == 'Yes':
+        update_scout_filepath()
 
     if input('Change cameras?').capitalize() == 'Yes':
         update_camera_models()

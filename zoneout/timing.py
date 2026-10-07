@@ -54,6 +54,43 @@ class CameraTiming:
         return sideline_frame, baseline_frame, video_time
 
 
+def anchor_mismatch(dvw_filepath, anchor=None):
+    """Why the sync anchor on file cannot belong to this scout file, or None.
+
+    The anchor stores which action it was taken on (a set's first serve or
+    reception) and that action's `video_time`, so the scout file can be asked
+    the same question again. A different answer means the anchor was taken
+    against another scout file - a different match, or this match before it was
+    re-synced in DataVolley - and every frame computed from it would be off by
+    the difference between the two files' clocks, which grows rally by rally.
+    Nothing downstream fails when that happens; the clips are just wrong.
+
+    An anchor written before the action was recorded has nothing to compare,
+    and its `video_time` is looked up in this very file anyway, so it passes.
+    """
+    if anchor is None:
+        anchor = read_sync_anchor()
+    if anchor['video_time'] is None or anchor['skill'] is None:
+        return None
+
+    where = 'the match' if anchor['set'] is None else f"set {anchor['set']}"
+    try:
+        expected = get_sync_video_time(dvw_filepath, anchor['set'], anchor['skill'])
+    except ValueError as error:
+        expected = None
+        found = f'{error}'
+    else:
+        found = f'in {dvw_filepath} it is at video_time {expected}.'
+
+    if expected == anchor['video_time']:
+        return None
+
+    return (f"The sync anchor is the first timed {anchor['skill'].lower()} of {where}"
+            f" at video_time {anchor['video_time']}, but {found} It was taken"
+            ' against a different scout file: re-run update_parameters.py and'
+            ' change the start frames.')
+
+
 def camera_timing(dvw_filepath, sideline_filepath, baseline_filepath):
     """Read the sync anchor and both cameras' frame rates into a `CameraTiming`.
 

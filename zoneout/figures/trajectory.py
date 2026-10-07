@@ -30,7 +30,7 @@ from matplotlib.ticker import MaxNLocator
 import mpl_toolkits.mplot3d  # noqa: F401  (registers the '3d' projection)
 
 from .court import court_traces, draw_court
-from .style import MARKER_OUTLINE, PATH, RAW_PATH, RECEPTION, SERVE
+from .style import APEX, MARKER_OUTLINE, PATH, RAW_PATH, RECEPTION, SERVE
 
 
 def _valid_points(points):
@@ -156,7 +156,8 @@ def save_trajectory_figure(output_path, points, serve_point=None,
 # ---------------------------------------------------------------------------
 
 def plot_trajectory_plotly(points=None, serve_point=None, receive_point=None,
-                           title=None, raw_points=None, markers=None):
+                           title=None, raw_points=None, markers=None,
+                           heights=None):
     """Build a rotatable plotly figure of a ball trajectory over the court.
 
     Args:
@@ -177,6 +178,10 @@ def plot_trajectory_plotly(points=None, serve_point=None, receive_point=None,
             RAW_PATH. Meant for the reconstruction's own triangulated points,
             so the fitted trajectory can be compared against the measurements
             it came from. Click either legend entry to hide that series.
+        heights: optional `[(label, point), ...]`, points whose *height* is
+            the measurement - the top of a pass. Each is drawn in APEX ink as
+            a cross with a dashed line down to the floor, and labelled with
+            its height, in addition to `markers`.
 
     Returns:
         plotly Figure.
@@ -237,6 +242,29 @@ def plot_trajectory_plotly(points=None, serve_point=None, receive_point=None,
                            "x %{x:.2f}  y %{y:.2f}  z %{z:.2f}<extra></extra>"),
         ))
 
+    for label, point in heights or ():
+        if point is None:
+            continue
+        x, y, z = (float(v) for v in point)
+        fig.add_trace(go.Scatter3d(
+            x=[x, x], y=[y, y], z=[0.0, z],
+            mode="lines",
+            line=dict(color=APEX, width=3, dash="dash"),
+            legendgroup=label, showlegend=False, hoverinfo="skip",
+        ))
+        fig.add_trace(go.Scatter3d(
+            x=[x], y=[y], z=[z],
+            mode="markers+text",
+            marker=dict(size=6, color=APEX, symbol="cross",
+                        line=dict(color=MARKER_OUTLINE, width=2)),
+            text=[f"{label} {z:.2f} m"],
+            textposition="top center",
+            textfont=dict(size=11),
+            name=label, legendgroup=label,
+            hovertemplate=(f"<b>{label}</b><br>"
+                           "x %{x:.2f}  y %{y:.2f}  z %{z:.2f}<extra></extra>"),
+        ))
+
     fig.update_layout(
         title=title,
         # Real-world proportions: the court is 9 m x 18 m and the ball only
@@ -257,7 +285,7 @@ def plot_trajectory_plotly(points=None, serve_point=None, receive_point=None,
 
 def save_trajectory_html(output_path, points=None, serve_point=None,
                          receive_point=None, title=None, raw_points=None,
-                         markers=None):
+                         markers=None, heights=None):
     """Write a self-contained interactive trajectory page to `output_path`.
 
     Open it in a browser: drag to rotate, scroll to zoom, hover for the frame
@@ -269,7 +297,8 @@ def save_trajectory_html(output_path, points=None, serve_point=None,
     parent directory if needed; returns the path.
     """
     fig = plot_trajectory_plotly(points, serve_point, receive_point, title=title,
-                                 raw_points=raw_points, markers=markers)
+                                 raw_points=raw_points, markers=markers,
+                                 heights=heights)
 
     parent = os.path.dirname(output_path)
     if parent:

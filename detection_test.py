@@ -1,7 +1,7 @@
 """Temporary test environment: run ball detection on any video file.
 
 Standalone from the reception pipeline — it takes one video path, runs
-`gala_model.pt` over it, and writes an annotated copy showing every ball the
+the default ball model over it, and writes an annotated copy showing every ball the
 detector found. Nothing here is imported by the pipeline, and it imports
 `zoneout.detection` without changing it.
 
@@ -37,9 +37,8 @@ import time
 
 import cv2
 
-from zoneout.detection import annotate_video, process_video
+from zoneout.detection import DEFAULT_MODEL, annotate_video, process_video
 
-DEFAULT_MODEL = "gala_model.pt"
 DEFAULT_MAX_SECONDS = 60.0         # 1 minute
 DEFAULT_CONF = 0.40                # same floor as pipeline.DETECTION_CONF_THRESHOLD
 DEFAULT_TOP_K = 3                  # same as pipeline.MAX_CANDIDATES_PER_FRAME

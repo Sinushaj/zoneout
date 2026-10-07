@@ -25,8 +25,10 @@ import cv2
 from ultralytics import YOLO
 
 
-# The custom-trained ball detector checked into the repo.
-DEFAULT_MODEL = 'gala_model.pt'
+# The custom-trained ball detector, trained in ~/Desktop/ball_detector (run
+# n1280_v2: YOLOv8n, imgsz 1280, Sollentuna + Södertälje). The previous model,
+# gala_model.pt, is kept in the repo for comparison.
+DEFAULT_MODEL = 'ball_n1280_v2.pt'
 
 # This model scores the ball high and other objects low, so a low-confidence box
 # is much more likely to be junk than to be a faint ball. Measured over
